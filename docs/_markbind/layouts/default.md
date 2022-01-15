@@ -5,7 +5,7 @@
 <header fixed>
   <navbar placement="top" type="inverse">
     <a slot="brand" href="/index.html" title="Home" class="navbar-brand">
-      <i class="far fa-file-image"></i>
+      <pic src="https://teammatesv4.appspot.com/assets/images/teammateslogo.png" width="150" alt="Logo" />
     </a>
     <li><a href="/index.html" class="nav-link">HOME</a></li>
     <li><a href="/contributing.html" class="nav-link">CONTRIBUTING</a></li>
@@ -13,7 +13,7 @@
 
   <li slot="right">
     <form class="navbar-form">
-      <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback"></searchbar>
+      <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
     </form>
   </li>
   </navbar>
@@ -62,8 +62,6 @@
     </div>
   </nav>
 </div>
-
-
 
 <footer>
   
