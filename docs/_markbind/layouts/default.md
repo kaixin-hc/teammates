@@ -1,71 +1,10 @@
-<head-bottom>
-  <link rel="stylesheet" href="/stylesheets/main.css">
-</head-bottom>
-
-<header fixed>
-  <navbar placement="top" type="inverse">
-    <a slot="brand" href="/index.html" title="Home" class="navbar-brand">
-      <i class="far fa-file-image"></i>
-    </a>
-    <li><a href="/index.html" class="nav-link">HOME</a></li>
-    <li><a href="/developerguide.html" class="nav-link">DEVELOPER GUIDE</a></li>
-    <li><a href="/about.html" class="nav-link">ABOUT</a></li>
-
-  <li slot="right">
-    <form class="navbar-form">
-      <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback"></searchbar>
-    </form>
-  </li>
-  </navbar>
-</header>
+<include src="headers/header.mbdf" />
 
 <div id="flex-body">
-  <nav id="site-nav" class="fixed-header-padding">
-    <div class="site-nav-top">
-      <div class="font-weight-bold mb-2" style="font-size: 1.25rem;">Template</div>
-    </div>
-    <div class="nav-component slim-scroll">
-      <site-nav>
-* [README]({{ baseUrl }}/README.html)
-* [Overview]({{ baseUrl }}/overview.html)
-* [Contributing]({{ baseUrl }}/CONTRIBUTING.html)
-* [Setting Up]({{ baseUrl }}/setting-up.html)
-* Design :expanded:
-  * [Development]({{ baseUrl }}/development.html)
-  * [Process]({{ baseUrl }}/process.html)
-  * [Design]({{ baseUrl }}/design.html)
-  * [Index]({{ baseUrl }}/index.html)
-  * [Issues]({{ baseUrl }}/issues.html)
-  * [Search]({{ baseUrl }}/search.html)
-* Best Practices :expanded:
-  * [Coding]({{ baseUrl }}/best-practices/coding.html)
-  * [Testing]({{ baseUrl }}/best-practices/testing.html)
-  * [Data Migration]({{ baseUrl }}/best-practices/data-migration.html)
-  * [Ui Design]({{ baseUrl }}/best-practices/ui-design.html)
-* Testing :expanded:
-  * [End-to-End Testing]({{ baseUrl }}/e2e-testing.html)
-  * [Performance Testing]({{ baseUrl }}/performance-testing.html)
-  * [Snapshot Testing]({{ baseUrl }}/snapshot-testing.html)
-  * [Static Analysis]({{ baseUrl }}/static-analysis.html)
-* How-to :expanded:
-  * [Emails]({{ baseUrl }}/emails.html)
-  * [Captcha]({{ baseUrl }}/captcha.html)
-* [Troubleshooting Guide]({{ baseUrl }}/troubleshooting-guide.html)
-* [Glossary]({{ baseUrl }}/glossary.html)
-      </site-nav>
-    </div>
-  </nav>
   <div id="content-wrapper" class="fixed-header-padding">
     {{ content }}
   </div>
-  <nav id="page-nav" class="fixed-header-padding">
-    <div class="nav-component slim-scroll">
-      <page-nav />
-    </div>
-  </nav>
 </div>
-
-
 
 <footer>
   
