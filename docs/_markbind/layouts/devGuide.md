@@ -3,7 +3,7 @@
 <div id="flex-body">
   <nav id="site-nav" class="fixed-header-padding">
     <div class="site-nav-top">
-      <div class="font-weight-bold mb-2" style="font-size: 1.25rem;">Template</div>
+      <div class="font-weight-bold mb-2" style="font-size: 1.25rem;">Table of Contents</div>
     </div>
     <div class="nav-component slim-scroll">
       <site-nav>
@@ -15,7 +15,6 @@
   * [Development]({{ baseUrl }}/devGuide/development.html)
   * [Process]({{ baseUrl }}/devGuide/process.html)
   * [Design]({{ baseUrl }}/devGuide/design.html)
-  * [Index]({{ baseUrl }}/devGuide/index.html)
   * [Issues]({{ baseUrl }}/devGuide/issues.html)
   * [Search]({{ baseUrl }}/devGuide/search.html)
 * Best Practices :expanded:
@@ -45,8 +44,6 @@
     </div>
   </nav>
 </div>
-
-
 
 <footer>
   

@@ -3,14 +3,15 @@
   "titlePrefix": "TEAMMATES",
   "ignore": ["_markbind/layouts/*", "_markbind/logs/*", "_site/*", "site.json", "*.md", "*.mbd", "*.mbdf", "*.njk", ".git/*"],
   "pages": [{
-    "src": "index.md",
-    "title": "TEAMMATES"
-  }, {
-    "glob": ["**/index.md", "**/*.+(md|mbd)", "devGuide/*.md", "devGuide/*/*.md"]
-  }, {
-    "glob": "**/*.+(md|mbd)",
-    "layout": "default.md"
-  }],
+      "src": "index.md",
+      "title": "Hello World",
+      "layout": "default.md"
+    },
+    {
+      "glob": ["**/*.mbd", "*.md", "devGuide/*.md", "devGuide/*/*.md"],
+      "layout": "devGuide.md"
+    }
+  ],
   "deploy": {
     "message": "Site Update."
   }

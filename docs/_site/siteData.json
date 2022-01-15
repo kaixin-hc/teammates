@@ -198,20 +198,13 @@
       "headingKeywords": {}
     },
     {
-      "src": "devGuide/index.md",
-      "title": "",
-      "headings": {
-        "documentation-for-developers": "Documentation For Developers",
-        "main-documents": "Main documents",
-        "supplementary-documents": "Supplementary documents",
-        "how-to-documents": "How-to documents"
-      },
-      "headingKeywords": {}
-    },
-    {
       "src": "devGuide/issues.md",
       "title": "",
-      "headings": {},
+      "headings": {
+        "issue-tracker": "Issue tracker",
+        "issue-lifecycle": "Issue lifecycle",
+        "issue-labels": "Issue labels"
+      },
       "headingKeywords": {}
     },
     {
@@ -318,7 +311,7 @@
     },
     {
       "src": "index.md",
-      "title": "TEAMMATES",
+      "title": "Hello World",
       "headings": {
         "documentation-for-developers": "Documentation For Developers",
         "main-documents": "Main documents",
