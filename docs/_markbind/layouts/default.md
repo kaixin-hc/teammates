@@ -8,7 +8,7 @@
       <i class="far fa-file-image"></i>
     </a>
     <li><a href="/index.html" class="nav-link">HOME</a></li>
-    <li><a href="/developerguide.html" class="nav-link">DEVELOPER GUIDE</a></li>
+    <li><a href="/contributing.html" class="nav-link">CONTRIBUTING</a></li>
     <li><a href="/about.html" class="nav-link">ABOUT</a></li>
 
   <li slot="right">
@@ -22,20 +22,18 @@
 <div id="flex-body">
   <nav id="site-nav" class="fixed-header-padding">
     <div class="site-nav-top">
-      <div class="font-weight-bold mb-2" style="font-size: 1.25rem;">Template</div>
+      <div class="font-weight-bold mb-2" style="font-size: 1.25rem;">Table of Contents</div>
     </div>
     <div class="nav-component slim-scroll">
       <site-nav>
-* [README]({{ baseUrl }}/README.html)
 * [Overview]({{ baseUrl }}/overview.html)
-* [Contributing]({{ baseUrl }}/CONTRIBUTING.html)
-* [Setting Up]({{ baseUrl }}/setting-up.html)
-* Design :expanded:
-  * [Development]({{ baseUrl }}/development.html)
-  * [Process]({{ baseUrl }}/process.html)
-  * [Design]({{ baseUrl }}/design.html)
-  * [Index]({{ baseUrl }}/index.html)
+* [Contributing]({{ baseUrl }}/CONTRIBUTING.html) :expanded:
   * [Issues]({{ baseUrl }}/issues.html)
+  * [Process]({{ baseUrl }}/process.html)
+  * [Development]({{ baseUrl }}/development.html)
+* [Setting Up]({{ baseUrl }}/setting-up.html)
+* Design
+  * [Design]({{ baseUrl }}/design.html)
   * [Search]({{ baseUrl }}/search.html)
 * Best Practices :expanded:
   * [Coding]({{ baseUrl }}/best-practices/coding.html)
