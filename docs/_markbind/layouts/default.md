@@ -8,12 +8,14 @@
       <i class="far fa-file-image"></i>
     </a>
     <li><a href="/index.html" class="nav-link">HOME</a></li>
+    <li><a href="/developerguide.html" class="nav-link">DEVELOPER GUIDE</a></li>
     <li><a href="/about.html" class="nav-link">ABOUT</a></li>
-    <li slot="right">
-      <form class="navbar-form">
-        <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
-      </form>
-    </li>
+
+  <li slot="right">
+    <form class="navbar-form">
+      <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback"></searchbar>
+    </form>
+  </li>
   </navbar>
 </header>
 
@@ -26,27 +28,29 @@
       <site-nav>
 * [CONTRIBUTING]({{ baseUrl }}/CONTRIBUTING.html)
 * [README]({{ baseUrl }}/README.html)
-* [Coding]({{ baseUrl }}/best-practices\coding.html)
-* [Data Migration]({{ baseUrl }}/best-practices\data-migration.html)
-* [Testing]({{ baseUrl }}/best-practices\testing.html)
-* [Ui Design]({{ baseUrl }}/best-practices\ui-design.html)
-* [Captcha]({{ baseUrl }}/captcha.html)
-* [Design]({{ baseUrl }}/design.html)
-* [Development]({{ baseUrl }}/development.html)
-* [E 2 E Testing]({{ baseUrl }}/e2e-testing.html)
-* [Emails]({{ baseUrl }}/emails.html)
-* [Glossary]({{ baseUrl }}/glossary.html)
-* [Index]({{ baseUrl }}/index.html)
-* [Issues]({{ baseUrl }}/issues.html)
-* [Overview]({{ baseUrl }}/overview.html)
-* [Performance Testing]({{ baseUrl }}/performance-testing.html)
-* [Process]({{ baseUrl }}/process.html)
-* [Search]({{ baseUrl }}/search.html)
 * [Setting Up]({{ baseUrl }}/setting-up.html)
+* Workflow :expanded:
+  * [Development]({{ baseUrl }}/development.html)
+  * [Coding]({{ baseUrl }}/best-practices/coding.html)
+  * [Data Migration]({{ baseUrl }}/best-practices/data-migration.html)
+* Design :expanded:
+  * [Ui Design]({{ baseUrl }}/best-practices/ui-design.html)
+  * [Captcha]({{ baseUrl }}/captcha.html)
+  * [Design]({{ baseUrl }}/design.html)
+  * [Emails]({{ baseUrl }}/emails.html)
+  * [Index]({{ baseUrl }}/index.html)
+  * [Issues]({{ baseUrl }}/issues.html)
+  * [Overview]({{ baseUrl }}/overview.html)
+  * [Process]({{ baseUrl }}/process.html)
+  * [Search]({{ baseUrl }}/search.html)
+* Testing :expanded:
+  * [Testing Guidelines]({{ baseUrl }}/best-practices/testing.html)
+  * [End-to-End Testing]({{ baseUrl }}/e2e-testing.html)
+  * [Performance Testing]({{ baseUrl }}/performance-testing.html)
 * [Snapshot Testing]({{ baseUrl }}/snapshot-testing.html)
 * [Static Analysis]({{ baseUrl }}/static-analysis.html)
 * [Troubleshooting Guide]({{ baseUrl }}/troubleshooting-guide.html)
-
+* [Glossary]({{ baseUrl }}/glossary.html)
       </site-nav>
     </div>
   </nav>
