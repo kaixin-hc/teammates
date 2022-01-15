@@ -32,9 +32,8 @@
   * [Process]({{ baseUrl }}/process.html)
   * [Development]({{ baseUrl }}/development.html)
 * [Setting Up]({{ baseUrl }}/setting-up.html)
-* Design
-  * [Design]({{ baseUrl }}/design.html)
   * [Search]({{ baseUrl }}/search.html)
+* [Design]({{ baseUrl }}/design.html)
 * Best Practices :expanded:
   * [Coding]({{ baseUrl }}/best-practices/coding.html)
   * [Testing]({{ baseUrl }}/best-practices/testing.html)
