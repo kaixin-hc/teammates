@@ -11540,3 +11540,317 @@ Please ensure the file exist or is valid
 2022-01-15T09:07:36.908Z - info: Site data built
 2022-01-15T09:07:36.909Z - info: Pages rebuilt
 2022-01-15T09:07:36.909Z - info: Website regeneration complete! Total build time: 0.813s
+2022-01-15T09:09:26.767Z - info: [5:09:26 pm] Reload for file change: D:\Development\markbind\teammates\docs\_markbind\layouts\devGuide.md
+2022-01-15T09:09:27.783Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/images/logo-darkbackground.svg' found in file 'D:\Development\markbind\teammates\docs\_markbind\layouts\headers\header.mbdf'
+2022-01-15T09:09:27.790Z - info: Rebuilding 24 pages
+2022-01-15T09:09:27.795Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/overview.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.796Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/glossary.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.796Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/design.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.797Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/setting-up.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.797Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/development.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.798Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/process.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.798Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/troubleshooting-guide.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.799Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/issues.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.800Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/ui-design.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.800Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/coding.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.801Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/testing.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.802Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/data-migration.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.802Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.803Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/emails.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.803Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/captcha.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.804Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/snapshot-testing.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.804Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/e2e-testing.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:09:27.809Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/.github/CODE_OF_CONDUCT.html' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:09:27.811Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/LICENSE' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:09:27.812Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/RolesAndTechnologies.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:09:27.812Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/RolesAndTechnologies.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:09:27.814Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/.github/SUPPORT.html' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:09:27.815Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/docs/README.html' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:09:27.906Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/overview.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.907Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/glossary.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.908Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/design.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.908Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/setting-up.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.909Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/development.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.909Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/process.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.910Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/troubleshooting-guide.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.912Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/issues.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.913Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/ui-design.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.914Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/coding.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.914Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/testing.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.915Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/data-migration.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.916Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.917Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/emails.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.917Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/captcha.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.918Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/snapshot-testing.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.919Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/e2e-testing.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:09:27.948Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/(../static-analysis/teammates-checkstyle.xml)' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:09:27.948Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis/teammates-pmd.xml' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:09:27.949Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis/teammates-pmdMain.xml' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:09:27.950Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis/teammates-spotbugs.xml' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:09:27.951Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis/teammates-tslint.yml' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:09:27.951Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis/teammates-stylelint.yml' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:09:28.062Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/solr.sh' found in file 'D:\Development\markbind\teammates\docs\devGuide\search.md'
+2022-01-15T09:09:28.086Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/workflow.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\process.md'
+2022-01-15T09:09:28.264Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/IssueLifecycle.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\issues.md'
+2022-01-15T09:09:28.446Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/highlevelArchitecture.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.448Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/highlevelArchitecture.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.448Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/packageDiagram.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.449Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/packageDiagram.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.450Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/UiComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.451Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/UiComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.452Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/UiWorkflow.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.452Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/UiWorkflow.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.454Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/src/main/java/teammates/common/util/Const.java' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.456Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/LogicComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.456Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/LogicComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.458Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/StorageComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.459Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/StorageComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.460Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/StorageClassDiagram.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.461Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/StorageClassDiagram.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.463Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/CommonComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.464Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/CommonComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.464Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/dataTransferClasses.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.465Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/dataTransferClasses.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.466Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/TestDriverComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.467Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/TestDriverComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.468Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/E2EComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.469Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/E2EComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.470Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/ClientComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.471Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/ClientComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:09:28.682Z - info: Site data built
+2022-01-15T09:09:28.682Z - info: Pages rebuilt
+2022-01-15T09:09:28.683Z - info: Website regeneration complete! Total build time: 0.892s
+2022-01-15T09:10:10.028Z - info: [5:10:10 pm] Reload for file change: D:\Development\markbind\teammates\docs\_markbind\layouts\devGuide.md
+2022-01-15T09:10:11.042Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/images/logo-darkbackground.svg' found in file 'D:\Development\markbind\teammates\docs\_markbind\layouts\headers\header.mbdf'
+2022-01-15T09:10:11.059Z - info: Rebuilding 24 pages
+2022-01-15T09:10:11.068Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/overview.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.068Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/glossary.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.069Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/design.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.070Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/setting-up.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.070Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/development.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.071Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/process.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.071Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/troubleshooting-guide.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.072Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/issues.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.074Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/ui-design.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.074Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/coding.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.075Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/testing.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.075Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/data-migration.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.077Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.077Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/emails.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.078Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/captcha.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.078Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/snapshot-testing.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.079Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/e2e-testing.html' found in file 'D:\Development\markbind\teammates\docs\about.md'
+2022-01-15T09:10:11.087Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/.github/CODE_OF_CONDUCT.html' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:10:11.089Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/LICENSE' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:10:11.091Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/RolesAndTechnologies.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:10:11.091Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/RolesAndTechnologies.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:10:11.096Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/.github/SUPPORT.html' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:10:11.097Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/docs/README.html' found in file 'D:\Development\markbind\teammates\docs\devGuide\CONTRIBUTING.md'
+2022-01-15T09:10:11.202Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/overview.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.203Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/glossary.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.204Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/design.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.205Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/setting-up.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.206Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/development.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.206Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/process.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.207Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/troubleshooting-guide.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.207Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/issues.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.208Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/ui-design.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.209Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/coding.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.209Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/testing.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.210Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/best-practices/data-migration.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.211Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.212Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/emails.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.212Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/captcha.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.213Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/snapshot-testing.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.214Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/e2e-testing.html' found in file 'D:\Development\markbind\teammates\docs\showcase.md'
+2022-01-15T09:10:11.234Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/(../static-analysis/teammates-checkstyle.xml)' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:10:11.235Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis/teammates-pmd.xml' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:10:11.235Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis/teammates-pmdMain.xml' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:10:11.236Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis/teammates-spotbugs.xml' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:10:11.237Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis/teammates-tslint.yml' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:10:11.237Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/static-analysis/teammates-stylelint.yml' found in file 'D:\Development\markbind\teammates\docs\devGuide\static-analysis.md'
+2022-01-15T09:10:11.363Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/solr.sh' found in file 'D:\Development\markbind\teammates\docs\devGuide\search.md'
+2022-01-15T09:10:11.382Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/workflow.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\process.md'
+2022-01-15T09:10:11.583Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/IssueLifecycle.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\issues.md'
+2022-01-15T09:10:11.732Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/highlevelArchitecture.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.733Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/highlevelArchitecture.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.733Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/packageDiagram.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.734Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/packageDiagram.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.735Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/UiComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.736Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/UiComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.737Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/UiWorkflow.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.737Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/UiWorkflow.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.738Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/src/main/java/teammates/common/util/Const.java' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.740Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/LogicComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.741Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/LogicComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.744Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/StorageComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.745Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/StorageComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.746Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/StorageClassDiagram.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.746Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/StorageClassDiagram.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.748Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/CommonComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.748Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/CommonComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.749Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/dataTransferClasses.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.750Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/dataTransferClasses.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.751Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/TestDriverComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.751Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/TestDriverComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.753Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/E2EComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.754Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/E2EComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.755Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/ClientComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.755Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/devGuide/images/ClientComponent.png' found in file 'D:\Development\markbind\teammates\docs\devGuide\design.md'
+2022-01-15T09:10:11.983Z - info: Site data built
+2022-01-15T09:10:11.984Z - info: Pages rebuilt
+2022-01-15T09:10:11.984Z - info: Website regeneration complete! Total build time: 0.926s
+2022-01-15T09:11:16.302Z - info: [5:11:16 pm] Reload for file change: D:\Development\markbind\teammates\docs\stylesheets\main.css
+2022-01-15T09:11:17.319Z - info: Assets built
+2022-01-15T09:11:19.882Z - info: [5:11:19 pm] Reload for file change: D:\Development\markbind\teammates\docs\stylesheets\main.css
+2022-01-15T09:11:20.889Z - info: Assets built
