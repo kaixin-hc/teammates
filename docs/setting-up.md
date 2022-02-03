@@ -1,3 +1,8 @@
+<frontmatter>
+  pageNav: 3
+  pageNavTitle: "Chapters of This Page"
+</frontmatter>
+
 # Setting up a development environment
 
 This is a step-by-step guide for setting up a development environment on your local machine.
@@ -78,3 +83,11 @@ If you want to develop front-end, you need to install the following:
 If you have followed every step correctly, your development environment should be set up successfully.
 
 Proceed to the development routine as outlined in [this document](development.md).
+
+## Step 5: Set up search (Optional)
+
+<panel header="Search service is optional for local development">
+<include src="search.md" />
+</panel>
+
+<br>
