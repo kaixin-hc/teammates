@@ -2,29 +2,12 @@
   "enableSearch": true,
   "pages": [
     {
-      "src": "CONTRIBUTING.md",
-      "title": "",
-      "headings": {
-        "contributing-to-teammates": "Contributing to TEAMMATES",
-        "getting-started": "Getting started",
-        "know-the-product-project": "Know the product/project",
-        "code-of-conduct": "Code of Conduct",
-        "how-can-i-contribute": "How can I contribute?",
-        "submitting-an-issue": "Submitting an issue",
-        "manual-testing": "Manual testing",
-        "submitting-a-pull-request": "Submitting a pull request",
-        "contributor-orientation-guide": "Contributor orientation guide",
-        "knowledge-required": "Knowledge required",
-        "orientation-task-list": "Orientation task list",
-        "other-resources": "Other resources"
-      },
-      "headingKeywords": {}
-    },
-    {
       "src": "about.md",
       "title": "",
       "headings": {
-        "about": "About"
+        "about": "About",
+        "acknowledgements": "Acknowledgements",
+        "contacting-us": "Contacting us"
       },
       "headingKeywords": {}
     },
@@ -85,6 +68,25 @@
       "headingKeywords": {}
     },
     {
+      "src": "contributing.md",
+      "title": "",
+      "headings": {
+        "contributing-to-teammates": "Contributing to TEAMMATES",
+        "getting-started": "Getting started",
+        "know-the-product-project": "Know the product/project",
+        "code-of-conduct": "Code of Conduct",
+        "how-can-i-contribute": "How can I contribute?",
+        "submitting-an-issue": "Submitting an issue",
+        "manual-testing": "Manual testing",
+        "submitting-a-pull-request": "Submitting a pull request",
+        "contributor-orientation-guide": "Contributor orientation guide",
+        "knowledge-required": "Knowledge required",
+        "orientation-task-list": "Orientation task list",
+        "other-resources": "Other resources"
+      },
+      "headingKeywords": {}
+    },
+    {
       "src": "design.md",
       "title": "",
       "headings": {
@@ -127,6 +129,15 @@
         "deploying-to-a-staging-server": "Deploying to a staging server",
         "running-client-scripts": "Running client scripts",
         "config-points": "Config points"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "documentation.md",
+      "title": "",
+      "headings": {
+        "markbind-documentation": "Markbind Documentation",
+        "quickstart": "Quickstart"
       },
       "headingKeywords": {}
     },
