@@ -371,7 +371,6 @@ export class FeedbackQuestionsService {
       case FeedbackQuestionType.MCQ:
 
         const mcqQuestionDetails: FeedbackMcqQuestionDetails = DEFAULT_MCQ_QUESTION_DETAILS();
-        mcqQuestionDetails.numOfMcqChoices = 2;
         mcqQuestionDetails.mcqChoices = ['', ''];
 
         return {
@@ -461,9 +460,7 @@ export class FeedbackQuestionsService {
       case FeedbackQuestionType.RUBRIC:
 
         const rubricQuestionDetails: FeedbackRubricQuestionDetails = DEFAULT_RUBRIC_QUESTION_DETAILS();
-        rubricQuestionDetails.numOfRubricChoices = 4;
         rubricQuestionDetails.rubricChoices = ['Strongly Disagree', 'Disagree', 'Agree', 'Strongly Agree'];
-        rubricQuestionDetails.numOfRubricSubQuestions = 2;
         rubricQuestionDetails.rubricSubQuestions =
             ['This student participates well in online discussions.', 'This student completes assigned tasks on time.'];
         rubricQuestionDetails.rubricDescriptions = [
@@ -567,7 +564,7 @@ export class FeedbackQuestionsService {
    * Checks whether the current question is allowed to have participant comment.
    */
   isAllowedToHaveParticipantComment(questionType: FeedbackQuestionType): boolean {
-    return questionType === FeedbackQuestionType.MCQ;
+    return questionType === FeedbackQuestionType.MCQ || questionType === FeedbackQuestionType.MSQ;
   }
 
   /**
