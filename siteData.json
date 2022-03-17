@@ -134,8 +134,13 @@
     },
     {
       "src": "documentation.md",
-      "title": "",
-      "headings": {},
+      "title": "Getting Started: Documentation",
+      "headings": {
+        "markbind-documentation": "MarkBind Documentation",
+        "quickstart": "Quickstart",
+        "adding-pages-to-the-developer-guide": "Adding pages to the developer guide",
+        "deploying-to-github-pages": "Deploying to Github pages"
+      },
       "headingKeywords": {}
     },
     {
@@ -179,7 +184,7 @@
     },
     {
       "src": "index.md",
-      "title": "TEAMMATES",
+      "title": "Teammates - Home",
       "headings": {
         "teammates": "TEAMMATES",
         "interested-to-join-teammates-developer-team": "Interested to join TEAMMATES developer team?",
@@ -252,7 +257,7 @@
     },
     {
       "src": "setting-up.md",
-      "title": "Getting Started: Search",
+      "title": "Getting Started: Setting Up",
       "headings": {
         "setting-up-a-development-environment": "Setting up a development environment",
         "step-1-obtain-your-own-copy-of-the-repository": "Step 1: Obtain your own copy of the repository",
