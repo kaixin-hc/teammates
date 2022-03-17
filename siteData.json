@@ -3,7 +3,7 @@
   "pages": [
     {
       "src": "about.md",
-      "title": "",
+      "title": "About",
       "headings": {
         "about": "About",
         "acknowledgements": "Acknowledgements",
@@ -13,7 +13,7 @@
     },
     {
       "src": "best-practices/coding.md",
-      "title": "",
+      "title": "Best Practices: Coding",
       "headings": {
         "coding-best-practices": "Coding Best Practices",
         "quality": "Quality",
@@ -29,7 +29,7 @@
     },
     {
       "src": "best-practices/data-migration.md",
-      "title": "",
+      "title": "Best Practices: Data Migration",
       "headings": {
         "data-migration-best-practices": "Data Migration Best Practices",
         "making-code-work-for-both-schemas": "Making code work for both schemas",
@@ -39,7 +39,7 @@
     },
     {
       "src": "best-practices/testing.md",
-      "title": "",
+      "title": "Best Practices: Testing",
       "headings": {
         "testing-best-practices": "Testing Best Practices",
         "general-guidelines": "General guidelines"
@@ -48,7 +48,7 @@
     },
     {
       "src": "best-practices/ui-design.md",
-      "title": "",
+      "title": "Best Practices: UI Design",
       "headings": {
         "ui-design-best-practices": "UI Design Best Practices",
         "be-forgiving-in-processing-input": "Be forgiving in processing input",
@@ -61,7 +61,7 @@
     },
     {
       "src": "captcha.md",
-      "title": "",
+      "title": "How-to: Captcha",
       "headings": {
         "setting-up-captcha": "Setting up CAPTCHA"
       },
@@ -69,7 +69,7 @@
     },
     {
       "src": "contributing.md",
-      "title": "",
+      "title": "Workflow: Contributing",
       "headings": {
         "contributing-to-teammates": "Contributing to TEAMMATES",
         "getting-started": "Getting started",
@@ -88,7 +88,7 @@
     },
     {
       "src": "design.md",
-      "title": "",
+      "title": "Design",
       "headings": {
         "design": "Design",
         "architecture": "Architecture",
@@ -112,7 +112,7 @@
     },
     {
       "src": "development.md",
-      "title": "",
+      "title": "Workflow: Development",
       "headings": {
         "development-guidelines": "Development Guidelines",
         "managing-the-dev-server-front-end": "Managing the dev server: front-end",
@@ -135,15 +135,12 @@
     {
       "src": "documentation.md",
       "title": "",
-      "headings": {
-        "markbind-documentation": "Markbind Documentation",
-        "quickstart": "Quickstart"
-      },
+      "headings": {},
       "headingKeywords": {}
     },
     {
       "src": "e2e-testing.md",
-      "title": "",
+      "title": "Testing: End-to-End",
       "headings": {
         "e2e-testing": "E2E Testing",
         "what-is-e2e-testing": "What is E2E Testing?",
@@ -161,7 +158,7 @@
     },
     {
       "src": "emails.md",
-      "title": "",
+      "title": "How-to: Emails",
       "headings": {
         "using-alternative-email-providers": "Using alternative email providers",
         "sendgrid": "SendGrid",
@@ -172,7 +169,7 @@
     },
     {
       "src": "glossary.md",
-      "title": "",
+      "title": "Glossary",
       "headings": {
         "glossary": "Glossary",
         "product-related": "Product-related",
@@ -193,7 +190,7 @@
     },
     {
       "src": "issues.md",
-      "title": "",
+      "title": "Workflow: Issues",
       "headings": {
         "issue-tracker": "Issue tracker",
         "issue-lifecycle": "Issue lifecycle",
@@ -203,7 +200,7 @@
     },
     {
       "src": "overview.md",
-      "title": "",
+      "title": "About: Overview",
       "headings": {
         "overview": "Overview",
         "vision": "Vision",
@@ -214,7 +211,7 @@
     },
     {
       "src": "performance-testing.md",
-      "title": "",
+      "title": "Testing: Performance",
       "headings": {
         "performance-testing": "Performance Testing",
         "creating-performance-tests": "Creating Performance Tests",
@@ -227,7 +224,7 @@
     },
     {
       "src": "process.md",
-      "title": "",
+      "title": "Workflow: Development Workflow",
       "headings": {
         "development-workflow": "Development Workflow",
         "overview": "Overview",
@@ -245,7 +242,7 @@
     },
     {
       "src": "search.md",
-      "title": "",
+      "title": "Getting Started: Search",
       "headings": {
         "full-text-search-feature-support": "Full-text Search Feature Support",
         "setting-up-solr-using-docker": "Setting up Solr using Docker",
@@ -255,7 +252,7 @@
     },
     {
       "src": "setting-up.md",
-      "title": "",
+      "title": "Getting Started: Search",
       "headings": {
         "setting-up-a-development-environment": "Setting up a development environment",
         "step-1-obtain-your-own-copy-of-the-repository": "Step 1: Obtain your own copy of the repository",
@@ -268,7 +265,7 @@
     },
     {
       "src": "snapshot-testing.md",
-      "title": "",
+      "title": "Testing: Snapshot",
       "headings": {
         "snapshot-testing": "Snapshot Testing",
         "what-is-snapshot-testing": "What is Snapshot Testing?",
@@ -283,7 +280,7 @@
     },
     {
       "src": "static-analysis.md",
-      "title": "",
+      "title": "Testing: Static Analysis",
       "headings": {
         "static-analysis": "Static Analysis",
         "version-numbers": "Version numbers",
@@ -295,7 +292,7 @@
     },
     {
       "src": "troubleshooting-guide.md",
-      "title": "",
+      "title": "Troubleshooting Guide",
       "headings": {
         "developer-troubleshooting-guide": "Developer Troubleshooting Guide",
         "troubleshooting-test-failures": "Troubleshooting test failures",
