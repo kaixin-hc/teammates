@@ -178,7 +178,9 @@
       "headings": {
         "glossary": "Glossary",
         "product-related": "Product-related",
-        "development-related": "Development-related"
+        "development-related": "Development-related",
+        "servers": "Servers",
+        "tests": "Tests"
       },
       "headingKeywords": {}
     },
