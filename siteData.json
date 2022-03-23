@@ -82,7 +82,7 @@
         "contributor-orientation-guide": "Contributor orientation guide",
         "knowledge-required": "Knowledge required",
         "orientation-task-list": "Orientation task list",
-        "other-resources": "Other resources"
+        "teammates-support": "TEAMMATES Support"
       },
       "headingKeywords": {}
     },
@@ -186,7 +186,7 @@
     },
     {
       "src": "index.md",
-      "title": "Teammates - Home",
+      "title": "Home",
       "headings": {
         "teammates": "TEAMMATES",
         "interested-to-join-teammates-developer-team": "Interested to join TEAMMATES developer team?",
