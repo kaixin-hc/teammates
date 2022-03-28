@@ -3,7 +3,7 @@
   "pages": [
     {
       "src": "CONTRIBUTING.md",
-      "title": "Workflow: Contributing",
+      "title": "",
       "headings": {
         "contributing-to-teammates": "Contributing to TEAMMATES",
         "getting-started": "Getting started",
@@ -83,6 +83,25 @@
       "title": "How-to: Captcha",
       "headings": {
         "setting-up-captcha": "Setting up CAPTCHA"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "contributing-doc.md",
+      "title": "Workflow: Contributing",
+      "headings": {
+        "contributing-to-teammates": "Contributing to TEAMMATES",
+        "getting-started": "Getting started",
+        "know-the-product-project": "Know the product/project",
+        "code-of-conduct": "Code of Conduct",
+        "how-can-i-contribute": "How can I contribute?",
+        "submitting-an-issue": "Submitting an issue",
+        "manual-testing": "Manual testing",
+        "submitting-a-pull-request": "Submitting a pull request",
+        "contributor-orientation-guide": "Contributor orientation guide",
+        "knowledge-required": "Knowledge required",
+        "orientation-task-list": "Orientation task list",
+        "teammates-support": "TEAMMATES Support"
       },
       "headingKeywords": {}
     },
