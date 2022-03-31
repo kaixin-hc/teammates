@@ -10,7 +10,6 @@ import teammates.common.datatransfer.FeedbackParticipantType;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
-import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.exception.EntityAlreadyExistsException;
 import teammates.common.exception.EntityDoesNotExistException;
 import teammates.common.exception.InvalidParametersException;
@@ -31,7 +30,6 @@ public final class FeedbackSessionsLogic {
 
     private static final String ERROR_NON_EXISTENT_FS_STRING_FORMAT = "Trying to %s a non-existent feedback session: ";
     private static final String ERROR_NON_EXISTENT_FS_UPDATE = String.format(ERROR_NON_EXISTENT_FS_STRING_FORMAT, "update");
-    private static final String ERROR_NON_EXISTENT_FS_CHECK = String.format(ERROR_NON_EXISTENT_FS_STRING_FORMAT, "check");
     private static final String ERROR_FS_ALREADY_PUBLISH = "Error publishing feedback session: "
                                                            + "Session has already been published.";
     private static final String ERROR_FS_ALREADY_UNPUBLISH = "Error unpublishing feedback session: "
@@ -113,10 +111,10 @@ public final class FeedbackSessionsLogic {
     }
 
     /**
-     * Returns a list of feedback sessions within the time range or an empty list if nothing was found.
+     * Gets all feedback sessions of a course started after time.
      */
-    public List<FeedbackSessionAttributes> getAllFeedbackSessionsWithinTimeRange(Instant rangeStart, Instant rangeEnd) {
-        return fsDb.getFeedbackSessionsWithinTimeRange(rangeStart, rangeEnd);
+    public List<FeedbackSessionAttributes> getFeedbackSessionsForCourseStartingAfter(String courseId, Instant after) {
+        return fsDb.getFeedbackSessionsForCourseStartingAfter(courseId, after);
     }
 
     /**
@@ -209,44 +207,26 @@ public final class FeedbackSessionsLogic {
      */
     public boolean isCreatorOfSession(String feedbackSessionName, String courseId, String userEmail) {
         FeedbackSessionAttributes fs = getFeedbackSession(feedbackSessionName, courseId);
+        if (fs == null) {
+            return false;
+        }
         return fs.getCreatorEmail().equals(userEmail);
     }
 
-    private boolean isFeedbackSessionExists(String feedbackSessionName, String courseId) {
-        return fsDb.getFeedbackSession(courseId, feedbackSessionName) != null;
-    }
-
     /**
-     * Returns true if the feedback session has question for students.
-     */
-    public boolean isFeedbackSessionHasQuestionForStudents(
-            String feedbackSessionName,
-            String courseId) throws EntityDoesNotExistException {
-        if (!isFeedbackSessionExists(feedbackSessionName, courseId)) {
-            throw new EntityDoesNotExistException(ERROR_NON_EXISTENT_FS_CHECK + courseId + "/" + feedbackSessionName);
-        }
-
-        List<FeedbackQuestionAttributes> allQuestions =
-                fqLogic.getFeedbackQuestionsForStudents(feedbackSessionName,
-                        courseId);
-
-        return !allQuestions.isEmpty();
-    }
-
-    /**
-     * Checks whether a student has completed a feedback session.
+     * Checks whether a student has attempted a feedback session.
      *
-     * <p>If feedback session consists of all team questions, session is completed by student only
+     * <p>If feedback session consists of all team questions, session is attempted by student only
      * if someone from the team has responded. If feedback session has some individual questions,
-     * session is completed only if the student has responded to the individual questions
+     * session is attempted only if the student has responded to any of the individual questions
      * (regardless of the completion status of the team questions).</p>
      */
-    public boolean isFeedbackSessionCompletedByStudent(FeedbackSessionAttributes fsa, String userEmail, String userTeam) {
+    public boolean isFeedbackSessionAttemptedByStudent(FeedbackSessionAttributes fsa, String userEmail, String userTeam) {
         String feedbackSessionName = fsa.getFeedbackSessionName();
         String courseId = fsa.getCourseId();
 
         if (!fqLogic.sessionHasQuestions(feedbackSessionName, courseId)) {
-            // if there are no questions for student, session is complete
+            // if there are no questions for student, session is attempted
             return true;
         } else if (fqLogic.sessionHasQuestionsForGiverType(
                 feedbackSessionName, courseId, FeedbackParticipantType.STUDENTS)) {
@@ -259,22 +239,17 @@ public final class FeedbackSessionsLogic {
     }
 
     /**
-     * Checks whether an instructor has completed a feedback session.
+     * Checks whether an instructor has attempted a feedback session.
      *
-     * <p> If there is no question for instructors, the feedback session is completed</p>
+     * <p>If there is no question for instructors, the feedback session is considered as attempted.</p>
      */
-    public boolean isFeedbackSessionCompletedByInstructor(FeedbackSessionAttributes fsa, String userEmail)
-            throws EntityDoesNotExistException {
+    public boolean isFeedbackSessionAttemptedByInstructor(FeedbackSessionAttributes fsa, String userEmail) {
         if (frLogic.hasGiverRespondedForSession(userEmail, fsa.getFeedbackSessionName(), fsa.getCourseId())) {
             return true;
         }
 
-        String feedbackSessionName = fsa.getFeedbackSessionName();
-        String courseId = fsa.getCourseId();
-        List<FeedbackQuestionAttributes> allQuestions =
-                fqLogic.getFeedbackQuestionsForInstructor(feedbackSessionName, courseId, userEmail);
-        // if there is no question for instructor, session is complete
-        return allQuestions.isEmpty();
+        // if there is no question for instructor, session is attempted
+        return !fqLogic.hasFeedbackQuestionsForInstructors(fsa, fsa.isCreator(userEmail));
     }
 
     /**
@@ -512,24 +487,31 @@ public final class FeedbackSessionsLogic {
      * Gets the expected number of submissions for a feedback session.
      */
     public int getExpectedTotalSubmission(FeedbackSessionAttributes fsa) {
-        List<StudentAttributes> students = studentsLogic.getStudentsForCourse(fsa.getCourseId());
-        List<InstructorAttributes> instructors = instructorsLogic.getInstructorsForCourse(fsa.getCourseId());
-        List<FeedbackQuestionAttributes> questions =
-                fqLogic.getFeedbackQuestionsForSession(fsa.getFeedbackSessionName(), fsa.getCourseId());
-        List<FeedbackQuestionAttributes> studentQns = fqLogic.getFeedbackQuestionsForStudents(questions);
-
         int expectedTotal = 0;
 
-        if (!studentQns.isEmpty()) {
-            expectedTotal += students.size();
+        if (fqLogic.hasFeedbackQuestionsForStudents(fsa)) {
+            expectedTotal += studentsLogic.getNumberOfStudentsForCourse(fsa.getCourseId());
         }
 
-        for (InstructorAttributes instructor : instructors) {
-            List<FeedbackQuestionAttributes> instructorQns =
-                    fqLogic.getFeedbackQuestionsForInstructor(questions, fsa.isCreator(instructor.getEmail()));
-            if (!instructorQns.isEmpty()) {
-                expectedTotal += 1;
-            }
+        // Pre-flight check to ensure there are questions for instructors.
+        if (!fqLogic.hasFeedbackQuestionsForInstructors(fsa, true)) {
+            return expectedTotal;
+        }
+
+        List<String> instructorEmails = instructorsLogic.getInstructorEmailsForCourse(fsa.getCourseId());
+        if (instructorEmails.isEmpty()) {
+            return expectedTotal;
+        }
+
+        // Check presence of questions for instructors.
+        if (fqLogic.hasFeedbackQuestionsForInstructors(fsa, false)) {
+            expectedTotal += instructorEmails.size();
+        } else {
+            // No questions for instructors. There must be questions for creator.
+            List<String> creatorEmails = instructorEmails.stream()
+                    .filter(fsa::isCreator)
+                    .collect(Collectors.toList());
+            expectedTotal += creatorEmails.size();
         }
 
         return expectedTotal;
@@ -553,53 +535,24 @@ public final class FeedbackSessionsLogic {
     }
 
     /**
-     * Returns true if the feedback session has been attempted (i.e. any question is answered) by the given student.
+     * Returns true if the feedback session is viewable by the given user type (students/instructors).
      */
-    public boolean isFeedbackSessionAttemptedByStudent(
-            String feedbackSessionName,
-            String courseId, String userEmail)
-            throws EntityDoesNotExistException {
-
-        if (!isFeedbackSessionExists(feedbackSessionName, courseId)) {
-            throw new EntityDoesNotExistException(ERROR_NON_EXISTENT_FS_CHECK + courseId + "/" + feedbackSessionName);
-        }
-
-        List<FeedbackQuestionAttributes> allQuestions =
-                fqLogic.getFeedbackQuestionsForStudents(feedbackSessionName,
-                        courseId);
-
-        for (FeedbackQuestionAttributes question : allQuestions) {
-            //as long as one question is fully answered, student has attempted
-            if (fqLogic.isQuestionFullyAnsweredByUser(question, userEmail)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Returns true if the feedback session is viewable by the given student.
-     */
-    public boolean isFeedbackSessionViewableToStudents(
-            FeedbackSessionAttributes session) {
-        // Allow students to view the feedback session if there are questions for them
-        List<FeedbackQuestionAttributes> questionsToAnswer =
-                fqLogic.getFeedbackQuestionsForStudents(
-                        session.getFeedbackSessionName(), session.getCourseId());
-
-        if (session.isVisible() && !questionsToAnswer.isEmpty()) {
+    public boolean isFeedbackSessionViewableToUserType(FeedbackSessionAttributes session, boolean isInstructor) {
+        // Allow user to view the feedback session if there are questions for them
+        if (isFeedbackSessionForUserTypeToAnswer(session, isInstructor)) {
             return true;
         }
 
-        // Allow students to view the feedback session
-        // if there are any questions for instructors to answer
-        // where the responses of the questions are visible to the students
+        // Allow user to view the feedback session if there are any question whose responses are visible to the user
         List<FeedbackQuestionAttributes> questionsWithVisibleResponses = new ArrayList<>();
-        List<FeedbackQuestionAttributes> questionsForInstructors =
-                                        fqLogic.getFeedbackQuestionsForCreatorInstructor(session);
-        for (FeedbackQuestionAttributes question : questionsForInstructors) {
-            if (frLogic.isResponseOfFeedbackQuestionVisibleToStudent(question)) {
+        List<FeedbackQuestionAttributes> questionsForUser =
+                fqLogic.getFeedbackQuestionsForSession(session.getFeedbackSessionName(), session.getCourseId());
+        for (FeedbackQuestionAttributes question : questionsForUser) {
+            if (!isInstructor && frLogic.isResponseOfFeedbackQuestionVisibleToStudent(question)
+                    || isInstructor && frLogic.isResponseOfFeedbackQuestionVisibleToInstructor(question)) {
+                // We only need one question with visible responses for the entire session to be visible
                 questionsWithVisibleResponses.add(question);
+                break;
             }
         }
 
@@ -607,15 +560,16 @@ public final class FeedbackSessionsLogic {
     }
 
     /**
-     * Returns true if there are any questions for students to answer.
+     * Returns true if there are any questions for the specified user type (students/instructors) to answer.
      */
-    public boolean isFeedbackSessionForStudentsToAnswer(FeedbackSessionAttributes session) {
+    public boolean isFeedbackSessionForUserTypeToAnswer(FeedbackSessionAttributes session, boolean isInstructor) {
+        if (!session.isVisible()) {
+            return false;
+        }
 
-        List<FeedbackQuestionAttributes> questionsToAnswer =
-                fqLogic.getFeedbackQuestionsForStudents(
-                        session.getFeedbackSessionName(), session.getCourseId());
-
-        return session.isVisible() && !questionsToAnswer.isEmpty();
+        return isInstructor
+                ? fqLogic.hasFeedbackQuestionsForInstructors(session, false)
+                : fqLogic.hasFeedbackQuestionsForStudents(session);
     }
 
 }

@@ -107,7 +107,7 @@ public class StringHelperTest extends BaseTestCase {
         SecretKeySpec sks = new SecretKeySpec(StringHelper.hexStringToByteArray(Config.ENCRYPTION_KEY), "AES");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, sks, cipher.getParameters());
-        byte[] encrypted = cipher.doFinal(plaintext.getBytes());
+        byte[] encrypted = cipher.doFinal(plaintext.getBytes(Const.ENCODING));
         return StringHelper.byteArrayToHexString(encrypted);
     }
 
@@ -116,7 +116,7 @@ public class StringHelperTest extends BaseTestCase {
                 new SecretKeySpec(StringHelper.hexStringToByteArray(Config.ENCRYPTION_KEY), "HmacSHA1");
         Mac mac = Mac.getInstance("HmacSHA1");
         mac.init(signingKey);
-        byte[] value = mac.doFinal(data.getBytes());
+        byte[] value = mac.doFinal(data.getBytes(Const.ENCODING));
         return StringHelper.byteArrayToHexString(value);
     }
 
@@ -128,7 +128,7 @@ public class StringHelperTest extends BaseTestCase {
         String invalidHexString = "GHI";
 
         // AES requires the length of data to be multiples of 128 bits.
-        // Hence, decryptionn should fail  for inputs of 120 and 136 bits.
+        // Hence, decryption should fail  for inputs of 120 and 136 bits.
         String ciphertextLength120 = "AAAAAAAAAABBBBBBBBBBCCCCCCCCCC";
         String ciphertextLength136 = ciphertextLength120 + "1234";
 

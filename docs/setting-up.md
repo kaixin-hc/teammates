@@ -1,6 +1,5 @@
 <frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
+  title: "Getting Started: Setting Up"
 </frontmatter>
 
 # Setting up a development environment
@@ -50,9 +49,9 @@ These tools are necessary regardless of whether you are developing front-end or 
 If you want to develop front-end, you need to install the following:
 
 1. Install Node.js (minimum version 12.11.1).
-1. (Optional but highly recommended) Install Angular CLI version 9 globally.
+1. (Optional but highly recommended) Install Angular CLI version 12 globally.
    ```sh
-   npm install -g @angular/cli@9
+   npm install -g @angular/cli@12
    ```
    **Verification:** Run `ng` and you should see a list of available Angular CLI commands.
 
@@ -75,6 +74,8 @@ If you want to develop front-end, you need to install the following:
    ```
    **Verification:** A folder named `node_modules` should be added to the project root directory.
 
+1. If you plan on making documentation changes to the developer guide, **[install and set up MarkBind](documentation.md)** in order to preview your changes.
+
 **Q:** Can I set up the project in IDEs, e.g. Eclipse, IntelliJ?<br>
 **A:** You are welcome to; the core team have been using IntelliJ to a varying degree of success, and it is expected that any IDE that support Gradle-based Java project will work. However, IDE-based development (even with IntelliJ) is not actively supported/maintained by the team.
 
@@ -87,7 +88,8 @@ Proceed to the development routine as outlined in [this document](development.md
 ## Step 5: Set up search (Optional)
 
 <panel header="Search service is optional for local development">
-<include src="search.md" />
+
+<include src="search.md" omitFrontmatter />
 </panel>
 
 <br>

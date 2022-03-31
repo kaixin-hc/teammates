@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 /**
  * Time picker with fixed time to pick.
@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './timepicker.component.html',
   styleUrls: ['./timepicker.component.scss'],
 })
-export class TimepickerComponent implements OnInit {
+export class TimepickerComponent {
 
   @Input()
   isDisabled: boolean = false;
@@ -18,11 +18,6 @@ export class TimepickerComponent implements OnInit {
 
   @Output()
   timeChange: EventEmitter<TimeFormat> = new EventEmitter();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   /**
    * Triggers time change event.
@@ -55,7 +50,7 @@ export class TimepickerComponent implements OnInit {
    * Checks whether the time is in the fixed list to select.
    */
   isInFixedList(time: TimeFormat): boolean {
-    return (time.hour >= 1 && time.hour <= 22 && time.minute === 0)
+    return (time.hour >= 1 && time.hour <= 23 && time.minute === 0)
         || (time.hour === 23 && time.minute === 59);
   }
 

@@ -1,6 +1,5 @@
 <frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
+  title: "Best Practices: Data Migration"
 </frontmatter>
 
 # Data Migration Best Practices

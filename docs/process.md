@@ -1,6 +1,5 @@
 <frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
+  title: "Workflow: Development Workflow"
 </frontmatter>
 
 # Development Workflow
@@ -13,7 +12,7 @@ This is the project-wide development workflow for TEAMMATES.
 
 * This workflow is an adaptation of the [GitHub flow](https://guides.github.com/introduction/flow/).
 * If you need any help regarding the workflow, please [post a new issue in our issue tracker](https://github.com/TEAMMATES/teammates/issues/new).
-* It is assumed that the development environment has been correctly set up. If this step has not been completed, refer to [this document](setting-up.html).<br>
+* It is assumed that the development environment has been correctly set up. If this step has not been completed, refer to [this document](setting-up.md).<br>
   You are also encouraged to be reasonably familiar with how to [work with your own local copy of TEAMMATES](development.md).
 
 The following are the roles involved:
@@ -27,7 +26,7 @@ The following are the roles involved:
 ## Fixing issues
 
 <box type="info" light>
-    <thumbnail circle slot="icon" text=":computer:" background="#dff5ff" size="32"/>
+  <thumbnail circle slot="icon" text=":fas-laptop:" background="#dff5ff" size="32"/>
 
 **Role: Dev**
 </box>
@@ -48,11 +47,12 @@ You are free to work on any of the issues listed there.
 * (Optional) You can discuss, via the issue tracker, the alternative solutions before choosing one to implement.
   Such a discussion reduces the chance of a rejected fix or a misunderstood issue.
 
-The [issue labels](issues.html#issue-labels) may help you in choosing which issue to fix.
+The [issue labels](issues.md#issue-labels) may help you in choosing which issue to fix.
 
 ### Step 2: Start clean from a new branch
 
 In most cases, you will start the PR from the `master` branch. There are scenarios where you are required to start from another branch instead:
+
 * You are creating a hot patch: start from the `release` branch.
 * You are working on a *long-lived feature branch* (a branch which contains multiple commits from possibly multiple authors, used for major feature development/refactoring): start from that branch.
 
@@ -92,10 +92,10 @@ Make the changes to the code, tests, and documentations as needed by the issue.
      [Here](http://chris.beams.io/posts/git-commit/) is a good reference.
    * If you introduce changes that are incompatible with the prevailing data storage schema (afterwards "breaking changes"), a *data migration* is necessary to be done by the core team. If a data migration is necessary to take the issue forward:
      * Make sure that the core team (or at least your reviewer) is aware of this.
-     * Follow [data migration best practices](/best-practices.html#data-migration).
+     * Follow [data migration best practices](/best-practices/data-migration.md).
      * Your changes should initially work for both the old and new versions of the data schema. It is fine if an unclean hack is necessary for the new code to work under the *old* data schema.
      * Mark clearly in the code which parts are tailored specifically for the old data schema, *especially if an unclean hack is used*.
-     * Concurrently or immediately after the breaking changes are merged, you need to create a [client script](development.html#running-client-scripts) to migrate all data following the old schema to the new schema.
+     * Concurrently or immediately after the breaking changes are merged, you need to create a [client script](development.md#running-client-scripts) to migrate all data following the old schema to the new schema.
 
 1. Sync with the main repo frequently. While you were fixing the issue, others might have pushed new code to the main repo.
    * Update your repo's `master` branch with any new changes from main repo, then switch back to your work branch.
@@ -134,6 +134,7 @@ Make the changes to the code, tests, and documentations as needed by the issue.
    * All changes or additions to functional code are **accompanied by changes or additions in tests**, even if they are absent before.
    * All new public APIs (methods, classes) are **documented with header comments**.
    * **Documentations are updated** when necessary, particularly when there are changes or additions to software design as well as user-facing features.
+      * [MarkBind](https://markbind.org/) is used for documentation. Refer to [this guide](documentation.md) to understand how to use it.
 
 1. Push your branch to your fork, or to the main repo only if necessary.
    ```sh
@@ -216,7 +217,7 @@ Your work on the issue is done when your PR is successfully merged to the main r
 ## Reviewing a PR
 
 <box type="info" light>
-    <thumbnail circle slot="icon" text=":book:" background="#fac090" size="32"/>
+  <thumbnail circle slot="icon" text=":fas-comments:" background="#fac090" size="32"/>
 
 **Role: Reviewer**
 </box>
@@ -224,7 +225,8 @@ Your work on the issue is done when your PR is successfully merged to the main r
 > - The reviewer of a PR is the assignee of it.
 
 <box type="tip">
-    To remove whitespace-only changes from being shown, append `?w=1` to url of the `/files` page of the PR (the "Files changed" tab).
+
+To remove whitespace-only changes from being shown, append `?w=1` to url of the `/files` page of the PR (the "Files changed" tab).
 </box>
 
 [GitHub's review feature](https://github.com/blog/2256-a-whole-new-github-universe-announcing-new-tools-forums-and-features#code-better-with-reviews) is to be used in this task.
@@ -243,7 +245,7 @@ Your work on the issue is done when your PR is successfully merged to the main r
 * If the code is OK in all aspects, change the PR status to `s.FinalReview` and "Approve" the PR.
 
 <box type="info" light>
-    <thumbnail circle slot="icon" text=":pen:" background="#fac090" size="32"/>
+  <thumbnail circle slot="icon" text=":fas-marker:" background="#fac090" size="32"/>
 
 **Role: Code quality reviewer**
 </box>
@@ -254,7 +256,7 @@ Your work on the issue is done when your PR is successfully merged to the main r
 ## Merging a PR
 
 <box type="info" light>
-    <thumbnail circle slot="icon" text=":computer:" background="#fac090" size="32"/>
+  <thumbnail circle slot="icon" text=":fas-laptop:" background="#fac090" size="32"/>
 
 **Role: dev (with push permission), or reviewer**
 </box>

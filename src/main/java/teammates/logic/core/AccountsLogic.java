@@ -63,6 +63,13 @@ public final class AccountsLogic {
     }
 
     /**
+     * Returns a list of accounts with email matching {@code email}.
+     */
+    public List<AccountAttributes> getAccountsForEmail(String email) {
+        return accountsDb.getAccountsForEmail(email);
+    }
+
+    /**
      * Returns true if the given account exists and is an instructor.
      */
     public boolean isAccountAnInstructor(String googleId) {
@@ -233,7 +240,7 @@ public final class AccountsLogic {
     }
 
     /**
-     * Deletes both instructor and student privileges, as long as the account and associated student profile.
+     * Deletes both instructor and student privileges, as well as the account and associated student profile.
      *
      * <ul>
      * <li>Fails silently if no such account.</li>

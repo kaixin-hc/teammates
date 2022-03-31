@@ -89,7 +89,11 @@ public class GetActionClassesActionTest extends BaseActionTest<GetActionClassesA
                 BinCourseAction.class,
                 DeleteAccountAction.class,
                 CreateAccountAction.class,
+                CreateAccountRequestAction.class,
+                GetAccountRequestAction.class,
+                DeleteAccountRequestAction.class,
                 GetAccountAction.class,
+                GetAccountsAction.class,
                 FeedbackSessionPublishedRemindersAction.class,
                 QueryLogsAction.class,
                 SessionLinksRecoveryAction.class,
@@ -127,7 +131,12 @@ public class GetActionClassesActionTest extends BaseActionTest<GetActionClassesA
                 CreateFeedbackQuestionAction.class,
                 UpdateFeedbackQuestionAction.class,
                 InstructorSearchIndexingWorkerAction.class,
-                StudentSearchIndexingWorkerAction.class
+                StudentSearchIndexingWorkerAction.class,
+                AccountRequestSearchIndexingWorkerAction.class,
+                SearchAccountRequestsAction.class,
+                ResetAccountRequestAction.class,
+                CalculateUsageStatisticsAction.class,
+                GetUsageStatisticsAction.class
         );
         List<String> expectedActionClassesNames = expectedActionClasses.stream()
                 .map(Class::getSimpleName)

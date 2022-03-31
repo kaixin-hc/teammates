@@ -1,13 +1,12 @@
 <frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
+  title: "How-to: Captcha"
 </frontmatter>
 
 # Setting up CAPTCHA
 
 TEAMMATES uses [reCAPTCHA](https://developers.google.com/recaptcha/) on the `Recover Session Links` page as a security check. It helps protect the website by blocking spam bots and abusive traffic, and only allows valid human users to pass through.
 By default, the CAPTCHA widget is not shown on the page since no keys are specified in the config files.
-
+ 
 However, this should be changed for production environments:
 
 1. Register for CAPTCHA [here](https://www.google.com/recaptcha/admin). You may be prompted to sign in with your Google account.

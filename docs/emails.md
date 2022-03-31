@@ -1,3 +1,6 @@
+<frontmatter>
+  title: "How-to: Emails"
+</frontmatter>
 
 <frontmatter>
   pageNav: 3

@@ -1,7 +1,3 @@
-<frontmatter>
-  pageNav: 3
-</frontmatter>
-
 # TEAMMATES
 
 TEAMMATES is a free online tool for managing peer evaluations and other feedback paths of your students. It is provided as a cloud-based service for educators/students and is currently used by hundreds of universities across the world.
@@ -10,7 +6,7 @@ TEAMMATES is a free online tool for managing peer evaluations and other feedback
 
 We welcome contributions from developers, especially students. Here are some resources:
 
-* [**Contributor Orientation Guide**](contributing.md): This document describes what you need to know/do to become a contributor.
+* [**Contributor Orientation Guide**](contributing-doc.md): This document describes what you need to know/do to become a contributor.
 * [**Project ideas page**](https://github.com/TEAMMATES/teammates/wiki): These are for those who would like to do a relatively bigger projects with TEAMMATES (e.g. summer internships).
 
 ## Documentation For Developers
@@ -40,7 +36,7 @@ Here are some documents important for TEAMMATES developers.
   * [Data migration](best-practices/data-migration.md)
 
 * **How-to guides** for:
-  * [Static analysis](static-analysis.md): Performing code quality check
+  * [Static analysis](static-analysis.md): Performing code quality checks
   * [Setting up third-party email providers](emails.md)
   * [Setting up CAPTCHA](captcha.md)
   * [Snapshot testing](snapshot-testing.md)

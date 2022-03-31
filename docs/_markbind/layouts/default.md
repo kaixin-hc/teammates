@@ -1,16 +1,18 @@
 <head-bottom>
-  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="{{ baseUrl }}/stylesheets/main.css">
 </head-bottom>
 
 <header fixed>
   <navbar placement="top" type="inverse">
-    <a slot="brand" href="/index.html" title="Home" class="navbar-brand">
-      <pic src="https://teammatesv4.appspot.com/assets/images/teammateslogo.png" width="150" alt="Logo" />
+    <a slot="brand" href="{{ baseUrl }}/index.html" title="Home" class="navbar-brand">
+      <pic src="https://teammatesv4.appspot.com/assets/images/teammateslogo.png" width="150" alt="Logo" caption=""/>
+      <span style="font-style:italic;font-size:small">[dev docs]</span>
     </a>
-    <li><a href="/index.html" class="nav-link">HOME</a></li>
-    <li><a href="/contributing.html" class="nav-link">CONTRIBUTING</a></li>
-    <li><a href="/about.html" class="nav-link">ABOUT</a></li>
-
+    <li><a href="{{ baseUrl }}/index.html" class="nav-link">HOME</a></li>
+    <li><a href="{{ baseUrl }}/contributing-doc.html" class="nav-link">CONTRIBUTING</a></li>
+    <li><a href="{{ baseUrl }}/about.html" class="nav-link">ABOUT</a></li>
+    <li><a href="http://teammatesv4.appspot.com/" target="_blank" class="nav-link">PRODUCT WEBSITE <md>:glyphicon-share-alt:</md></a></li>
+    <li><a href="https://github.com/TEAMMATES/teammates" target="_blank" class="nav-link"><md>:fab-github:</md></a></li>
   <li slot="right">
     <form class="navbar-form">
       <searchbar :data="searchData" placeholder="Search" :on-hit="searchCallback" menu-align-right></searchbar>
@@ -26,13 +28,19 @@
     </div>
     <div class="nav-component slim-scroll">
       <site-nav>
-* [Overview]({{ baseUrl }}/overview.html)
-* [Contributing]({{ baseUrl }}/CONTRIBUTING.html) :expanded:
+
+* About Teammates :expanded:
+  * [Introduction]({{ baseUrl }}/index.html)
+  * [Overview]({{ baseUrl }}/overview.html)
+* Getting Started :expanded:
+  * [Setting Up]({{ baseUrl }}/setting-up.html)
+  * [Search]({{ baseUrl }}/search.html)
+  * [Documentation]({{ baseUrl }}/documentation.html)
+* Workflow :expanded:
+  * [Contributing]({{ baseUrl }}/contributing-doc.html)
   * [Issues]({{ baseUrl }}/issues.html)
   * [Process]({{ baseUrl }}/process.html)
   * [Development]({{ baseUrl }}/development.html)
-* [Setting Up]({{ baseUrl }}/setting-up.html)
-  * [Search]({{ baseUrl }}/search.html)
 * [Design]({{ baseUrl }}/design.html)
 * Best Practices :expanded:
   * [Coding]({{ baseUrl }}/best-practices/coding.html)

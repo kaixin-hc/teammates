@@ -2,7 +2,7 @@ package teammates.e2e.cases;
 
 import org.testng.annotations.Test;
 
-import teammates.common.datatransfer.attributes.CourseAttributes;
+import teammates.common.datatransfer.attributes.AccountRequestAttributes;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
 import teammates.e2e.pageobjects.AdminHomePage;
@@ -14,7 +14,8 @@ public class AdminHomePageE2ETest extends BaseE2ETestCase {
 
     @Override
     protected void prepareTestData() {
-        // no test data used in this test
+        testData = loadDataBundle("/AdminHomePageE2ETest.json");
+        removeAndRestoreDataBundle(testData);
     }
 
     @Test
@@ -23,12 +24,11 @@ public class AdminHomePageE2ETest extends BaseE2ETestCase {
         AppUrl url = createFrontendUrl(Const.WebPageURIs.ADMIN_HOME_PAGE);
         AdminHomePage homePage = loginAdminToPage(url, AdminHomePage.class);
 
+        ______TS("Test adding instructors with both valid and invalid details");
+
         String name = "AHPUiT Instrúctör WithPlusInEmail";
         String email = "AHPUiT+++_.instr1!@gmail.tmt";
         String institute = "TEAMMATES Test Institute 1";
-        String demoCourseId = "AHPUiT____.instr1_.gma-demo";
-
-        BACKDOOR.deleteCourse(demoCourseId);
 
         homePage.queueInstructorForAdding(name, email, institute);
 
@@ -42,14 +42,34 @@ public class AdminHomePageE2ETest extends BaseE2ETestCase {
         assertTrue(successMessage.contains(
                 "Instructor \"AHPUiT Instrúctör WithPlusInEmail\" has been successfully created"));
 
-        CourseAttributes demoCourse = getCourse(demoCourseId);
-        assertNotNull(demoCourse);
-
         String failureMessage = homePage.getMessageForInstructor(1);
         assertTrue(failureMessage.contains(
                 "\"invalidemail\" is not acceptable to TEAMMATES as a/an email because it is not in the correct format."));
 
-        BACKDOOR.deleteCourse(demoCourseId);
+        assertNotNull(BACKDOOR.getAccountRequest(email, institute));
+        BACKDOOR.deleteAccountRequest(email, institute);
+
+        ______TS("Failure case: Instructor is already registered");
+        AccountRequestAttributes registeredAccountRequest = testData.accountRequests.get("AHome.instructor1OfCourse1");
+        homePage.queueInstructorForAdding(registeredAccountRequest.getName(),
+                registeredAccountRequest.getEmail(), registeredAccountRequest.getInstitute());
+
+        homePage.addAllInstructors();
+
+        failureMessage = homePage.getMessageForInstructor(2);
+        assertTrue(failureMessage.contains("Cannot create account request as instructor has already registered."));
+
+        ______TS("Success case: Reset account request");
+
+        homePage.clickMoreInfoButtonForRegisteredInstructor(2);
+        homePage.clickResetAccountRequestLink();
+
+        successMessage = homePage.getMessageForInstructor(2);
+        assertTrue(successMessage.contains(
+                "Instructor \"" + registeredAccountRequest.getName() + "\" has been successfully created"));
+
+        assertNull(BACKDOOR.getAccountRequest(
+                registeredAccountRequest.getEmail(), registeredAccountRequest.getInstitute()).getRegisteredAt());
     }
 
 }

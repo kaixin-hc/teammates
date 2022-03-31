@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 import { AuthService } from '../../../services/auth.service';
 import { FeedbackQuestionsService } from '../../../services/feedback-questions.service';
 import { FeedbackResponseCommentService } from '../../../services/feedback-response-comment.service';
-import { FeedbackResponsesService } from '../../../services/feedback-responses.service';
+import { FeedbackResponsesResponse, FeedbackResponsesService } from '../../../services/feedback-responses.service';
 import { FeedbackSessionsService } from '../../../services/feedback-sessions.service';
 import { InstructorService } from '../../../services/instructor.service';
 import { LogService } from '../../../services/log.service';
@@ -54,13 +54,6 @@ interface FeedbackQuestionsResponse {
 }
 
 /**
- * A collection of feedback responses.
- */
-export interface FeedbackResponsesResponse {
-  responses: FeedbackResponse[];
-}
-
-/**
  * Feedback session submission page.
  */
 @Component({
@@ -77,6 +70,7 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
   courseId: string = '';
   feedbackSessionName: string = '';
   regKey: string = '';
+  entityType: string = 'student';
   loggedInUser: string = '';
 
   moderatedPerson: string = '';
@@ -105,7 +99,6 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
   isFeedbackSessionLoading: boolean = true;
   isFeedbackSessionQuestionsLoading: boolean = true;
   hasFeedbackSessionQuestionsLoadingFailed: boolean = false;
-  isFeedbackSessionQuestionResponsesLoading: boolean = true;
   retryAttempts: number = DEFAULT_NUMBER_OF_RETRY_ATTEMPTS;
 
   private backendUrl: string = environment.backendUrl;
@@ -142,6 +135,10 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
       this.regKey = queryParams.key ? queryParams.key : '';
       this.moderatedPerson = queryParams.moderatedperson ? queryParams.moderatedperson : '';
       this.previewAsPerson = queryParams.previewas ? queryParams.previewas : '';
+      if (queryParams.entitytype === 'instructor') {
+        this.entityType = 'instructor';
+        this.intent = Intent.INSTRUCTOR_SUBMISSION;
+      }
       this.moderatedQuestionId = queryParams.moderatedquestionId ? queryParams.moderatedquestionId : '';
 
       if (this.previewAsPerson) {
@@ -161,7 +158,8 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
               if (resp.isUsed) {
                 // The logged in user matches the registration key; redirect to the logged in URL
 
-                this.navigationService.navigateByURLWithParamEncoding(this.router, '/web/student/sessions/submission',
+                this.navigationService.navigateByURLWithParamEncoding(
+                    this.router, `/web/${this.entityType}/sessions/submission`,
                     { courseid: this.courseId, fsname: this.feedbackSessionName });
               } else {
                 // Valid, unused registration key; load information based on the key
@@ -180,7 +178,12 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
                     ${environment.supportEmail} for help.`);
               } else {
                 // There is no logged in user for a valid, used registration key, redirect to login page
-                window.location.href = `${this.backendUrl}${auth.studentLoginUrl}`;
+                // eslint-disable-next-line no-lonely-if
+                if (this.entityType === 'student') {
+                  window.location.href = `${this.backendUrl}${auth.studentLoginUrl}`;
+                } else if (this.entityType === 'instructor') {
+                  window.location.href = `${this.backendUrl}${auth.instructorLoginUrl}`;
+                }
               }
             } else {
               // The registration key is invalid
@@ -212,15 +215,15 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
   /**
    * Checks if a given element is in view.
    *
-   * @params e element to perform check for
+   * @param e element to perform check for
    */
   isInViewport(e: HTMLElement): boolean {
     const rect: ClientRect = e.getBoundingClientRect();
     const windowHeight: number = (window.innerHeight || document.documentElement.clientHeight);
 
     return !(
-      Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / +-rect.height) * 100)) < 1 ||
-      Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < 1
+      Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / +-rect.height) * 100)) < 1
+      || Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < 1
     );
   }
 
@@ -295,10 +298,10 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Redirects to join course link for unregistered student.
+   * Redirects to join course link for unregistered student/instructor.
    */
-  joinCourseForUnregisteredStudent(): void {
-    this.navigationService.navigateByURL(this.router, '/web/join', { entitytype: 'student', key: this.regKey });
+  joinCourseForUnregisteredEntity(): void {
+    this.navigationService.navigateByURL(this.router, '/web/join', { entitytype: this.entityType, key: this.regKey });
   }
 
   /**
@@ -314,7 +317,9 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
       key: this.regKey,
       moderatedPerson: this.moderatedPerson,
       previewAs: this.previewAsPerson,
-    }).pipe(finalize(() => this.isFeedbackSessionLoading = false))
+    }).pipe(finalize(() => {
+      this.isFeedbackSessionLoading = false;
+    }))
       .subscribe((feedbackSession: FeedbackSession) => {
         this.feedbackSessionInstructions = feedbackSession.instructions;
         this.formattedSessionOpeningTime = this.timezoneService
@@ -365,9 +370,9 @@ export class SessionSubmissionPageComponent implements OnInit, AfterViewInit {
         const mobileDeviceWidth: number = 768;
         if (this.feedbackSessionSubmissionStatus === FeedbackSessionSubmissionStatus.OPEN
           && window.innerWidth < mobileDeviceWidth) {
-          const modalContent: string = `Note that you can use the Submit button to save responses already entered, and continue to
-answer remaining questions after that. You may also edit your submission any number of times before the closing time of
-this session.`;
+          const modalContent: string = `Note that you can use the Submit button to save responses already entered,
+              and continue to answer remaining questions after that.
+              You may also edit your submission any number of times before the closing time of this session.`;
           this.simpleModalService.openInformationModal(
               'Note On Submission', SimpleModalType.INFO, modalContent);
         }
@@ -375,13 +380,14 @@ this session.`;
         if (resp.status === 404) {
           this.simpleModalService.openInformationModal('Feedback Session Does Not Exist!', SimpleModalType.DANGER,
               'The session does not exist (most likely deleted by the instructor after the submission link was sent).');
-          this.navigationService.navigateByURL(this.router, '/web/student/home');
+          this.navigationService.navigateByURL(this.router, `/web/${this.entityType}/home`);
         } else if (resp.status === 403) {
           this.simpleModalService.openInformationModal('Not Authorised To Access!', SimpleModalType.DANGER,
               resp.error.message);
-          this.navigationService.navigateByURL(this.router, '/web/student/home');
+          this.navigationService.navigateByURL(this.router, `/web/${this.entityType}/home`);
         } else {
-          this.navigationService.navigateWithErrorMessage(this.router, '/web/student/home', resp.error.message);
+          this.navigationService.navigateWithErrorMessage(
+              this.router, `/web/${this.entityType}/home`, resp.error.message);
         }
       });
   }
@@ -399,11 +405,14 @@ this session.`;
       key: this.regKey,
       moderatedPerson: this.moderatedPerson,
       previewAs: this.previewAsPerson,
-    }).pipe(finalize(() => this.isFeedbackSessionQuestionsLoading = false))
+    }).pipe(finalize(() => {
+      this.isFeedbackSessionQuestionsLoading = false;
+    }))
         .subscribe((response: FeedbackQuestionsResponse) => {
-          this.isFeedbackSessionQuestionResponsesLoading = response.questions.length !== 0;
           response.questions.forEach((feedbackQuestion: FeedbackQuestion) => {
             const model: QuestionSubmissionFormModel = {
+              isLoading: false,
+              isLoaded: false,
               feedbackQuestionId: feedbackQuestion.feedbackQuestionId,
 
               questionNumber: feedbackQuestion.questionNumber,
@@ -427,7 +436,6 @@ this session.`;
               showResponsesTo: feedbackQuestion.showResponsesTo,
             };
             this.questionSubmissionForms.push(model);
-            this.loadFeedbackQuestionRecipientsForQuestion(model);
           });
         }, (resp: ErrorMessageOutput) => {
           this.handleError(resp);
@@ -466,9 +474,8 @@ this session.`;
         // generate a list of empty response box
         const formMode: QuestionSubmissionFormMode = this.getQuestionSubmissionFormMode(model);
         model.recipientList.forEach((recipient: FeedbackResponseRecipient) => {
-          if (formMode === QuestionSubmissionFormMode.FLEXIBLE_RECIPIENT &&
-            model.recipientSubmissionForms.length >=
-            model.customNumberOfEntitiesToGiveFeedbackTo) {
+          if (formMode === QuestionSubmissionFormMode.FLEXIBLE_RECIPIENT
+              && model.recipientSubmissionForms.length >= model.customNumberOfEntitiesToGiveFeedbackTo) {
             return;
           }
 
@@ -484,7 +491,8 @@ this session.`;
             isValid: true,
           });
         });
-        this.isFeedbackSessionQuestionResponsesLoading = false;
+        model.isLoading = false;
+        model.isLoaded = true;
       } else {
         this.loadFeedbackResponses(model);
       }
@@ -495,12 +503,12 @@ this session.`;
    * Gets the form mode of the question submission form.
    */
   getQuestionSubmissionFormMode(model: QuestionSubmissionFormModel): QuestionSubmissionFormMode {
-    const isNumberOfEntitiesToGiveFeedbackToSettingLimited: boolean
-        = (model.recipientType === FeedbackParticipantType.STUDENTS
-        || model.recipientType === FeedbackParticipantType.STUDENTS_IN_SAME_SECTION
-        || model.recipientType === FeedbackParticipantType.TEAMS
-        || model.recipientType === FeedbackParticipantType.TEAMS_IN_SAME_SECTION
-        || model.recipientType === FeedbackParticipantType.INSTRUCTORS)
+    const isNumberOfEntitiesToGiveFeedbackToSettingLimited: boolean =
+        (model.recipientType === FeedbackParticipantType.STUDENTS
+            || model.recipientType === FeedbackParticipantType.STUDENTS_IN_SAME_SECTION
+            || model.recipientType === FeedbackParticipantType.TEAMS
+            || model.recipientType === FeedbackParticipantType.TEAMS_IN_SAME_SECTION
+            || model.recipientType === FeedbackParticipantType.INSTRUCTORS)
         && model.numberOfEntitiesToGiveFeedbackToSetting === NumberOfEntitiesToGiveFeedbackToSetting.CUSTOM
         && model.recipientList.length > model.customNumberOfEntitiesToGiveFeedbackTo;
 
@@ -512,13 +520,15 @@ this session.`;
    * Loads the responses of the feedback question to {@recipientSubmissionForms} in the model.
    */
   loadFeedbackResponses(model: QuestionSubmissionFormModel): void {
-    this.isFeedbackSessionQuestionResponsesLoading = true;
     this.feedbackResponsesService.getFeedbackResponse({
       questionId: model.feedbackQuestionId,
       intent: this.intent,
       key: this.regKey,
       moderatedPerson: this.moderatedPerson,
-    }).pipe(finalize(() => this.isFeedbackSessionQuestionResponsesLoading = false))
+    }).pipe(finalize(() => {
+      model.isLoading = false;
+      model.isLoaded = true;
+    }))
       .subscribe((existingResponses: FeedbackResponsesResponse) => {
         if (this.getQuestionSubmissionFormMode(model) === QuestionSubmissionFormMode.FIXED_RECIPIENT) {
           // need to generate a full list of submission forms
@@ -590,17 +600,17 @@ this session.`;
   /**
    * Checks whether there is any submission forms in the current page.
    */
-  get hasAnyResponseToSubmit(): boolean {
+  get questionsNeedingSubmission(): QuestionSubmissionFormModel[] {
     return this.questionSubmissionForms
-        .some((model: QuestionSubmissionFormModel) => model.recipientSubmissionForms.length !== 0);
+        .filter((model: QuestionSubmissionFormModel) => model.recipientSubmissionForms.length !== 0);
   }
 
   /**
-   * Saves all feedback response.
+   * Saves the feedback responses for the specific questions.
    *
    * <p>All empty feedback response will be deleted; For non-empty responses, update/create them if necessary.
    */
-  saveFeedbackResponses(): void {
+  saveFeedbackResponses(questionSubmissionForms: QuestionSubmissionFormModel[]): void {
     const notYetAnsweredQuestions: Set<number> = new Set();
     const requestIds: Record<string, string> = {};
     const answers: Record<string, FeedbackResponse[]> = {};
@@ -618,7 +628,7 @@ this session.`;
       this.statusMessageService.showWarningToast('Failed to log feedback session submission');
     });
 
-    this.questionSubmissionForms.forEach((questionSubmissionFormModel: QuestionSubmissionFormModel) => {
+    questionSubmissionForms.forEach((questionSubmissionFormModel: QuestionSubmissionFormModel) => {
       let isQuestionFullyAnswered: boolean = true;
 
       const responses: FeedbackResponseRequest[] = [];
@@ -643,49 +653,51 @@ this session.`;
             }
           });
 
-      savingRequests.push(
-          this.feedbackResponsesService.submitFeedbackResponses(questionSubmissionFormModel.feedbackQuestionId, {
-            intent: this.intent,
-            key: this.regKey,
-            moderatedperson: this.moderatedPerson,
-          }, {
-            responses,
-          }).pipe(
-              tap((resp: FeedbackResponses) => {
-                const responsesMap: Record<string, FeedbackResponse> = {};
-                resp.responses.forEach((response: FeedbackResponse) => {
-                  responsesMap[response.recipientIdentifier] = response;
-                  answers[questionSubmissionFormModel.feedbackQuestionId] =
-                      answers[questionSubmissionFormModel.feedbackQuestionId] || [];
-                  answers[questionSubmissionFormModel.feedbackQuestionId].push(response);
-                });
-                requestIds[questionSubmissionFormModel.feedbackQuestionId] = resp.requestId || '';
+      if (!failToSaveQuestions[questionSubmissionFormModel.questionNumber]) {
+        savingRequests.push(
+            this.feedbackResponsesService.submitFeedbackResponses(questionSubmissionFormModel.feedbackQuestionId, {
+              responses,
+            }, {
+              intent: this.intent,
+              key: this.regKey,
+              moderatedperson: this.moderatedPerson,
+            }).pipe(
+                tap((resp: FeedbackResponses) => {
+                  const responsesMap: Record<string, FeedbackResponse> = {};
+                  resp.responses.forEach((response: FeedbackResponse) => {
+                    responsesMap[response.recipientIdentifier] = response;
+                    answers[questionSubmissionFormModel.feedbackQuestionId] =
+                        answers[questionSubmissionFormModel.feedbackQuestionId] || [];
+                    answers[questionSubmissionFormModel.feedbackQuestionId].push(response);
+                  });
+                  requestIds[questionSubmissionFormModel.feedbackQuestionId] = resp.requestId || '';
 
-                questionSubmissionFormModel.recipientSubmissionForms
-                    .forEach((recipientSubmissionFormModel: FeedbackResponseRecipientSubmissionFormModel) => {
-                      if (responsesMap[recipientSubmissionFormModel.recipientIdentifier]) {
-                        const correspondingResp: FeedbackResponse =
-                            responsesMap[recipientSubmissionFormModel.recipientIdentifier];
-                        recipientSubmissionFormModel.responseId = correspondingResp.feedbackResponseId;
-                        recipientSubmissionFormModel.responseDetails = correspondingResp.responseDetails;
-                        recipientSubmissionFormModel.recipientIdentifier = correspondingResp.recipientIdentifier;
-                      } else {
-                        recipientSubmissionFormModel.responseId = '';
-                        recipientSubmissionFormModel.commentByGiver = undefined;
-                      }
-                    });
-              }),
-              switchMap(() =>
-                  forkJoin(questionSubmissionFormModel.recipientSubmissionForms
-                      .map((recipientSubmissionFormModel: FeedbackResponseRecipientSubmissionFormModel) =>
-                          this.createCommentRequest(recipientSubmissionFormModel))),
-              ),
-              catchError((error: ErrorMessageOutput) => {
-                failToSaveQuestions[questionSubmissionFormModel.questionNumber] = error.error.message;
-                return of(error);
-              }),
-          ),
-      );
+                  questionSubmissionFormModel.recipientSubmissionForms
+                      .forEach((recipientSubmissionFormModel: FeedbackResponseRecipientSubmissionFormModel) => {
+                        if (responsesMap[recipientSubmissionFormModel.recipientIdentifier]) {
+                          const correspondingResp: FeedbackResponse =
+                              responsesMap[recipientSubmissionFormModel.recipientIdentifier];
+                          recipientSubmissionFormModel.responseId = correspondingResp.feedbackResponseId;
+                          recipientSubmissionFormModel.responseDetails = correspondingResp.responseDetails;
+                          recipientSubmissionFormModel.recipientIdentifier = correspondingResp.recipientIdentifier;
+                        } else {
+                          recipientSubmissionFormModel.responseId = '';
+                          recipientSubmissionFormModel.commentByGiver = undefined;
+                        }
+                      });
+                }),
+                switchMap(() =>
+                    forkJoin(questionSubmissionFormModel.recipientSubmissionForms
+                        .map((recipientSubmissionFormModel: FeedbackResponseRecipientSubmissionFormModel) =>
+                            this.createCommentRequest(recipientSubmissionFormModel))),
+                ),
+                catchError((error: ErrorMessageOutput) => {
+                  failToSaveQuestions[questionSubmissionFormModel.questionNumber] = error.error.message;
+                  return of(error);
+                }),
+            ),
+        );
+      }
 
       if (!isQuestionFullyAnswered) {
         notYetAnsweredQuestions.add(questionSubmissionFormModel.questionNumber);
@@ -704,7 +716,7 @@ this session.`;
           modalRef.componentInstance.feedbackSessionTimezone = this.feedbackSessionTimezone;
           modalRef.componentInstance.personEmail = this.personEmail;
           modalRef.componentInstance.personName = this.personName;
-          modalRef.componentInstance.questions = this.questionSubmissionForms;
+          modalRef.componentInstance.questions = questionSubmissionForms;
           modalRef.componentInstance.answers = answers;
           modalRef.componentInstance.notYetAnsweredQuestions = Array.from(notYetAnsweredQuestions.values());
           modalRef.componentInstance.failToSaveQuestions = failToSaveQuestions;
@@ -824,4 +836,12 @@ this session.`;
       this.statusMessageService.showErrorToast(resp.error.message);
     }
   }
+
+  loadRecipientsAndResponses(event: any, questionSubmissionForm: QuestionSubmissionFormModel): void {
+    if (event && event.visible && !questionSubmissionForm.isLoaded && !questionSubmissionForm.isLoading) {
+      questionSubmissionForm.isLoading = true;
+      this.loadFeedbackQuestionRecipientsForQuestion(questionSubmissionForm);
+    }
+  }
+
 }

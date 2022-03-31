@@ -1,6 +1,5 @@
 <frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
+  title: "Workflow: Development"
 </frontmatter>
 
 # Development Guidelines
@@ -18,11 +17,13 @@ The instructions in all parts of this document work for Linux, OS X, and Windows
 ## Managing the dev server: front-end
 
 <box type="definition">
-    Dev server is the server run in your local machine.
+
+Dev server is the server run in your local machine.
 </box>
 
 <box type="definition">
-    Front-end dev server is the Angular-based server handling the user interface.
+
+Front-end dev server is the Angular-based server handling the user interface.
 </box>
 
 First, you need to compile some type definitions from the back-end to be used in this dev server. Run the following command:
@@ -115,11 +116,11 @@ This instruction set applies for both dev server and production server, with sli
 
 <panel header="**As administrator**">
 
-  1. Go to any administrator page, e.g `/web/admin/home`. You may be prompted to log in.
-   You will be granted access only if your account has admin permission as defined in `build.properties`.
+1. Go to any administrator page, e.g `/web/admin/home`. You may be prompted to log in.
+  You will be granted access only if your account has admin permission as defined in `build.properties`.
 
-  1. When logged in as administrator, ***masquerade mode*** can also be used to impersonate instructors and students by adding `user=username` to the URL
-   e.g `http://localhost:8080/web/student/home?user=johnKent`.
+1. When logged in as administrator, ***masquerade mode*** can also be used to impersonate instructors and students by adding `user=username` to the URL
+  e.g `http://localhost:8080/web/student/home?user=johnKent`.
 
 </panel>
 
@@ -148,6 +149,7 @@ Alternatively, an instructor can create other instructors for a course if s/he h
 </panel>
 
 <panel header="**As student**">
+
 You need a student account which can be created by instructors (with sufficient privileges).
 
 The steps for adding a student is almost identical to the steps for adding instructors by another instructor:
@@ -183,6 +185,7 @@ GET http://localhost:8080/logout
 The Datastore emulator is an essential tool that we use to locally simulate production Datastore environment during development and testing of relevant features. For more information about the Datastore emulator, refer to [Google's official documentation](https://cloud.google.com/datastore/docs/tools/datastore-emulator).
 
 <panel header="**Using quickstart script**">
+
 You can use the pre-provided quickstart script which will run a local Datastore emulator instance sufficient for development use cases. The script is run via the following command:
 
 ```sh
@@ -194,6 +197,7 @@ The Datastore emulator will be running in the port specified in the `build.prope
 </panel>
 
 <panel header="**Using Docker-based tooling**">
+
 We have a Docker compose definition to run dependent services, including local Datastore emulator. Run it under the `datastore` service name and bind to the container port `8484`:
 
 ```sh
@@ -286,8 +290,8 @@ If you need to deploy your application to a staging server, refer to [this guide
 
 Most of developers may not need to write and/or run client scripts but if you are to do so, take note of the following:
 
-- If you are to run a script in a production environment, there are additional steps to follow. Refer to [this guide](https://github.com/TEAMMATES/teammates-ops/blob/master/platform-guide.md#running-client-scripts).
-- It is not encouraged to compile and run any script via command line; use any of the supported IDEs to significantly ease this task.
+* If you are to run a script in a production environment, there are additional steps to follow. Refer to [this guide](https://github.com/TEAMMATES/teammates-ops/blob/master/platform-guide.md#running-client-scripts).
+* It is not encouraged to compile and run any script via command line; use any of the supported IDEs to significantly ease this task.
 
 ## Config points
 
@@ -295,29 +299,29 @@ There are several files used to configure various aspects of the system.
 
 **Main**: These vary from developer to developer and are subjected to frequent changes.
 
-- `build.properties`: Contains the general purpose configuration values to be used by the web API.
-- `config.ts`: Contains the general purpose configuration values to be used by the web application.
-- `test.properties`: Contains the configuration values for the test driver.
-  - There are two separate `test.properties`; one for component tests and one for E2E tests.
-- `client.properties`: Contains some configuration values used in client scripts.
-- `app.yaml`: Contains the configuration for deploying the application on GAE.
+* `build.properties`: Contains the general purpose configuration values to be used by the web API.
+* `config.ts`: Contains the general purpose configuration values to be used by the web application.
+* `test.properties`: Contains the configuration values for the test driver.
+  * There are two separate `test.properties`; one for component tests and one for E2E tests.
+* `client.properties`: Contains some configuration values used in client scripts.
+* `app.yaml`: Contains the configuration for deploying the application on GAE.
 
 **Tasks**: These do not concern the application directly, but rather the development process.
 
-- `build.gradle`: Contains the back-end third-party dependencies specification, as well as configurations for automated tasks/routines to be run via Gradle.
-- `gradle.properties`, `gradle-wrapper.properties`: Contains the Gradle and Gradle wrapper configuration.
-- `package.json`: Contains the front-end third-party dependencies specification, as well as configurations for automated tasks/routines to be run via NPM.
-- `angular.json`: Contains the Angular application configuration.
-- `component.yml`: GitHub Action configuration for component tests.
-- `e2e.yml`: GitHub Action configuration for E2E tests.
-- `lnp.yml`: GitHub Action configuration for load & performance tests.
+* `build.gradle`: Contains the back-end third-party dependencies specification, as well as configurations for automated tasks/routines to be run via Gradle.
+* `gradle.properties`, `gradle-wrapper.properties`: Contains the Gradle and Gradle wrapper configuration.
+* `package.json`: Contains the front-end third-party dependencies specification, as well as configurations for automated tasks/routines to be run via NPM.
+* `angular.json`: Contains the Angular application configuration.
+* `component.yml`: GitHub Action configuration for component tests.
+* `e2e.yml`: GitHub Action configuration for E2E tests.
+* `lnp.yml`: GitHub Action configuration for load & performance tests.
 
 **Static Analysis**: These are used to maintain code quality and measure code coverage. See [Static Analysis](static-analysis.md).
-- `static-analysis/*`: Contains most of the configuration files for all the different static analysis tools.
+* `static-analysis/*`: Contains most of the configuration files for all the different static analysis tools.
 
 **Other**: These are rarely, if ever will be, subjected to changes.
-- `logging.properties`: Contains the java.util.logging configuration.
-- `web.xml`: Contains the web server configuration, e.g servlets to run, mapping from URLs to servlets, security constraints, etc.
-- `cron.yaml`: Contains the cron jobs specification.
-- `queue.yaml`: Contains the task queues configuration.
-- `index.yaml`: Contains the Google Cloud Datastore indexes configuration.
+* `logging.properties`: Contains the java.util.logging configuration.
+* `web.xml`: Contains the web server configuration, e.g servlets to run, mapping from URLs to servlets, security constraints, etc.
+* `cron.yaml`: Contains the cron jobs specification.
+* `queue.yaml`: Contains the task queues configuration.
+* `index.yaml`: Contains the Google Cloud Datastore indexes configuration.

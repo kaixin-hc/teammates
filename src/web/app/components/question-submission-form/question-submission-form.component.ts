@@ -9,7 +9,8 @@ import {
   NumberOfEntitiesToGiveFeedbackToSetting,
 } from '../../../types/api-output';
 import { VisibilityControl } from '../../../types/visibility-control';
-import { CommentRowMode, CommentRowModel } from '../comment-box/comment-row/comment-row.component';
+import { CommentRowModel } from '../comment-box/comment-row/comment-row.component';
+import { CommentRowMode } from '../comment-box/comment-row/comment-row.mode';
 import {
   FeedbackResponseRecipient,
   FeedbackResponseRecipientSubmissionFormModel,
@@ -38,14 +39,20 @@ export class QuestionSubmissionFormComponent implements OnInit {
   formMode: QuestionSubmissionFormMode = QuestionSubmissionFormMode.FIXED_RECIPIENT;
 
   @Input()
-  isDisabled: boolean = false;
+  isFormsDisabled: boolean = false;
+
+  @Input()
+  isSubmissionDisabled: boolean = false;
+
+  @Input()
+  isSavingResponses: boolean = false;
 
   @Input()
   set formModel(model: QuestionSubmissionFormModel) {
     this.model = model;
     this.visibilityStateMachine =
         this.feedbackQuestionsService.getNewVisibilityStateMachine(model.giverType, model.recipientType);
-    const visibilitySetting: {[TKey in VisibilityControl]: FeedbackVisibilityType[]} = {
+    const visibilitySetting: { [TKey in VisibilityControl]: FeedbackVisibilityType[] } = {
       SHOW_RESPONSE: model.showResponsesTo,
       SHOW_GIVER_NAME: model.showGiverNameTo,
       SHOW_RECIPIENT_NAME: model.showRecipientNameTo,
@@ -58,7 +65,12 @@ export class QuestionSubmissionFormComponent implements OnInit {
   @Output()
   formModelChange: EventEmitter<QuestionSubmissionFormModel> = new EventEmitter();
 
+  @Output()
+  responsesSave: EventEmitter<QuestionSubmissionFormModel> = new EventEmitter();
+
   model: QuestionSubmissionFormModel = {
+    isLoading: false,
+    isLoaded: true,
     feedbackQuestionId: '',
 
     questionNumber: 0,
@@ -204,12 +216,13 @@ export class QuestionSubmissionFormComponent implements OnInit {
       return;
     }
     this.triggerRecipientSubmissionFormChange(index, 'commentByGiver',
-        Object.assign({}, commentModel, {
+        {
+          ...commentModel,
           commentEditFormModel: {
             commentText: commentModel.originalComment.commentText,
           },
           isEditing: false,
-        }));
+        });
   }
 
   /**
@@ -227,10 +240,18 @@ export class QuestionSubmissionFormComponent implements OnInit {
     if (this.model.recipientSubmissionForms.length === 0) { return; }
     const recipientSubmissionForms: FeedbackResponseRecipientSubmissionFormModel[] =
         this.model.recipientSubmissionForms.slice().map(
-            (model: FeedbackResponseRecipientSubmissionFormModel) => Object.assign({}, model, { isValid }));
+            (model: FeedbackResponseRecipientSubmissionFormModel) => ({ ...model, isValid }));
     this.formModelChange.emit({
       ...this.model,
       recipientSubmissionForms,
     });
   }
+
+  /**
+   * Triggers saving of responses for the specific question.
+   */
+  saveFeedbackResponses(): void {
+    this.responsesSave.emit(this.model);
+  }
+
 }

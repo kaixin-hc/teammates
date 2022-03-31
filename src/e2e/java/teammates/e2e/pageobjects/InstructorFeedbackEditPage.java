@@ -490,11 +490,23 @@ public class InstructorFeedbackEditPage extends AppPage {
         click(copyQuestionButton);
         WebElement copyQuestionModal = waitForElementPresence(By.id("copy-question-modal"));
 
-        List<WebElement> rows = copyQuestionModal.findElements(By.cssSelector("tbody tr"));
-        for (WebElement row : rows) {
-            List<WebElement> cells = row.findElements(By.tagName("td"));
-            if (cells.get(1).getText().equals(courseId) && cells.get(4).getText().equals(questionText)) {
-                markOptionAsSelected(cells.get(0).findElement(By.tagName("input")));
+        List<WebElement> cards = copyQuestionModal.findElements(By.className("card"));
+        for (WebElement card : cards) {
+            WebElement cardHeader = card.findElement(By.className("card-header"));
+            if (cardHeader.getText().startsWith("[" + courseId + "]")) {
+                click(cardHeader);
+                WebElement cardBody = waitForElementPresence(By.className("card-body"));
+                // Reload questions
+                WebElement reloadBtn = cardBody.findElement(By.tagName("button"));
+                click(reloadBtn);
+                WebElement table = waitForElementPresence(By.id("copy-question-table"));
+                List<WebElement> rows = table.findElements(By.cssSelector("tbody tr"));
+                for (WebElement row : rows) {
+                    List<WebElement> cells = row.findElements(By.tagName("td"));
+                    if (cells.get(2).getText().equals(questionText)) {
+                        markOptionAsSelected(cells.get(0).findElement(By.tagName("input")));
+                    }
+                }
             }
         }
         clickAndWaitForNewQuestion(browser.driver.findElement(By.id("btn-confirm-copy-question")));
@@ -1002,7 +1014,7 @@ public class InstructorFeedbackEditPage extends AppPage {
 
     private String getFeedbackGiver(int questionNum) {
         String feedbackPath = getFeedbackPath(questionNum);
-        if (feedbackPath.equals(CUSTOM_FEEDBACK_PATH_OPTION)) {
+        if (CUSTOM_FEEDBACK_PATH_OPTION.equals(feedbackPath)) {
             return getSelectedDropdownOptionText(getQuestionForm(questionNum)
                     .findElement(By.tagName("tm-feedback-path-panel"))
                     .findElement(By.id("giver-type")));
@@ -1012,7 +1024,7 @@ public class InstructorFeedbackEditPage extends AppPage {
 
     private String getFeedbackReceiver(int questionNum) {
         String feedbackPath = getFeedbackPath(questionNum);
-        if (feedbackPath.equals(CUSTOM_FEEDBACK_PATH_OPTION)) {
+        if (CUSTOM_FEEDBACK_PATH_OPTION.equals(feedbackPath)) {
             return getSelectedDropdownOptionText(getQuestionForm(questionNum)
                     .findElement(By.tagName("tm-feedback-path-panel"))
                     .findElement(By.id("receiver-type")));
@@ -1039,7 +1051,7 @@ public class InstructorFeedbackEditPage extends AppPage {
         FeedbackParticipantType newRecipient = feedbackQuestion.getRecipientType();
         String feedbackPath = getFeedbackPath(questionNum);
         WebElement questionForm = getQuestionForm(questionNum).findElement(By.tagName("tm-feedback-path-panel"));
-        if (!feedbackPath.equals(CUSTOM_FEEDBACK_PATH_OPTION)) {
+        if (!CUSTOM_FEEDBACK_PATH_OPTION.equals(feedbackPath)) {
             selectFeedbackPathDropdownOption(questionNum, CUSTOM_FEEDBACK_PATH_OPTION + "...");
         }
         // Set to type STUDENT first to adjust NumberOfEntitiesToGiveFeedbackTo
@@ -1088,7 +1100,7 @@ public class InstructorFeedbackEditPage extends AppPage {
         WebElement questionForm = getQuestionForm(questionNum);
         WebElement visibilityPanel = questionForm.findElement(By.tagName("tm-visibility-panel"));
         String visibility = visibilityPanel.findElement(By.cssSelector("#btn-question-visibility span")).getText();
-        if (!visibility.equals(CUSTOM_VISIBILITY_OPTION)) {
+        if (!CUSTOM_VISIBILITY_OPTION.equals(visibility)) {
             selectVisibilityDropdownOption(questionNum, CUSTOM_VISIBILITY_OPTION + "...");
         }
 

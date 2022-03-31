@@ -1,6 +1,5 @@
 <frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
+  title: "Getting Started: Search"
 </frontmatter>
 
 # Full-text Search Feature Support
@@ -42,4 +41,4 @@ You may notice that the setup steps in this method are a manual version of the D
    Started Solr server on port 8983 (pid=44665). Happy searching!
    ```
    **Verification:** the Solr admin console should be accessible in `http://localhost:8983`.
-1. Run all the commands defined in the [Solr startup script](../solr.sh) in the Solr root directory.
+1. Run all the commands defined in the [Solr startup script](../solr/solr.sh) in the Solr root directory.

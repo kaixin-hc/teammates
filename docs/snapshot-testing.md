@@ -1,6 +1,5 @@
 <frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
+  title:  "Testing: Snapshot"
 </frontmatter>
 
 # Snapshot Testing

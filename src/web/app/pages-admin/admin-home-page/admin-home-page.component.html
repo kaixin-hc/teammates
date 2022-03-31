@@ -59,24 +59,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let instructor of instructorsConsolidated; let i = index">
-            <td>{{ instructor.name }}</td>
-            <td>{{ instructor.email }}</td>
-            <td>{{ instructor.institution }}</td>
-            <td>
-              <div class="button-group" *ngIf="instructor.status === 'PENDING' || instructor.status === 'FAIL'">
-                <button class="action-btn btn btn-sm btn-primary text-nowrap" id="add-instructor-{{ i }}" style="margin-right: 10px;" (click)="addInstructor(i)" [disabled]="activeRequests > 0">Add Instructor</button>
-                <button class="action-btn btn btn-sm btn-danger" id="cancel-instructor-{{ i }}" (click)="cancelInstructor(i)">Cancel</button>
-              </div>
-            </td>
-            <td>{{ instructor.status }}</td>
-            <td style="width: 500px;">
-              <span *ngIf="instructor.status === 'SUCCESS'" id="message-instructor-{{ i }}">
-                Instructor "{{ instructor.name }}" has been successfully created. [<a href="{{ instructor.joinLink }}">join link</a>]
-              </span>
-              <span class="message" *ngIf="instructor.status === 'FAIL'" id="message-instructor-{{ i }}">{{ instructor.message }}</span>
-            </td>
-          </tr>
+          <tr tm-new-instructor-data-row
+              *ngFor="let instructor of instructorsConsolidated; let i = index"
+              [instructor]="instructor"
+              [index]="i"
+              [isAddDisabled]="activeRequests > 0"
+              (addInstructorEvent)="addInstructor(i)"
+              (removeInstructorEvent)="removeInstructor(i)"
+              (toggleEditModeEvent)="setInstructorRowEditModeEnabled(i, $event)"
+              (showRegisteredInstructorModalEvent)="showRegisteredInstructorModal(i)"
+          ></tr>
         </tbody>
       </table>
       <button class="btn btn-primary top-padded" (click)="addAllInstructors()" id="add-all-instructors" [disabled]="activeRequests > 0 || isAddingInstructors">
@@ -86,3 +78,64 @@
     </div>
   </div>
 </div>
+<ng-template #registeredInstructorModal>
+  <div *tmIsLoading="isRegisteredInstructorModalLoading">
+    <p>
+      You may <a id="reset-account-request-link" href="javascript:;" (click)="resetAccountRequest(registeredInstructorIndex)">reset</a>
+      this account request. Alternatively, reset the Google account or use the Google ID migration script.
+    </p>
+    <p *ngIf="!registeredInstructorAccountData.length">
+      No accounts found for instructor associated with email
+      <b>{{ instructorsConsolidated[registeredInstructorIndex].email }}</b>.
+    </p>
+    <p *ngIf="registeredInstructorAccountData.length">
+      The following {{ registeredInstructorAccountData.length }} account(s) are associated with the email
+      <b>{{ instructorsConsolidated[registeredInstructorIndex].email }}</b>:
+    </p>
+    <div class="card" *ngFor="let account of registeredInstructorAccountData">
+      <a href="{{ account.manageAccountLink }}" target="_blank"><h5 class="card-header">{{ account.googleId }}</h5></a>
+      <div class="card-body">
+        <h6 *ngIf="!account.instructorCourses.length">No instructor courses found for this account.</h6>
+        <div *ngIf="account.instructorCourses.length">
+          <h6 class="card-title">Instructor for the following <b>{{ account.instructorCourses.length }}</b> courses:</h6>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Institute</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let course of account.instructorCourses">
+                <td class="text-break">{{ course.courseId }}</td>
+                <td class="text-break">{{ course.courseName }}</td>
+                <td class="text-break">{{ course.institute }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h6 class="mt-3" *ngIf="!account.studentCourses.length">No student courses found for this account.</h6>
+        <div *ngIf="account.studentCourses.length">
+          <h6 class="card-title mt-3">Student for the following <b>{{ account.studentCourses.length }}</b> courses:</h6>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Institute</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let course of account.studentCourses">
+                <td class="text-break">{{ course.courseId }}</td>
+                <td class="text-break">{{ course.courseName }}</td>
+                <td class="text-break">{{ course.institute }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

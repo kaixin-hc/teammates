@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.SessionResultsBundle;
 import teammates.common.datatransfer.attributes.AccountAttributes;
+import teammates.common.datatransfer.attributes.AccountRequestAttributes;
 import teammates.common.datatransfer.attributes.CourseAttributes;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
@@ -18,12 +19,14 @@ import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.datatransfer.attributes.StudentProfileAttributes;
+import teammates.common.datatransfer.attributes.UsageStatisticsAttributes;
 import teammates.common.exception.EnrollException;
 import teammates.common.exception.EntityAlreadyExistsException;
 import teammates.common.exception.EntityDoesNotExistException;
 import teammates.common.exception.InstructorUpdateException;
 import teammates.common.exception.InvalidParametersException;
 import teammates.common.exception.SearchServiceException;
+import teammates.logic.core.AccountRequestsLogic;
 import teammates.logic.core.AccountsLogic;
 import teammates.logic.core.CoursesLogic;
 import teammates.logic.core.DataBundleLogic;
@@ -34,6 +37,7 @@ import teammates.logic.core.FeedbackSessionsLogic;
 import teammates.logic.core.InstructorsLogic;
 import teammates.logic.core.ProfilesLogic;
 import teammates.logic.core.StudentsLogic;
+import teammates.logic.core.UsageStatisticsLogic;
 
 /**
  * Provides the business logic for production usage of the system.
@@ -45,6 +49,7 @@ public class Logic {
     private static final Logic instance = new Logic();
 
     final AccountsLogic accountsLogic = AccountsLogic.inst();
+    final AccountRequestsLogic accountRequestsLogic = AccountRequestsLogic.inst();
     final StudentsLogic studentsLogic = StudentsLogic.inst();
     final InstructorsLogic instructorsLogic = InstructorsLogic.inst();
     final CoursesLogic coursesLogic = CoursesLogic.inst();
@@ -52,6 +57,7 @@ public class Logic {
     final FeedbackQuestionsLogic feedbackQuestionsLogic = FeedbackQuestionsLogic.inst();
     final FeedbackResponsesLogic feedbackResponsesLogic = FeedbackResponsesLogic.inst();
     final FeedbackResponseCommentsLogic feedbackResponseCommentsLogic = FeedbackResponseCommentsLogic.inst();
+    final UsageStatisticsLogic usageStatisticsLogic = UsageStatisticsLogic.inst();
     final ProfilesLogic profilesLogic = ProfilesLogic.inst();
     final DataBundleLogic dataBundleLogic = DataBundleLogic.inst();
 
@@ -71,6 +77,18 @@ public class Logic {
         assert googleId != null;
 
         return accountsLogic.getAccount(googleId);
+    }
+
+    /**
+     * Returns a list of accounts with email matching {@code email}.
+     *
+     * <br/> Preconditions: <br/>
+     * * All parameters are non-null.
+     */
+    public List<AccountAttributes> getAccountsForEmail(String email) {
+        assert email != null;
+
+        return accountsLogic.getAccountsForEmail(email);
     }
 
     public String getCourseInstitute(String courseId) {
@@ -95,7 +113,7 @@ public class Logic {
     }
 
     /**
-     * Deletes both instructor and student privileges, as long as the account and associated student profile.
+     * Deletes both instructor and student privileges, as well as the account and associated student profile.
      *
      * <ul>
      * <li>Fails silently if no such account.</li>
@@ -288,7 +306,7 @@ public class Logic {
 
     /**
      * Make the instructor join the course, i.e. associate the Google ID to the instructor.<br>
-     * Creates an account for the instructor if there is no existing account for him.
+     * Creates an account for the instructor if no existing account is found.
      * Preconditions: <br>
      * * Parameters regkey and googleId are non-null.
      */
@@ -419,7 +437,6 @@ public class Logic {
      * @param courseId The course of which the archive status is to be changed
      * @param archiveStatus The archive status to be set
      */
-
     public void setArchiveStatusOfInstructor(String googleId, String courseId, boolean archiveStatus)
             throws InvalidParametersException, EntityDoesNotExistException {
 
@@ -701,7 +718,7 @@ public class Logic {
 
     /**
      * Make the student join the course, i.e. associate the Google ID to the student.<br>
-     * Create an account for the student if there is no account exist for him.
+     * Create an account for the student if no existing account is found.
      * Preconditions: <br>
      * * All parameters are non-null.
      * @param key the registration key
@@ -722,27 +739,26 @@ public class Logic {
     }
 
     /**
-     * Checks whether an instructor has completed a feedback session.
+     * Checks whether an instructor has attempted a feedback session.
      *
-     * <p> If there is no question for instructors, the feedback session is completed</p>
+     * <p>If there is no question for instructors, the feedback session is considered as attempted.</p>
      */
-    public boolean isFeedbackSessionCompletedByInstructor(FeedbackSessionAttributes fsa, String userEmail)
-            throws EntityDoesNotExistException {
+    public boolean isFeedbackSessionAttemptedByInstructor(FeedbackSessionAttributes fsa, String userEmail) {
         assert fsa != null;
         assert userEmail != null;
-        return feedbackSessionsLogic.isFeedbackSessionCompletedByInstructor(fsa, userEmail);
+        return feedbackSessionsLogic.isFeedbackSessionAttemptedByInstructor(fsa, userEmail);
     }
 
     /**
-     * Checks whether a student has completed a feedback session.
+     * Checks whether a student has attempted a feedback session.
      *
-     * <p> If there is no question for students, the feedback session is completed</p>
+     * <p>If there is no question for students, the feedback session is considered as attempted.</p>
      */
-    public boolean isFeedbackSessionCompletedByStudent(FeedbackSessionAttributes fsa, String userEmail, String userTeam) {
+    public boolean isFeedbackSessionAttemptedByStudent(FeedbackSessionAttributes fsa, String userEmail, String userTeam) {
         assert fsa != null;
         assert userEmail != null;
         assert userTeam != null;
-        return feedbackSessionsLogic.isFeedbackSessionCompletedByStudent(fsa, userEmail, userTeam);
+        return feedbackSessionsLogic.isFeedbackSessionAttemptedByStudent(fsa, userEmail, userTeam);
     }
 
     /**
@@ -766,10 +782,10 @@ public class Logic {
      * <br/>Preconditions: <br>
      * * All parameters are non-null.
      */
-    public void deleteStudentsInCourseCascade(String courseId) {
+    public void deleteStudentsInCourseCascade(String courseId, int batchSize) {
         assert courseId != null;
 
-        studentsLogic.deleteStudentsInCourseCascade(courseId);
+        studentsLogic.deleteStudentsInCourseCascade(courseId, batchSize);
     }
 
     /**
@@ -947,23 +963,11 @@ public class Logic {
      * instructor can view/submit.
      */
     public List<FeedbackQuestionAttributes> getFeedbackQuestionsForInstructors(
-            String feedbackSessionName, String courseId, String instructorEmail) throws EntityDoesNotExistException {
+            String feedbackSessionName, String courseId, String instructorEmail) {
         assert feedbackSessionName != null;
         assert courseId != null;
 
-        return feedbackQuestionsLogic.getFeedbackQuestionsForInstructor(feedbackSessionName, courseId, instructorEmail);
-    }
-
-    /**
-     * Preconditions: <br>
-     * * All parameters are non-null.
-     */
-    public boolean hasStudentSubmittedFeedback(FeedbackSessionAttributes fsa, String studentEmail, String studentTeam) {
-
-        assert fsa != null;
-        assert studentEmail != null;
-
-        return feedbackSessionsLogic.isFeedbackSessionCompletedByStudent(fsa, studentEmail, studentTeam);
+        return feedbackQuestionsLogic.getFeedbackQuestionsForInstructors(feedbackSessionName, courseId, instructorEmail);
     }
 
     /**
@@ -1390,4 +1394,121 @@ public class Logic {
         assert student2Email != null;
         return studentsLogic.isStudentsInSameTeam(courseId, student1Email, student2Email);
     }
+
+    /**
+     * Creates an account request.
+     *
+     * <p>Preconditions:</p>
+     * * All parameters are non-null.
+     *
+     * @return the created account request
+     * @throws InvalidParametersException if the account request is not valid
+     * @throws EntityAlreadyExistsException if the account request already exists
+     */
+    public AccountRequestAttributes createAccountRequest(AccountRequestAttributes accountRequest)
+            throws InvalidParametersException, EntityAlreadyExistsException {
+        assert accountRequest != null;
+
+        return accountRequestsLogic.createAccountRequest(accountRequest);
+    }
+
+    /**
+     * Updates an account request.
+     *
+     * <p>Preconditions:</p>
+     * * All parameters are non-null.
+     *
+     * @return the updated account request
+     * @throws InvalidParametersException if the account request is not valid
+     * @throws EntityDoesNotExistException if the account request to update does not exist
+     */
+    public AccountRequestAttributes updateAccountRequest(AccountRequestAttributes.UpdateOptions updateOptions)
+            throws InvalidParametersException, EntityDoesNotExistException {
+        assert updateOptions != null;
+
+        return accountRequestsLogic.updateAccountRequest(updateOptions);
+    }
+
+    /**
+     * Deletes an account request.
+     *
+     * <p>Preconditions:</p>
+     * * All parameters are non-null.
+     */
+    public void deleteAccountRequest(String email, String institute) {
+        assert email != null;
+
+        accountRequestsLogic.deleteAccountRequest(email, institute);
+    }
+
+    /**
+     * Gets an account request by unique constraint {@code registrationKey}.
+     *
+     * <p>Preconditions:</p>
+     * * All parameters are non-null.
+     *
+     * @return the account request
+     */
+    public AccountRequestAttributes getAccountRequestForRegistrationKey(String registrationKey) {
+        assert registrationKey != null;
+
+        return accountRequestsLogic.getAccountRequestForRegistrationKey(registrationKey);
+    }
+
+    /**
+     * Gets an account request by email address and institute.
+     *
+     * <p>Preconditions:</p>
+     * * All parameters are non-null.
+     *
+     * @return the account request
+     */
+    public AccountRequestAttributes getAccountRequest(String email, String institute) {
+        assert email != null;
+        assert institute != null;
+
+        return accountRequestsLogic.getAccountRequest(email, institute);
+    }
+
+    /**
+     * This is used by admin to search account requests in the whole system.
+     *
+     * @return A list of {@link AccountRequestAttributes} or {@code null} if no match found.
+     */
+    public List<AccountRequestAttributes> searchAccountRequestsInWholeSystem(String queryString)
+            throws SearchServiceException {
+        assert queryString != null;
+
+        return accountRequestsLogic.searchAccountRequestsInWholeSystem(queryString);
+    }
+
+    /**
+     * Creates or updates search document for the given account request.
+     *
+     * @see AccountRequestsLogic#putDocument(AccountRequestAttributes)
+     */
+    public void putAccountRequestDocument(AccountRequestAttributes accountRequest) throws SearchServiceException {
+        accountRequestsLogic.putDocument(accountRequest);
+    }
+
+    public List<UsageStatisticsAttributes> getUsageStatisticsForTimeRange(Instant startTime, Instant endTime) {
+        assert startTime != null;
+        assert endTime != null;
+        assert startTime.toEpochMilli() < endTime.toEpochMilli();
+
+        return usageStatisticsLogic.getUsageStatisticsForTimeRange(startTime, endTime);
+    }
+
+    public UsageStatisticsAttributes calculateEntitiesStatisticsForTimeRange(Instant startTime, Instant endTime) {
+        assert startTime != null;
+        assert endTime != null;
+        assert startTime.toEpochMilli() < endTime.toEpochMilli();
+        return usageStatisticsLogic.calculateEntitiesStatisticsForTimeRange(startTime, endTime);
+    }
+
+    public void createUsageStatistics(UsageStatisticsAttributes attributes)
+            throws EntityAlreadyExistsException, InvalidParametersException {
+        usageStatisticsLogic.createUsageStatistics(attributes);
+    }
+
 }

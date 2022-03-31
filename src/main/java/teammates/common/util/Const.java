@@ -1,5 +1,7 @@
 package teammates.common.util;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
 
@@ -27,10 +29,11 @@ public final class Const {
     public static final String UNKNOWN_INSTITUTION = "Unknown Institution";
 
     public static final String DEFAULT_TIME_ZONE = "UTC";
-    public static final String ENCODING = "UTF8";
+    public static final Charset ENCODING = StandardCharsets.UTF_8;
 
     public static final Duration FEEDBACK_SESSIONS_SEARCH_WINDOW = Duration.ofDays(30);
     public static final Duration LOGS_RETENTION_PERIOD = Duration.ofDays(30);
+    public static final Duration COOKIE_VALIDITY_PERIOD = Duration.ofDays(7);
 
     public static final int SEARCH_QUERY_SIZE_LIMIT = 50;
 
@@ -108,6 +111,8 @@ public final class Const {
         public static final String COURSE_STATUS = "coursestatus";
         public static final String INSTRUCTOR_ID = "instructorid";
         public static final String INSTRUCTOR_EMAIL = "instructoremail";
+        public static final String INSTRUCTOR_INSTITUTION = "instructorinstitution";
+        public static final String IS_CREATING_ACCOUNT = "iscreatingaccount";
 
         public static final String FEEDBACK_SESSION_NAME = "fsname";
         public static final String FEEDBACK_SESSION_STARTTIME = "starttime";
@@ -145,10 +150,13 @@ public final class Const {
         public static final String USER_CAPTCHA_RESPONSE = "captcharesponse";
 
         public static final String EMAIL_TYPE = "emailtype";
+        public static final String USER_EMAIL = "useremail";
 
         public static final String ENTITY_TYPE = "entitytype";
 
         public static final String INTENT = "intent";
+
+        public static final String TIMEZONE = "timezone";
 
         public static final String QUERY_LOGS_STARTTIME = "starttime";
         public static final String QUERY_LOGS_ENDTIME = "endtime";
@@ -166,6 +174,8 @@ public final class Const {
         public static final String QUERY_LOGS_VERSION = "version";
         public static final String QUERY_LOGS_EXTRA_FILTERS = "extrafilters";
         public static final String QUERY_LOGS_ORDER = "order";
+
+        public static final String LIMIT = "limit";
     }
 
     /**
@@ -295,6 +305,9 @@ public final class Const {
         public static final String ACCOUNT = URI_PREFIX + "/account";
         public static final String ACCOUNT_RESET = URI_PREFIX + "/account/reset";
         public static final String ACCOUNT_DOWNGRADE = URI_PREFIX + "/account/downgrade";
+        public static final String ACCOUNT_REQUEST = URI_PREFIX + "/account/request";
+        public static final String ACCOUNT_REQUEST_RESET = ACCOUNT_REQUEST + "/reset";
+        public static final String ACCOUNTS = URI_PREFIX + "/accounts";
         public static final String RESPONSE_COMMENT = URI_PREFIX + "/responsecomment";
         public static final String COURSE = URI_PREFIX + "/course";
         public static final String COURSE_ARCHIVE = URI_PREFIX + "/course/archive";
@@ -317,6 +330,7 @@ public final class Const {
         public static final String SESSION_STATS = URI_PREFIX + "/session/stats";
         public static final String SESSION_SUBMITTED_GIVER_SET = URI_PREFIX + "/session/submitted/giverset";
         public static final String SESSIONS = URI_PREFIX + "/sessions";
+        public static final String SEARCH_ACCOUNT_REQUESTS = URI_PREFIX + "/search/accountrequests";
         public static final String SEARCH_INSTRUCTORS = URI_PREFIX + "/search/instructors";
         public static final String SEARCH_STUDENTS = URI_PREFIX + "/search/students";
         public static final String BIN_SESSION = URI_PREFIX + "/bin/session";
@@ -324,6 +338,7 @@ public final class Const {
         public static final String QUESTION = URI_PREFIX + "/question";
         public static final String QUESTION_RECIPIENTS = URI_PREFIX + "/question/recipients";
         public static final String RESPONSES = URI_PREFIX + "/responses";
+        public static final String USAGE_STATISTICS = URI_PREFIX + "/usagestats";
         public static final String HAS_RESPONSES = URI_PREFIX + "/hasResponses";
         public static final String JOIN = URI_PREFIX + "/join";
         public static final String JOIN_REMIND = URI_PREFIX + "/join/remind";
@@ -358,6 +373,8 @@ public final class Const {
                 URI_PREFIX + "/feedbackSessionClosingReminders";
         public static final String AUTOMATED_FEEDBACK_PUBLISHED_REMINDERS =
                 URI_PREFIX + "/feedbackSessionPublishedReminders";
+        public static final String AUTOMATED_USAGE_STATISTICS_COLLECTION =
+                URI_PREFIX + "/calculateUsageStatistics";
     }
 
     /**
@@ -400,6 +417,8 @@ public final class Const {
 
         public static final String SEARCH_INDEXING_QUEUE_NAME = "search-indexing-queue";
         public static final String INSTRUCTOR_SEARCH_INDEXING_WORKER_URL = URI_PREFIX + "/instructorSearchIndexing";
+        public static final String ACCOUNT_REQUEST_SEARCH_INDEXING_WORKER_URL =
+                URI_PREFIX + "/accountRequestSearchIndexing";
         public static final String STUDENT_SEARCH_INDEXING_WORKER_URL = URI_PREFIX + "/studentSearchIndexing";
     }
 

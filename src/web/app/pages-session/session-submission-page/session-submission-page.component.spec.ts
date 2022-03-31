@@ -1,11 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { of, throwError } from 'rxjs';
+import SpyInstance = jest.SpyInstance;
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../../services/auth.service';
 import { FeedbackQuestionsService } from '../../../services/feedback-questions.service';
@@ -66,10 +67,10 @@ import {
 import {
   QuestionSubmissionFormModule,
 } from '../../components/question-submission-form/question-submission-form.module';
+import { SimpleModalType } from '../../components/simple-modal/simple-modal-type';
 import { TeammatesCommonModule } from '../../components/teammates-common/teammates-common.module';
 import { SavingCompleteModalComponent } from './saving-complete-modal/saving-complete-modal.component';
 import { SessionSubmissionPageComponent } from './session-submission-page.component';
-import Spy = jasmine.Spy;
 
 describe('SessionSubmissionPageComponent', () => {
   const deepCopy: <T>(obj: T) => T = <T>(obj: T) => JSON.parse(JSON.stringify(obj));
@@ -95,7 +96,7 @@ describe('SessionSubmissionPageComponent', () => {
     timeZone: 'Asia/Singapore',
     instructions: 'Instructions',
     submissionStartTimestamp: 1000000000000,
-    submissionEndTimestamp: Date.now() + 10 * 60 * 1000,  // 10 minutes before closing
+    submissionEndTimestamp: Date.now() + 10 * 60 * 1000, // 10 minutes before closing
     gracePeriod: 0,
     sessionVisibleSetting: SessionVisibleSetting.AT_OPEN,
     responseVisibleSetting: ResponseVisibleSetting.AT_VISIBLE,
@@ -207,6 +208,16 @@ describe('SessionSubmissionPageComponent', () => {
       questionType: FeedbackQuestionType.MSQ,
     } as FeedbackMsqResponseDetails,
     isValid: true,
+    commentByGiver: {
+      originalComment: testComment,
+      commentEditFormModel: {
+        commentText: 'comment text',
+        isUsingCustomVisibilities: false,
+        showCommentTo: [CommentVisibilityType.GIVER, CommentVisibilityType.RECIPIENT],
+        showGiverNameTo: [CommentVisibilityType.GIVER, CommentVisibilityType.RECIPIENT],
+      },
+      isEditing: false,
+    },
   };
 
   const testNumscaleRecipientSubmissionForm: FeedbackResponseRecipientSubmissionFormModel = {
@@ -305,6 +316,8 @@ describe('SessionSubmissionPageComponent', () => {
     showResponsesTo: [FeedbackVisibilityType.STUDENTS, FeedbackVisibilityType.INSTRUCTORS],
     showGiverNameTo: [],
     showRecipientNameTo: [],
+    isLoading: false,
+    isLoaded: true,
   };
 
   const testMcqQuestionSubmissionForm2: QuestionSubmissionFormModel = {
@@ -320,22 +333,15 @@ describe('SessionSubmissionPageComponent', () => {
     } as FeedbackMcqQuestionDetails,
     giverType: FeedbackParticipantType.INSTRUCTORS,
     recipientType: FeedbackParticipantType.TEAMS,
-    recipientList: [
-      {
-        recipientName: 'Barry Harris',
-        recipientIdentifier: 'barry-harris-id',
-      },
-      {
-        recipientName: 'Gene Harris',
-        recipientIdentifier: 'gene-harris-id',
-      },
-    ],
-    recipientSubmissionForms: [testMcqRecipientSubmissionForm3, testMcqRecipientSubmissionForm4],
+    recipientList: [],
+    recipientSubmissionForms: [],
     numberOfEntitiesToGiveFeedbackToSetting: NumberOfEntitiesToGiveFeedbackToSetting.UNLIMITED,
     customNumberOfEntitiesToGiveFeedbackTo: 5,
     showResponsesTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showGiverNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showRecipientNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
+    isLoading: false,
+    isLoaded: false,
   };
 
   const testTextQuestionSubmissionForm: QuestionSubmissionFormModel = {
@@ -357,6 +363,8 @@ describe('SessionSubmissionPageComponent', () => {
     showResponsesTo: [FeedbackVisibilityType.GIVER_TEAM_MEMBERS, FeedbackVisibilityType.INSTRUCTORS],
     showGiverNameTo: [],
     showRecipientNameTo: [],
+    isLoading: false,
+    isLoaded: true,
   };
 
   const testMsqQuestionSubmissionForm: QuestionSubmissionFormModel = {
@@ -366,7 +374,7 @@ describe('SessionSubmissionPageComponent', () => {
     questionDescription: 'question description',
     questionType: FeedbackQuestionType.MSQ,
     questionDetails: {
-      msqChoices: ['first', 'second' , 'third'],
+      msqChoices: ['first', 'second', 'third'],
       otherEnabled: false,
       hasAssignedWeights: true,
       msqWeights: [1, 2, 3],
@@ -382,6 +390,8 @@ describe('SessionSubmissionPageComponent', () => {
     showResponsesTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showGiverNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showRecipientNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
+    isLoading: false,
+    isLoaded: true,
   };
 
   const testNumscaleQuestionSubmissionForm: QuestionSubmissionFormModel = {
@@ -404,6 +414,8 @@ describe('SessionSubmissionPageComponent', () => {
     showResponsesTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showGiverNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showRecipientNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
+    isLoading: false,
+    isLoaded: true,
   };
 
   const testConstsumQuestionSubmissionForm: QuestionSubmissionFormModel = {
@@ -429,6 +441,8 @@ describe('SessionSubmissionPageComponent', () => {
     showResponsesTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showGiverNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showRecipientNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
+    isLoading: false,
+    isLoaded: true,
   };
 
   const testContribQuestionSubmissionForm: QuestionSubmissionFormModel = {
@@ -449,6 +463,8 @@ describe('SessionSubmissionPageComponent', () => {
     showResponsesTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showGiverNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showRecipientNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
+    isLoading: false,
+    isLoaded: true,
   };
 
   const testRubricQuestionSubmissionForm: QuestionSubmissionFormModel = {
@@ -473,6 +489,8 @@ describe('SessionSubmissionPageComponent', () => {
     showResponsesTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showGiverNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showRecipientNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
+    isLoading: false,
+    isLoaded: true,
   };
 
   const testRankOptionsQuestionSubmissionForm: QuestionSubmissionFormModel = {
@@ -493,6 +511,8 @@ describe('SessionSubmissionPageComponent', () => {
     showResponsesTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showGiverNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showRecipientNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
+    isLoading: false,
+    isLoaded: true,
   };
 
   const testRankRecipientsQuestionSubmissionForm: QuestionSubmissionFormModel = {
@@ -515,6 +535,8 @@ describe('SessionSubmissionPageComponent', () => {
     showResponsesTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showGiverNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
     showRecipientNameTo: [FeedbackVisibilityType.RECIPIENT, FeedbackVisibilityType.INSTRUCTORS],
+    isLoading: false,
+    isLoaded: true,
   };
 
   const testInfo: AuthInfo = {
@@ -556,7 +578,7 @@ describe('SessionSubmissionPageComponent', () => {
   let simpleModalService: SimpleModalService;
   let ngbModal: NgbModal;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SessionSubmissionPageComponent, SavingCompleteModalComponent],
       imports: [
@@ -672,7 +694,6 @@ describe('SessionSubmissionPageComponent', () => {
     ];
     component.isFeedbackSessionLoading = false;
     component.isFeedbackSessionQuestionsLoading = false;
-    component.isFeedbackSessionQuestionResponsesLoading = false;
     fixture.detectChanges();
     expect(fixture).toMatchSnapshot();
   });
@@ -693,13 +714,12 @@ describe('SessionSubmissionPageComponent', () => {
     component.isSubmissionFormsDisabled = true;
     component.isFeedbackSessionLoading = false;
     component.isFeedbackSessionQuestionsLoading = false;
-    component.isFeedbackSessionQuestionResponsesLoading = false;
     fixture.detectChanges();
     expect(fixture).toMatchSnapshot();
   });
 
   it('should fetch auth info on init', () => {
-    spyOn(authService, 'getAuthUser').and.returnValue(of(testInfo));
+    jest.spyOn(authService, 'getAuthUser').mockReturnValue(of(testInfo));
     component.ngOnInit();
     expect(component.intent).toEqual(Intent.STUDENT_SUBMISSION);
     expect(component.courseId).toEqual(testQueryParams.courseid);
@@ -714,14 +734,15 @@ describe('SessionSubmissionPageComponent', () => {
       isUsed: true,
       isValid: false,
     };
-    spyOn(authService, 'getAuthUser').and.returnValue(of(testInfo));
-    spyOn(authService, 'getAuthRegkeyValidity').and.returnValue(of(testValidity));
-    const navSpy: Spy = spyOn(navService, 'navigateByURLWithParamEncoding');
+    jest.spyOn(authService, 'getAuthUser').mockReturnValue(of(testInfo));
+    jest.spyOn(authService, 'getAuthRegkeyValidity').mockReturnValue(of(testValidity));
+    const navSpy: SpyInstance = jest.spyOn(navService, 'navigateByURLWithParamEncoding').mockImplementation();
 
     component.ngOnInit();
 
-    expect(navSpy.calls.count()).toEqual(1);
-    expect(navSpy.calls.mostRecent().args[1]).toEqual('/web/student/sessions/submission');
+    expect(navSpy).toHaveBeenCalledTimes(1);
+    expect(navSpy).toHaveBeenLastCalledWith(expect.anything(), '/web/student/sessions/submission',
+        { courseid: 'CS3281', fsname: 'Feedback Session Name' });
   });
 
   it('should deny unallowed access with valid reg key for logged in user', () => {
@@ -730,15 +751,14 @@ describe('SessionSubmissionPageComponent', () => {
       isUsed: false,
       isValid: true,
     };
-    spyOn(authService, 'getAuthUser').and.returnValue(of(testInfo));
-    spyOn(authService, 'getAuthRegkeyValidity').and.returnValue(of(testValidity));
-    const navSpy: Spy = spyOn(navService, 'navigateWithErrorMessage');
+    jest.spyOn(authService, 'getAuthUser').mockReturnValue(of(testInfo));
+    jest.spyOn(authService, 'getAuthRegkeyValidity').mockReturnValue(of(testValidity));
+    const navSpy: SpyInstance = jest.spyOn(navService, 'navigateWithErrorMessage').mockImplementation();
 
     component.ngOnInit();
 
-    expect(navSpy.calls.count()).toEqual(1);
-    expect(navSpy.calls.mostRecent().args[1]).toEqual('/web/front');
-    expect(navSpy.calls.mostRecent().args[2]).toEqual(
+    expect(navSpy).toHaveBeenCalledTimes(1);
+    expect(navSpy).toHaveBeenLastCalledWith(expect.anything(), '/web/front',
         `You are trying to access TEAMMATES using the Google account user-id, which
                     is not linked to this TEAMMATES account. If you used a different Google account to
                     join/access TEAMMATES before, please use that Google account to access TEAMMATES. If you
@@ -752,19 +772,20 @@ describe('SessionSubmissionPageComponent', () => {
       isUsed: false,
       isValid: false,
     };
-    spyOn(authService, 'getAuthUser').and.returnValue(of(testInfo));
-    spyOn(authService, 'getAuthRegkeyValidity').and.returnValue(of(testValidity));
-    const navSpy: Spy = spyOn(navService, 'navigateWithErrorMessage');
+    jest.spyOn(authService, 'getAuthUser').mockReturnValue(of(testInfo));
+    jest.spyOn(authService, 'getAuthRegkeyValidity').mockReturnValue(of(testValidity));
+    const navSpy: SpyInstance = jest.spyOn(navService, 'navigateWithErrorMessage').mockImplementation();
 
     component.ngOnInit();
 
-    expect(navSpy.calls.count()).toEqual(1);
-    expect(navSpy.calls.mostRecent().args[1]).toEqual('/web/front');
+    expect(navSpy).toHaveBeenCalledTimes(1);
+    expect(navSpy).toHaveBeenLastCalledWith(expect.anything(), '/web/front',
+        'You are not authorized to view this page.');
   });
 
   it('should load a student name', () => {
     component.intent = Intent.STUDENT_SUBMISSION;
-    spyOn(studentService, 'getStudent').and.returnValue(of(testStudent));
+    jest.spyOn(studentService, 'getStudent').mockReturnValue(of(testStudent));
     component.loadPersonName();
     expect(component.personName).toEqual(testStudent.name);
     expect(component.personEmail).toEqual(testStudent.email);
@@ -772,31 +793,32 @@ describe('SessionSubmissionPageComponent', () => {
 
   it('should load an instructor name', () => {
     component.intent = Intent.INSTRUCTOR_SUBMISSION;
-    spyOn(instructorService, 'getInstructor').and.returnValue(of(testInstructor));
+    jest.spyOn(instructorService, 'getInstructor').mockReturnValue(of(testInstructor));
     component.loadPersonName();
     expect(component.personName).toEqual(testInstructor.name);
     expect(component.personEmail).toEqual(testInstructor.email);
   });
 
   it('should join course for unregistered student', () => {
-    const navSpy: Spy = spyOn(navService, 'navigateByURL');
-    component.joinCourseForUnregisteredStudent();
-    expect(navSpy.calls.count()).toEqual(1);
-    expect(navSpy.calls.mostRecent().args[1]).toEqual('/web/join');
-    expect(navSpy.calls.mostRecent().args[2]).toEqual({ entitytype: 'student', key: testQueryParams.key });
+    const navSpy: SpyInstance = jest.spyOn(navService, 'navigateByURL').mockImplementation();
+    component.joinCourseForUnregisteredEntity();
+    expect(navSpy).toHaveBeenCalledTimes(1);
+    expect(navSpy).toHaveBeenLastCalledWith(expect.anything(), '/web/join',
+        { entitytype: 'student', key: testQueryParams.key });
   });
 
   it('should load an open feedback session', () => {
-    const fsSpy: Spy = spyOn(feedbackSessionsService, 'getFeedbackSession')
-        .and.returnValue(of(testOpenFeedbackSession));
-    const modalSpy: Spy = spyOn(simpleModalService, 'openInformationModal');
+    const fsSpy: SpyInstance = jest.spyOn(feedbackSessionsService, 'getFeedbackSession')
+        .mockReturnValue(of(testOpenFeedbackSession));
+    const modalSpy: SpyInstance = jest.spyOn(simpleModalService, 'openInformationModal').mockImplementation();
 
     component.loadFeedbackSession();
 
-    expect(fsSpy.calls.count()).toEqual(1);
-    expect(fsSpy.calls.mostRecent().args[0]).toEqual(getFeedbackSessionArgs);
-    expect(modalSpy.calls.count()).toEqual(1);
-    expect(modalSpy.calls.mostRecent().args[0]).toEqual('Feedback Session Will Be Closing Soon!');
+    expect(fsSpy).toHaveBeenCalledTimes(1);
+    expect(fsSpy).toHaveBeenLastCalledWith(getFeedbackSessionArgs);
+    expect(modalSpy).toHaveBeenCalledTimes(1);
+    expect(modalSpy).toHaveBeenLastCalledWith('Feedback Session Will Be Closing Soon!',
+        SimpleModalType.WARNING, 'Warning: you have less than 15 minutes before the submission deadline expires!');
     expect(component.feedbackSessionInstructions).toEqual(testOpenFeedbackSession.instructions);
     expect(component.feedbackSessionSubmissionStatus).toEqual(testOpenFeedbackSession.submissionStatus);
     expect(component.feedbackSessionTimezone).toEqual(testOpenFeedbackSession.timeZone);
@@ -806,16 +828,16 @@ describe('SessionSubmissionPageComponent', () => {
   it('should load a closed feedback session', () => {
     const testClosedFeedbackSession: FeedbackSession = deepCopy(testOpenFeedbackSession);
     testClosedFeedbackSession.submissionStatus = FeedbackSessionSubmissionStatus.CLOSED;
-    const fsSpy: Spy = spyOn(feedbackSessionsService, 'getFeedbackSession')
-        .and.returnValue(of(testClosedFeedbackSession));
-    const modalSpy: Spy = spyOn(simpleModalService, 'openInformationModal');
+    const fsSpy: SpyInstance = jest.spyOn(feedbackSessionsService, 'getFeedbackSession')
+        .mockReturnValue(of(testClosedFeedbackSession));
+    const modalSpy: SpyInstance = jest.spyOn(simpleModalService, 'openInformationModal').mockImplementation();
 
     component.loadFeedbackSession();
 
-    expect(fsSpy.calls.count()).toEqual(1);
-    expect(fsSpy.calls.mostRecent().args[0]).toEqual(getFeedbackSessionArgs);
-    expect(modalSpy.calls.count()).toEqual(1);
-    expect(modalSpy.calls.mostRecent().args[0]).toEqual('Feedback Session Closed');
+    expect(fsSpy).toHaveBeenCalledTimes(1);
+    expect(fsSpy).toHaveBeenLastCalledWith(getFeedbackSessionArgs);
+    expect(modalSpy).toHaveBeenCalledTimes(1);
+    expect(modalSpy).toHaveBeenLastCalledWith('Feedback Session Closed', SimpleModalType.WARNING, expect.anything());
     expect(component.feedbackSessionInstructions).toEqual(testClosedFeedbackSession.instructions);
     expect(component.feedbackSessionSubmissionStatus).toEqual(testClosedFeedbackSession.submissionStatus);
     expect(component.feedbackSessionTimezone).toEqual(testClosedFeedbackSession.timeZone);
@@ -825,16 +847,16 @@ describe('SessionSubmissionPageComponent', () => {
   it('should load a visible not open feedback session', () => {
     const testVisibleNotOpenFeedbackSession: FeedbackSession = deepCopy(testOpenFeedbackSession);
     testVisibleNotOpenFeedbackSession.submissionStatus = FeedbackSessionSubmissionStatus.VISIBLE_NOT_OPEN;
-    const fsSpy: Spy = spyOn(feedbackSessionsService, 'getFeedbackSession')
-        .and.returnValue(of(testVisibleNotOpenFeedbackSession));
-    const modalSpy: Spy = spyOn(simpleModalService, 'openInformationModal');
+    const fsSpy: SpyInstance = jest.spyOn(feedbackSessionsService, 'getFeedbackSession')
+        .mockReturnValue(of(testVisibleNotOpenFeedbackSession));
+    const modalSpy: SpyInstance = jest.spyOn(simpleModalService, 'openInformationModal').mockImplementation();
 
     component.loadFeedbackSession();
 
-    expect(fsSpy.calls.count()).toEqual(1);
-    expect(fsSpy.calls.mostRecent().args[0]).toEqual(getFeedbackSessionArgs);
-    expect(modalSpy.calls.count()).toEqual(1);
-    expect(modalSpy.calls.mostRecent().args[0]).toEqual('Feedback Session Not Open');
+    expect(fsSpy).toHaveBeenCalledTimes(1);
+    expect(fsSpy).toHaveBeenLastCalledWith(getFeedbackSessionArgs);
+    expect(modalSpy).toHaveBeenCalledTimes(1);
+    expect(modalSpy).toHaveBeenLastCalledWith('Feedback Session Not Open', SimpleModalType.WARNING, expect.anything());
     expect(component.feedbackSessionInstructions).toEqual(testVisibleNotOpenFeedbackSession.instructions);
     expect(component.feedbackSessionSubmissionStatus).toEqual(testVisibleNotOpenFeedbackSession.submissionStatus);
     expect(component.feedbackSessionTimezone).toEqual(testVisibleNotOpenFeedbackSession.timeZone);
@@ -842,38 +864,39 @@ describe('SessionSubmissionPageComponent', () => {
   });
 
   it('should redirect when loading non-existent feedback session', () => {
-    spyOn(feedbackSessionsService, 'getFeedbackSession').and.returnValue(throwError({
+    jest.spyOn(feedbackSessionsService, 'getFeedbackSession').mockReturnValue(throwError({
       error: { message: 'This is an error' },
       status: 404,
     }));
-    const navSpy: Spy = spyOn(navService, 'navigateByURL');
-    const modalSpy: Spy = spyOn(simpleModalService, 'openInformationModal');
+    const navSpy: SpyInstance = jest.spyOn(navService, 'navigateByURL').mockImplementation();
+    const modalSpy: SpyInstance = jest.spyOn(simpleModalService, 'openInformationModal').mockImplementation();
 
     component.loadFeedbackSession();
 
-    expect(modalSpy.calls.count()).toEqual(1);
-    expect(modalSpy.calls.mostRecent().args[0]).toEqual('Feedback Session Does Not Exist!');
-    expect(navSpy.calls.count()).toEqual(1);
-    expect(navSpy.calls.mostRecent().args[1]).toEqual('/web/student/home');
+    expect(modalSpy).toHaveBeenCalledTimes(1);
+    expect(modalSpy).toHaveBeenLastCalledWith('Feedback Session Does Not Exist!', SimpleModalType.DANGER,
+        'The session does not exist (most likely deleted by the instructor after the submission link was sent).');
+    expect(navSpy).toHaveBeenCalledTimes(1);
+    expect(navSpy).toHaveBeenLastCalledWith(expect.anything(), '/web/student/home');
   });
 
   it('should redirect when loading non-viewable feedback session', () => {
-    spyOn(feedbackSessionsService, 'getFeedbackSession').and.returnValue(throwError({
+    jest.spyOn(feedbackSessionsService, 'getFeedbackSession').mockReturnValue(throwError({
       error: { message: 'This is an error' },
       status: 403,
     }));
-    const navSpy: Spy = spyOn(navService, 'navigateByURL');
-    const modalSpy: Spy = spyOn(simpleModalService, 'openInformationModal');
+    const navSpy: SpyInstance = jest.spyOn(navService, 'navigateByURL').mockImplementation();
+    const modalSpy: SpyInstance = jest.spyOn(simpleModalService, 'openInformationModal').mockImplementation();
 
     component.loadFeedbackSession();
 
-    expect(modalSpy.calls.count()).toEqual(1);
-    expect(modalSpy.calls.mostRecent().args[0]).toEqual('Not Authorised To Access!');
-    expect(navSpy.calls.count()).toEqual(1);
-    expect(navSpy.calls.mostRecent().args[1]).toEqual('/web/student/home');
+    expect(modalSpy).toHaveBeenCalledTimes(1);
+    expect(modalSpy).toHaveBeenLastCalledWith('Not Authorised To Access!', SimpleModalType.DANGER, 'This is an error');
+    expect(navSpy).toHaveBeenCalledTimes(1);
+    expect(navSpy).toHaveBeenLastCalledWith(expect.anything(), '/web/student/home');
   });
 
-  it('should load feedback questions and recipients and responses', () => {
+  it('should load feedback questions', () => {
     const testFeedbackQuestions: FeedbackQuestions = {
       questions: [
         {
@@ -894,6 +917,19 @@ describe('SessionSubmissionPageComponent', () => {
         },
       ],
     };
+
+    const getQuestionsSpy: SpyInstance = jest.spyOn(feedbackQuestionsService, 'getFeedbackQuestions')
+        .mockReturnValue(of(testFeedbackQuestions));
+
+    component.loadFeedbackQuestions();
+
+    expect(getQuestionsSpy).toHaveBeenLastCalledWith(getFeedbackSessionArgs);
+    expect(component.questionSubmissionForms.length).toEqual(1);
+    expect(component.questionSubmissionForms[0]).toEqual(testMcqQuestionSubmissionForm2);
+    expect(component.questionsNeedingSubmission.length).toEqual(0);
+  });
+
+  it('should load the recipients and responses of a question if not yet loaded', () => {
     const testFeedbackQuestionRecipients: FeedbackQuestionRecipients = {
       recipients: [
         {
@@ -910,30 +946,76 @@ describe('SessionSubmissionPageComponent', () => {
       responses: [testResponse1, testResponse2],
     };
 
-    const getQuestionsSpy: Spy = spyOn(feedbackQuestionsService, 'getFeedbackQuestions')
-        .and.returnValue(of(testFeedbackQuestions));
-    const loadRecipientsSpy: Spy = spyOn(feedbackQuestionsService, 'loadFeedbackQuestionRecipients')
-        .and.returnValue(of(testFeedbackQuestionRecipients));
-    const getResponseSpy: Spy = spyOn(feedbackResponsesService, 'getFeedbackResponse')
-        .and.returnValue(of(testExistingResponses));
+    const loadRecipientsSpy: SpyInstance = jest.spyOn(feedbackQuestionsService, 'loadFeedbackQuestionRecipients')
+        .mockReturnValue(of(testFeedbackQuestionRecipients));
+    const getResponseSpy: SpyInstance = jest.spyOn(feedbackResponsesService, 'getFeedbackResponse')
+        .mockReturnValue(of(testExistingResponses));
 
-    component.loadFeedbackQuestions();
+    component.questionSubmissionForms = [testMcqQuestionSubmissionForm2];
+    component.loadRecipientsAndResponses({ visible: true }, testMcqQuestionSubmissionForm2);
 
-    expect(getQuestionsSpy.calls.mostRecent().args[0]).toEqual(getFeedbackSessionArgs);
-    expect(loadRecipientsSpy.calls.mostRecent().args[0].questionId)
-        .toEqual(testMcqQuestionSubmissionForm2.feedbackQuestionId);
-    expect(getResponseSpy.calls.mostRecent().args[0].questionId)
-        .toEqual(testMcqQuestionSubmissionForm2.feedbackQuestionId);
-    expect(component.questionSubmissionForms.length).toEqual(1);
-    expect(component.questionSubmissionForms[0]).toEqual(testMcqQuestionSubmissionForm2);
-    expect(component.hasAnyResponseToSubmit).toEqual(true);
+    expect(loadRecipientsSpy).toHaveBeenLastCalledWith({
+      intent: 'STUDENT_SUBMISSION',
+      key: 'reg-key',
+      moderatedPerson: '',
+      previewAs: '',
+      questionId: testMcqQuestionSubmissionForm2.feedbackQuestionId,
+    });
+    expect(getResponseSpy).toHaveBeenLastCalledWith({
+      intent: 'STUDENT_SUBMISSION',
+      key: 'reg-key',
+      moderatedPerson: '',
+      questionId: testMcqQuestionSubmissionForm2.feedbackQuestionId,
+    });
+    expect(testMcqQuestionSubmissionForm2.isLoading).toBe(false);
+    expect(testMcqQuestionSubmissionForm2.isLoaded).toBe(true);
+    expect(testMcqQuestionSubmissionForm2.recipientList).toEqual([
+      {
+        recipientName: 'Barry Harris',
+        recipientIdentifier: 'barry-harris-id',
+      },
+      {
+        recipientName: 'Gene Harris',
+        recipientIdentifier: 'gene-harris-id',
+      },
+    ]);
+    expect(testMcqQuestionSubmissionForm2.recipientSubmissionForms).toEqual([
+      testMcqRecipientSubmissionForm3, testMcqRecipientSubmissionForm4,
+    ]);
+    expect(component.questionsNeedingSubmission.length).toEqual(1);
+  });
+
+  it('should not load the recipients and responses of a question if already loaded', () => {
+    const loadRecipientsSpy: SpyInstance = jest.spyOn(feedbackQuestionsService, 'loadFeedbackQuestionRecipients');
+    const getResponseSpy: SpyInstance = jest.spyOn(feedbackResponsesService, 'getFeedbackResponse');
+
+    testMcqQuestionSubmissionForm2.isLoaded = true;
+    component.loadRecipientsAndResponses({ visible: true }, testMcqQuestionSubmissionForm2);
+
+    testMsqQuestionSubmissionForm.isLoading = true;
+    component.loadRecipientsAndResponses({ visible: true }, testMsqQuestionSubmissionForm);
+
+    expect(loadRecipientsSpy).not.toHaveBeenCalled();
+    expect(getResponseSpy).not.toHaveBeenCalled();
+  });
+
+  it('should not load the recipients and responses of a question if the event is not correct', () => {
+    const loadRecipientsSpy: SpyInstance = jest.spyOn(feedbackQuestionsService, 'loadFeedbackQuestionRecipients');
+    const getResponseSpy: SpyInstance = jest.spyOn(feedbackResponsesService, 'getFeedbackResponse');
+
+    component.loadRecipientsAndResponses(null, testMcqQuestionSubmissionForm2);
+    component.loadRecipientsAndResponses({}, testMcqQuestionSubmissionForm2);
+    component.loadRecipientsAndResponses({ visible: false }, testMsqQuestionSubmissionForm);
+
+    expect(loadRecipientsSpy).not.toHaveBeenCalled();
+    expect(getResponseSpy).not.toHaveBeenCalled();
   });
 
   it('should check that there are no responses to submit', () => {
     const testSubmissionForm: QuestionSubmissionFormModel = deepCopy(testTextQuestionSubmissionForm);
     testSubmissionForm.recipientSubmissionForms = [];
     component.questionSubmissionForms = [testSubmissionForm];
-    expect(component.hasAnyResponseToSubmit).toEqual(false);
+    expect(component.questionsNeedingSubmission.length).toEqual(0);
   });
 
   it('should save feedback responses', () => {
@@ -947,23 +1029,37 @@ describe('SessionSubmissionPageComponent', () => {
     testQuestionSubmissionForm2.recipientSubmissionForms[0].responseDetails = testResponseDetails2;
     component.questionSubmissionForms = [testQuestionSubmissionForm1, testQuestionSubmissionForm2];
 
-    const responseSpy: Spy = spyOn(feedbackResponsesService, 'submitFeedbackResponses').and.callFake((id: string) => {
-      if (id === testQuestionSubmissionForm1.feedbackQuestionId) {
-        return of({ responses: [testResponse1], requestId: '10' });
-      }
-      return of({ responses: [testResponse2], requestId: '20' });
-    });
-    spyOn(feedbackResponseCommentService, 'createComment').and.returnValue(of({}));
-    spyOn(feedbackResponseCommentService, 'updateComment').and.returnValue(of({}));
-    spyOn(ngbModal, 'open').and.returnValue(mockModalRef);
+    const responseSpy: SpyInstance = jest.spyOn(feedbackResponsesService, 'submitFeedbackResponses')
+        .mockImplementation((id: string) => {
+          if (id === testQuestionSubmissionForm1.feedbackQuestionId) {
+            return of({ responses: [testResponse1], requestId: '10' });
+          }
+          return of({ responses: [testResponse2], requestId: '20' });
+        });
+    jest.spyOn(feedbackResponseCommentService, 'createComment').mockReturnValue(of(testComment));
+    jest.spyOn(feedbackResponseCommentService, 'updateComment').mockReturnValue(of(testComment));
+    jest.spyOn(ngbModal, 'open').mockReturnValue(mockModalRef);
 
-    component.saveFeedbackResponses();
+    component.saveFeedbackResponses(component.questionSubmissionForms);
 
     expect(responseSpy).toBeCalledTimes(2);
-    expect(responseSpy.calls.first().args[0]).toEqual('feedback-question-id-mcq');
-    expect(responseSpy.calls.first().args[2].responses[0].responseDetails).toEqual(testResponseDetails1);
-    expect(responseSpy.calls.mostRecent().args[0]).toEqual('feedback-question-id-text');
-    expect(responseSpy.calls.mostRecent().args[2].responses).toEqual([]);  // do not call for empty response details
+    expect(responseSpy).toHaveBeenNthCalledWith(1, 'feedback-question-id-mcq', {
+      responses: [{
+        recipient: testMcqRecipientSubmissionForm.recipientIdentifier,
+        responseDetails: testResponseDetails1,
+      }],
+    }, {
+      intent: 'STUDENT_SUBMISSION',
+      key: 'reg-key',
+      moderatedperson: '',
+    });
+    expect(responseSpy).toHaveBeenLastCalledWith('feedback-question-id-text', {
+      responses: [], // do not call for empty response details
+    }, {
+      intent: 'STUDENT_SUBMISSION',
+      key: 'reg-key',
+      moderatedperson: '',
+    });
 
     expect(mockModalRef.componentInstance.requestIds).toEqual({
       'feedback-question-id-mcq': '10',
@@ -981,72 +1077,119 @@ describe('SessionSubmissionPageComponent', () => {
     expect(mockModalRef.componentInstance.failToSaveQuestions).toEqual({});
   });
 
+  it('should not save invalid feedback responses', () => {
+    const mockModalRef: any = { componentInstance: {} };
+    const testResponseDetails1: any = deepCopy(testMcqRecipientSubmissionForm.responseDetails);
+    const testResponseDetails2: any = deepCopy(testConstsumRecipientSubmissionForm.responseDetails);
+    const testQuestionSubmissionForm1: QuestionSubmissionFormModel = deepCopy(testMcqQuestionSubmissionForm);
+    const testQuestionSubmissionForm2: QuestionSubmissionFormModel = deepCopy(testConstsumQuestionSubmissionForm);
+    testQuestionSubmissionForm1.recipientSubmissionForms[0].responseDetails = testResponseDetails1;
+    testQuestionSubmissionForm2.recipientSubmissionForms[0].responseDetails = testResponseDetails2;
+    // invalid response
+    testQuestionSubmissionForm2.recipientSubmissionForms[0].isValid = false;
+    component.questionSubmissionForms = [testQuestionSubmissionForm1, testQuestionSubmissionForm2];
+
+    const responseSpy: SpyInstance = jest.spyOn(feedbackResponsesService, 'submitFeedbackResponses')
+        .mockImplementation(() => {
+          return of({ responses: [testResponse1], requestId: '10' });
+        });
+    jest.spyOn(feedbackResponseCommentService, 'createComment').mockReturnValue(of(testComment));
+    jest.spyOn(feedbackResponseCommentService, 'updateComment').mockReturnValue(of(testComment));
+    jest.spyOn(ngbModal, 'open').mockReturnValue(mockModalRef);
+
+    component.saveFeedbackResponses(component.questionSubmissionForms);
+
+    expect(responseSpy).toBeCalledTimes(1);
+    expect(responseSpy).toHaveBeenNthCalledWith(1, testQuestionSubmissionForm1.feedbackQuestionId, {
+      responses: [{
+        recipient: testMcqRecipientSubmissionForm.recipientIdentifier,
+        responseDetails: testResponseDetails1,
+      }],
+    }, {
+      intent: 'STUDENT_SUBMISSION',
+      key: 'reg-key',
+      moderatedperson: '',
+    });
+
+    // only the valid response is saved
+    expect(mockModalRef.componentInstance.requestIds).toEqual({
+      [testQuestionSubmissionForm1.feedbackQuestionId]: '10',
+    });
+    expect(mockModalRef.componentInstance.questions).toEqual([
+      testQuestionSubmissionForm1,
+      testQuestionSubmissionForm2,
+    ]);
+    expect(mockModalRef.componentInstance.answers).toEqual({
+      [testQuestionSubmissionForm1.feedbackQuestionId]: [testResponse1],
+    });
+    expect(mockModalRef.componentInstance.failToSaveQuestions).toEqual({
+      [testQuestionSubmissionForm2.questionNumber]: 'Invalid responses provided. Please check question constraints.',
+    });
+  });
+
   it('should create comment request to create new comment when submission form has no original comment', () => {
     const testSubmissionForm: FeedbackResponseRecipientSubmissionFormModel = deepCopy(testTextRecipientSubmissionForm);
-    const commentSpy: Spy = spyOn(feedbackResponseCommentService, 'createComment').and.returnValue(of(testComment));
+    const commentSpy: SpyInstance = jest.spyOn(feedbackResponseCommentService, 'createComment')
+        .mockReturnValue(of(testComment));
 
     component.createCommentRequest(testSubmissionForm).subscribe(() => {
       expect(testSubmissionForm.commentByGiver).toEqual(component.getCommentModel(testComment));
     });
 
-    expect(commentSpy.calls.count()).toEqual(1);
-    expect(commentSpy.calls.mostRecent().args[0]).toEqual({
+    expect(commentSpy).toHaveBeenCalledTimes(1);
+    expect(commentSpy).toHaveBeenLastCalledWith({
       commentText: 'comment text here',
       showCommentTo: [],
       showGiverNameTo: [],
-    });
-    expect(commentSpy.calls.mostRecent().args[1]).toEqual(testTextRecipientSubmissionForm.responseId);
-    expect(commentSpy.calls.mostRecent().args[2]).toEqual(Intent.STUDENT_SUBMISSION);
-    expect(commentSpy.calls.mostRecent().args[3]).toEqual({ key: testQueryParams.key, moderatedperson: '' });
+    }, testTextRecipientSubmissionForm.responseId, Intent.STUDENT_SUBMISSION,
+        { key: testQueryParams.key, moderatedperson: '' });
   });
 
   it('should create comment request to update existing comment when submission form has original comment', () => {
     const testSubmissionForm: FeedbackResponseRecipientSubmissionFormModel = deepCopy(testMcqRecipientSubmissionForm);
     const expectedId: any = testMcqRecipientSubmissionForm.commentByGiver?.originalComment?.feedbackResponseCommentId;
-    const commentSpy: Spy = spyOn(feedbackResponseCommentService, 'updateComment').and.returnValue(of(testComment));
+    const commentSpy: SpyInstance = jest.spyOn(feedbackResponseCommentService, 'updateComment')
+        .mockReturnValue(of(testComment));
 
     component.createCommentRequest(testSubmissionForm).subscribe(() => {
       expect(testSubmissionForm.commentByGiver).toEqual(component.getCommentModel(testComment));
     });
 
-    expect(commentSpy.calls.count()).toEqual(1);
-    expect(commentSpy.calls.mostRecent().args[0]).toEqual({
+    expect(commentSpy).toHaveBeenCalledTimes(1);
+    expect(commentSpy).toHaveBeenLastCalledWith({
       commentText: 'comment text here',
       showCommentTo: [],
       showGiverNameTo: [],
-    });
-    expect(commentSpy.calls.mostRecent().args[1]).toEqual(expectedId);
-    expect(commentSpy.calls.mostRecent().args[2]).toEqual(Intent.STUDENT_SUBMISSION);
-    expect(commentSpy.calls.mostRecent().args[3]).toEqual({ key: testQueryParams.key, moderatedperson: '' });
+    }, expectedId, Intent.STUDENT_SUBMISSION, { key: testQueryParams.key, moderatedperson: '' });
   });
 
   it('should create comment request to delete existing comment when new comment text is empty', () => {
     const testSubmissionForm: FeedbackResponseRecipientSubmissionFormModel = deepCopy(testMcqRecipientSubmissionForm2);
     const expectedId: any = testMcqRecipientSubmissionForm2.commentByGiver?.originalComment?.feedbackResponseCommentId;
-    const commentSpy: Spy = spyOn(feedbackResponseCommentService, 'deleteComment').and.returnValue(of({}));
+    const commentSpy: SpyInstance = jest.spyOn(feedbackResponseCommentService, 'deleteComment')
+        .mockReturnValue(of({}));
 
     component.createCommentRequest(testSubmissionForm).subscribe(() => {
       expect(testSubmissionForm.commentByGiver).toEqual(undefined);
     });
 
-    expect(commentSpy.calls.count()).toEqual(1);
-    expect(commentSpy.calls.mostRecent().args[0]).toEqual(expectedId);
-    expect(commentSpy.calls.mostRecent().args[1]).toEqual(Intent.STUDENT_SUBMISSION);
-    expect(commentSpy.calls.mostRecent().args[2]).toEqual({ key: testQueryParams.key, moderatedperson: '' });
+    expect(commentSpy).toHaveBeenCalledTimes(1);
+    expect(commentSpy).toHaveBeenLastCalledWith(expectedId, Intent.STUDENT_SUBMISSION,
+        { key: testQueryParams.key, moderatedperson: '' });
   });
 
   it('should delete participant comment', () => {
-    const testSubmissionForm: QuestionSubmissionFormModel = deepCopy(testMcqQuestionSubmissionForm);
-    const expectedId: any = testMcqQuestionSubmissionForm.recipientSubmissionForms[0]
+    const testSubmissionForm: QuestionSubmissionFormModel = deepCopy(testMsqQuestionSubmissionForm);
+    const expectedId: any = testMsqQuestionSubmissionForm.recipientSubmissionForms[0]
         .commentByGiver?.originalComment?.feedbackResponseCommentId;
-    const commentSpy: Spy = spyOn(feedbackResponseCommentService, 'deleteComment').and.returnValue(of(true));
+    const commentSpy: SpyInstance = jest.spyOn(feedbackResponseCommentService, 'deleteComment')
+        .mockReturnValue(of(true));
 
     component.questionSubmissionForms = [testSubmissionForm];
     component.deleteParticipantComment(0, 0);
 
-    expect(commentSpy.calls.count()).toEqual(1);
-    expect(commentSpy.calls.mostRecent().args[0]).toEqual(expectedId);
-    expect(commentSpy.calls.mostRecent().args[1]).toEqual(Intent.STUDENT_SUBMISSION);
-    expect(commentSpy.calls.mostRecent().args[2]).toEqual({ key: testQueryParams.key, moderatedperson: '' });
+    expect(commentSpy).toHaveBeenCalledTimes(1);
+    expect(commentSpy).toHaveBeenLastCalledWith(expectedId, Intent.STUDENT_SUBMISSION,
+        { key: testQueryParams.key, moderatedperson: '' });
   });
 });

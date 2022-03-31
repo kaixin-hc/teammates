@@ -1,5 +1,6 @@
 package teammates.logic.core;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -315,6 +316,13 @@ public final class FeedbackResponsesLogic {
             return true;
         }
         return question.isResponseVisibleTo(FeedbackParticipantType.RECEIVER_TEAM_MEMBERS);
+    }
+
+    /**
+     * Returns true if the responses of the question are visible to instructors.
+     */
+    public boolean isResponseOfFeedbackQuestionVisibleToInstructor(FeedbackQuestionAttributes question) {
+        return question.isResponseVisibleTo(FeedbackParticipantType.INSTRUCTORS);
     }
 
     private List<FeedbackQuestionAttributes> getQuestionsForSession(
@@ -989,6 +997,13 @@ public final class FeedbackResponsesLogic {
         }
 
         return viewableResponses.getResponses();
+    }
+
+    /**
+     * Gets the number of feedback responses created within a specified time range.
+     */
+    int getNumFeedbackResponsesByTimeRange(Instant startTime, Instant endTime) {
+        return frDb.getNumFeedbackResponsesByTimeRange(startTime, endTime);
     }
 
     /**

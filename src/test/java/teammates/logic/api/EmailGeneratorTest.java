@@ -137,12 +137,15 @@ public class EmailGeneratorTest extends BaseLogicTest {
         ______TS("feedback session opening emails");
 
         List<EmailWrapper> emails = emailGenerator.generateFeedbackSessionOpeningEmails(session);
-        assertEquals(11, emails.size());
+        // 5 instructors, 6 students, and 3 co-owner instructors to be notified
+        assertEquals(14, emails.size());
 
         String subject = String.format(EmailType.FEEDBACK_OPENING.getSubject(),
                                        course.getName(), session.getFeedbackSessionName());
 
         verifyEmailReceivedCorrectly(emails, student1.getEmail(), subject, "/sessionOpeningEmailForStudent.html");
+        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), EmailWrapper.EMAIL_COPY_SUBJECT_PREFIX + subject,
+                "/sessionOpeningEmailCopyToInstructor.html");
         verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), subject, "/sessionOpeningEmailForInstructor.html");
 
         ______TS("feedback session reminders");
@@ -155,61 +158,48 @@ public class EmailGeneratorTest extends BaseLogicTest {
         subject = String.format(EmailType.FEEDBACK_SESSION_REMINDER.getSubject(),
                                 course.getName(), session.getFeedbackSessionName());
 
-        String lineInEmailCopyToInstructor = "The email below has been sent to students of course:";
         // Verify the student reminder email
         verifyEmailReceivedCorrectly(emails, student1.getEmail(), subject, "/sessionReminderEmailForStudent.html");
-        // Verify the Student email copy send to the instructor
-        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), subject,
-                "/sessionReminderEmailCopyToInstructor.html", lineInEmailCopyToInstructor);
+        // Verify the student email copy send to the instructor
+        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), EmailWrapper.EMAIL_COPY_SUBJECT_PREFIX + subject,
+                "/sessionReminderEmailCopyToInstructor.html");
         // Verify the instructor reminder email
-        String lineInEmailToInstructor =
-                "/web/instructor/sessions/submission?courseid=idOfTypicalCourse1&fsname=First%20feedback%20session";
-        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), subject,
-                "/sessionReminderEmailForInstructor.html", lineInEmailToInstructor);
-
-        InstructorAttributes instructorNotJoinedYet = instructorsLogic.getInstructorForEmail(
-                "idOfTypicalCourse1", "instructorNotYetJoinedCourse1@email.tmt");
-        String instructorReminderToJoinLine = "Note that you will need to join the course as an instructor";
-
-        // Verify that unregistered instructor gets reminder to join course
-        verifyEmailReceivedCorrectly(emails, instructorNotJoinedYet.getEmail(), subject,
-                "/sessionReminderEmailForInstructorNotJoinedYet.html", instructorReminderToJoinLine);
+        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), subject, "/sessionReminderEmailForInstructor.html");
 
         ______TS("feedback session closing alerts");
 
         emails = emailGenerator.generateFeedbackSessionClosingEmails(session);
-        assertEquals(8, emails.size());
+        // 5 instructors, 6 students, and 3 co-owner instructors to be notified
+        assertEquals(14, emails.size());
 
         subject = String.format(EmailType.FEEDBACK_CLOSING.getSubject(),
                                 course.getName(), session.getFeedbackSessionName());
 
-        // student1 has completed the feedback session and closing alert is only sent for those who are
-        // yet to complete, so we resort to student5
-        StudentAttributes student5 = studentsLogic.getStudentForEmail(course.getId(), "student5InCourse1@gmail.tmt");
-
-        for (EmailWrapper email : emails) {
-            if (email.getRecipient().equals(student1.getEmail())) {
-                fail("student1 has completed the session and are not supposed to receive email");
-            }
-        }
-        verifyEmailReceivedCorrectly(emails, student5.getEmail(), subject, "/sessionClosingEmailForStudent.html");
+        verifyEmailReceivedCorrectly(emails, student1.getEmail(), subject, "/sessionClosingEmailForStudent.html");
+        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), EmailWrapper.EMAIL_COPY_SUBJECT_PREFIX + subject,
+                "/sessionClosingEmailCopyToInstructor.html");
         verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), subject, "/sessionClosingEmailForInstructor.html");
 
-        ______TS("feedback session closed alerts");
+        ______TS("feedback session closed alerts for co-owners");
 
         emails = emailGenerator.generateFeedbackSessionClosedEmails(session);
-        assertEquals(8, emails.size());
+        List<InstructorAttributes> coOwners = instructorsLogic.getCoOwnersForCourse(course.getId());
+        assertEquals(coOwners.size(), emails.size());
 
         subject = String.format(EmailType.FEEDBACK_CLOSED.getSubject(),
                                 course.getName(), session.getFeedbackSessionName());
 
-        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), subject, "/sessionClosedEmailForInstructor.html");
+        // this instructor email has been given co-owner privileges in the test file and has joined
+        InstructorAttributes coOwnerJoined =
+                instructorsLogic.getInstructorForEmail(course.getId(), "instructor1@course1.tmt");
+
+        assertTrue(coOwnerJoined.hasCoownerPrivileges());
+
+        verifyEmailReceivedCorrectly(emails, coOwnerJoined.getEmail(), subject, "/sessionClosedEmailForCoOwner.html");
 
         ______TS("feedback session opening soon alerts for co-owners");
 
         emails = emailGenerator.generateFeedbackSessionOpeningSoonEmails(session);
-        List<InstructorAttributes> coOwners = instructorsLogic.getCoOwnersForCourse(course.getId());
-        assertNotEquals(coOwners.size(), 0);
         assertEquals(coOwners.size(), emails.size());
 
         subject = String.format(EmailType.FEEDBACK_OPENING_SOON.getSubject(), course.getName(),
@@ -224,10 +214,6 @@ public class EmailGeneratorTest extends BaseLogicTest {
         verifyEmailReceivedCorrectly(emails, coOwnerNotJoined.getEmail(), subject,
                 "/sessionOpeningSoonEmailForCoOwnerNotJoined.html");
 
-        // this instructor email has been given co-owner privileges in the test file and has joined
-        InstructorAttributes coOwnerJoined =
-                instructorsLogic.getInstructorForEmail(course.getId(), "instructor1@course1.tmt");
-
         assertTrue(coOwnerJoined.hasCoownerPrivileges());
 
         verifyEmailReceivedCorrectly(emails, coOwnerJoined.getEmail(), subject,
@@ -236,23 +222,29 @@ public class EmailGeneratorTest extends BaseLogicTest {
         ______TS("feedback session published alerts");
 
         emails = emailGenerator.generateFeedbackSessionPublishedEmails(session);
-        assertEquals(11, emails.size());
+        // 5 instructors, 6 students, and 3 co-owner instructors to be notified
+        assertEquals(14, emails.size());
 
         subject = String.format(EmailType.FEEDBACK_PUBLISHED.getSubject(),
                                 course.getName(), session.getFeedbackSessionName());
 
         verifyEmailReceivedCorrectly(emails, student1.getEmail(), subject, "/sessionPublishedEmailForStudent.html");
+        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), EmailWrapper.EMAIL_COPY_SUBJECT_PREFIX + subject,
+                "/sessionPublishedEmailCopyToInstructor.html");
         verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), subject, "/sessionPublishedEmailForInstructor.html");
 
         ______TS("feedback session unpublished alerts");
 
         emails = emailGenerator.generateFeedbackSessionUnpublishedEmails(session);
-        assertEquals(11, emails.size());
+        // 5 instructors, 6 students, and 3 co-owner instructors to be notified
+        assertEquals(14, emails.size());
 
         subject = String.format(EmailType.FEEDBACK_UNPUBLISHED.getSubject(),
                                 course.getName(), session.getFeedbackSessionName());
 
         verifyEmailReceivedCorrectly(emails, student1.getEmail(), subject, "/sessionUnpublishedEmailForStudent.html");
+        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), EmailWrapper.EMAIL_COPY_SUBJECT_PREFIX + subject,
+                "/sessionUnpublishedEmailCopyToInstructor.html");
         verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), subject, "/sessionUnpublishedEmailForInstructor.html");
 
         ______TS("send summary of all feedback sessions of course email to new student. "
@@ -331,9 +323,6 @@ public class EmailGeneratorTest extends BaseLogicTest {
         emails = emailGenerator.generateFeedbackSessionClosingEmails(notAnswerableSession);
         assertTrue(emails.isEmpty());
 
-        emails = emailGenerator.generateFeedbackSessionClosedEmails(notAnswerableSession);
-        assertTrue(emails.isEmpty());
-
         emails = emailGenerator.generateFeedbackSessionPublishedEmails(notAnswerableSession);
         assertTrue(emails.isEmpty());
 
@@ -362,22 +351,22 @@ public class EmailGeneratorTest extends BaseLogicTest {
                 course.getName(), session.getFeedbackSessionName());
 
         verifyEmailReceivedCorrectly(emails, student1.getEmail(), subject,
-                "/sessionOpeningEmailTestingSanitzationForStudent.html");
-        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), subject,
-                "/sessionOpeningEmailTestingSanitizationForInstructor.html");
+                "/sessionOpeningEmailTestingSanitizationForStudent.html");
+        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), EmailWrapper.EMAIL_COPY_SUBJECT_PREFIX + subject,
+                "/sessionOpeningEmailTestingSanitizationCopyToInstructor.html");
 
-        ______TS("feedback session closed alerts: sanitization required");
+        ______TS("feedback session closing alerts: sanitization required");
 
-        emails = emailGenerator.generateFeedbackSessionClosedEmails(session);
+        emails = emailGenerator.generateFeedbackSessionClosingEmails(session);
         assertEquals(2, emails.size());
 
-        subject = String.format(EmailType.FEEDBACK_CLOSED.getSubject(),
+        subject = String.format(EmailType.FEEDBACK_CLOSING.getSubject(),
                 course.getName(), session.getFeedbackSessionName());
 
         verifyEmailReceivedCorrectly(emails, student1.getEmail(), subject,
-                "/sessionClosedEmailTestingSanitizationForStudent.html");
-        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), subject,
-                "/sessionClosedEmailTestingSanitizationForInstructor.html");
+                "/sessionClosingEmailTestingSanitizationForStudent.html");
+        verifyEmailReceivedCorrectly(emails, instructor1.getEmail(), EmailWrapper.EMAIL_COPY_SUBJECT_PREFIX + subject,
+                "/sessionClosingEmailTestingSanitizationCopyToInstructor.html");
 
         ______TS("feedback sessions summary of course email: sanitization required");
 
@@ -678,18 +667,12 @@ public class EmailGeneratorTest extends BaseLogicTest {
     private void verifyEmailReceivedCorrectly(
             List<EmailWrapper> actualEmails, String recipient, String subject, String emailContentFilePath)
             throws Exception {
-        verifyEmailReceivedCorrectly(actualEmails, recipient, subject, emailContentFilePath, "");
-    }
-
-    private void verifyEmailReceivedCorrectly(
-            List<EmailWrapper> actualEmails, String recipient, String subject,
-            String emailContentFilePath, String containsString)
-            throws Exception {
         boolean hasReceivedEmailCorrectly = false;
         for (EmailWrapper email : actualEmails) {
-            if (email.getRecipient().equals(recipient) && email.getContent().contains(containsString)) {
+            if (email.getRecipient().equals(recipient) && email.getSubject().equals(subject)) {
                 verifyEmail(email, recipient, subject, emailContentFilePath);
                 hasReceivedEmailCorrectly = true;
+                break;
             }
         }
         assertTrue(hasReceivedEmailCorrectly);

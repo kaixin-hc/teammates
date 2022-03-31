@@ -9,6 +9,7 @@ exports[`SessionSubmissionPageComponent should snap when feedback session questi
   commentService={[Function FeedbackResponseCommentService]}
   courseId={[Function String]}
   document={[Function Document]}
+  entityType={[Function String]}
   feedbackQuestionsService={[Function FeedbackQuestionsService]}
   feedbackResponsesService={[Function FeedbackResponsesService]}
   feedbackSessionInstructions=""
@@ -22,7 +23,6 @@ exports[`SessionSubmissionPageComponent should snap when feedback session questi
   instructorService={[Function InstructorService]}
   intent={[Function String]}
   isFeedbackSessionLoading={[Function Boolean]}
-  isFeedbackSessionQuestionResponsesLoading={[Function Boolean]}
   isFeedbackSessionQuestionsLoading={[Function Boolean]}
   isModerationHintExpanded="false"
   isSavingResponses="false"
@@ -57,13 +57,10 @@ exports[`SessionSubmissionPageComponent should snap when feedback session questi
         class="alert alert-primary"
         role="alert"
       >
-        
-        
         <div>
            You are submitting feedback as 
           <mark>
             <b>
-              
             </b>
           </mark>
           . You may submit feedback for sessions that are currently open and view results without logging in. To access other features you need to 
@@ -107,7 +104,6 @@ exports[`SessionSubmissionPageComponent should snap when feedback session questi
       </div>
     </div>
   </tm-loading-spinner><tm-loading-retry>
-    
     <div
       class="text-center"
     >
@@ -126,7 +122,6 @@ exports[`SessionSubmissionPageComponent should snap when feedback session questi
          Retry
       </button>
     </div>
-    
   </tm-loading-retry>
 </tm-session-submission-page>
 `;
@@ -140,6 +135,7 @@ exports[`SessionSubmissionPageComponent should snap when saving responses 1`] = 
   commentService={[Function FeedbackResponseCommentService]}
   courseId={[Function String]}
   document={[Function Document]}
+  entityType={[Function String]}
   feedbackQuestionsService={[Function FeedbackQuestionsService]}
   feedbackResponsesService={[Function FeedbackResponsesService]}
   feedbackSessionInstructions=""
@@ -153,7 +149,6 @@ exports[`SessionSubmissionPageComponent should snap when saving responses 1`] = 
   instructorService={[Function InstructorService]}
   intent={[Function String]}
   isFeedbackSessionLoading={[Function Boolean]}
-  isFeedbackSessionQuestionResponsesLoading={[Function Boolean]}
   isFeedbackSessionQuestionsLoading={[Function Boolean]}
   isModerationHintExpanded="false"
   isSavingResponses={[Function Boolean]}
@@ -188,13 +183,10 @@ exports[`SessionSubmissionPageComponent should snap when saving responses 1`] = 
         class="alert alert-primary"
         role="alert"
       >
-        
-        
         <div>
            You are submitting feedback as 
           <mark>
             <b>
-              
             </b>
           </mark>
           . You may submit feedback for sessions that are currently open and view results without logging in. To access other features you need to 
@@ -238,8 +230,6 @@ exports[`SessionSubmissionPageComponent should snap when saving responses 1`] = 
       </div>
     </div>
   </tm-loading-spinner><tm-loading-retry>
-    
-    
     <tm-loading-spinner>
       <div
         class="loading-container"
@@ -255,8 +245,6 @@ exports[`SessionSubmissionPageComponent should snap when saving responses 1`] = 
         </div>
       </div>
     </tm-loading-spinner>
-    
-    
   </tm-loading-retry>
 </tm-session-submission-page>
 `;
@@ -270,6 +258,7 @@ exports[`SessionSubmissionPageComponent should snap with default fields 1`] = `
   commentService={[Function FeedbackResponseCommentService]}
   courseId={[Function String]}
   document={[Function Document]}
+  entityType={[Function String]}
   feedbackQuestionsService={[Function FeedbackQuestionsService]}
   feedbackResponsesService={[Function FeedbackResponsesService]}
   feedbackSessionInstructions=""
@@ -283,7 +272,6 @@ exports[`SessionSubmissionPageComponent should snap with default fields 1`] = `
   instructorService={[Function InstructorService]}
   intent={[Function String]}
   isFeedbackSessionLoading={[Function Boolean]}
-  isFeedbackSessionQuestionResponsesLoading={[Function Boolean]}
   isFeedbackSessionQuestionsLoading={[Function Boolean]}
   isModerationHintExpanded="false"
   isSavingResponses="false"
@@ -318,13 +306,10 @@ exports[`SessionSubmissionPageComponent should snap with default fields 1`] = `
         class="alert alert-primary"
         role="alert"
       >
-        
-        
         <div>
            You are submitting feedback as 
           <mark>
             <b>
-              
             </b>
           </mark>
           . You may submit feedback for sessions that are currently open and view results without logging in. To access other features you need to 
@@ -368,8 +353,6 @@ exports[`SessionSubmissionPageComponent should snap with default fields 1`] = `
       </div>
     </div>
   </tm-loading-spinner><tm-loading-retry>
-    
-    
     <tm-loading-spinner>
       <div
         class="loading-container"
@@ -385,8 +368,6 @@ exports[`SessionSubmissionPageComponent should snap with default fields 1`] = `
         </div>
       </div>
     </tm-loading-spinner>
-    
-    
   </tm-loading-retry>
 </tm-session-submission-page>
 `;
@@ -400,6 +381,7 @@ exports[`SessionSubmissionPageComponent should snap with feedback session and us
   commentService={[Function FeedbackResponseCommentService]}
   courseId={[Function String]}
   document={[Function Document]}
+  entityType={[Function String]}
   feedbackQuestionsService={[Function FeedbackQuestionsService]}
   feedbackResponsesService={[Function FeedbackResponsesService]}
   feedbackSessionInstructions={[Function String]}
@@ -413,7 +395,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session and us
   instructorService={[Function InstructorService]}
   intent={[Function String]}
   isFeedbackSessionLoading="false"
-  isFeedbackSessionQuestionResponsesLoading={[Function Boolean]}
   isFeedbackSessionQuestionsLoading={[Function Boolean]}
   isModerationHintExpanded="false"
   isSavingResponses="false"
@@ -448,7 +429,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session and us
         class="alert alert-primary"
         role="alert"
       >
-        
         <div>
            You are submitting feedback as 
           <mark>
@@ -464,7 +444,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session and us
           </a>
           . 
         </div>
-        
       </div>
     </div>
   </div><div
@@ -594,8 +573,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session and us
       />
     </div>
   </div><tm-loading-retry>
-    
-    
     <tm-loading-spinner>
       <div
         class="loading-container"
@@ -611,8 +588,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session and us
         </div>
       </div>
     </tm-loading-spinner>
-    
-    
   </tm-loading-retry>
 </tm-session-submission-page>
 `;
@@ -626,6 +601,7 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
   commentService={[Function FeedbackResponseCommentService]}
   courseId={[Function String]}
   document={[Function Document]}
+  entityType={[Function String]}
   feedbackQuestionsService={[Function FeedbackQuestionsService]}
   feedbackResponsesService={[Function FeedbackResponsesService]}
   feedbackSessionInstructions=""
@@ -639,7 +615,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
   instructorService={[Function InstructorService]}
   intent={[Function String]}
   isFeedbackSessionLoading="false"
-  isFeedbackSessionQuestionResponsesLoading="false"
   isFeedbackSessionQuestionsLoading="false"
   isModerationHintExpanded="false"
   isSavingResponses="false"
@@ -674,13 +649,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
         class="alert alert-primary"
         role="alert"
       >
-        
-        
         <div>
            You are submitting feedback as 
           <mark>
             <b>
-              
             </b>
           </mark>
           . You may submit feedback for sessions that are currently open and view results without logging in. To access other features you need to 
@@ -772,7 +744,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           class="col-md-10 text-md-left"
           id="opening-time"
         >
-          
         </div>
       </div>
       <br
@@ -792,7 +763,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           class="col-md-10 text-md-left"
           id="closing-time"
         >
-          
         </div>
       </div>
       <br
@@ -818,12 +788,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
       />
     </div>
   </div><tm-loading-retry>
-    
-    
     <div>
-      
       <tm-question-submission-form
         id="feedback-question-id-mcq"
+        inviewport=""
       >
         <div
           class="card"
@@ -844,7 +812,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -874,44 +841,14 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Other students in the course can see your response, but not the name of the recipient, or your name 
                 </li>
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, but not the name of the recipient, or your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -922,22 +859,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -948,21 +881,13 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Team)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
-                    
-                    
                     <tm-mcq-question-edit-answer-form>
                       <tr>
                         <td>
-                          
                           <div
                             class="radio"
                           >
@@ -1017,25 +942,16 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                               </span>
                             </label>
                           </div>
-                          
                         </td>
                       </tr>
                     </tm-mcq-question-edit-answer-form>
-                    
-                    
-                    
-                    
                   </div>
-                  
                   <div
                     class="col-12 margin-bottom-20px margin-top-10px indent"
                     id="comment-section"
                   >
-                    
                     <div>
                       <tm-comment-row>
-                        
-                        
                         <div
                           class="card"
                         >
@@ -1048,14 +964,12 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                               <div
                                 class="col-12"
                               >
-                                
                                 <span
                                   class="text-secondary"
                                   id="by-response-giver"
                                 >
                                    Comment by response giver. 
                                 </span>
-                                
                                 <i
                                   aria-hidden="true"
                                   class="fa fa-eye"
@@ -1063,7 +977,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                                 <div
                                   class="float-right"
                                 >
-                                  
                                   <button
                                     class="btn btn-outline-primary btn-sm"
                                     id="btn-edit-comment"
@@ -1074,8 +987,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                                       class="fas fa-pencil-alt"
                                     />
                                   </button>
-                                  
-                                  
                                   <button
                                     class="btn btn-outline-primary btn-sm btn-margin-left"
                                     id="btn-delete-comment"
@@ -1086,7 +997,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                                       class="fas fa-trash"
                                     />
                                   </button>
-                                  
                                 </div>
                               </div>
                               <div
@@ -1099,9 +1009,7 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                           </div>
                         </div>
                       </tm-comment-row>
-                      
                     </div>
-                    
                   </div>
                 </div>
               </div>
@@ -1109,23 +1017,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
             <div
               class="alert alert-warning"
               role="alert"
             >
-              
-              
-              
             </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-text"
+        inviewport=""
       >
         <div
           class="card"
@@ -1146,7 +1049,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -1176,46 +1078,16 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Your team members can see your response, but not the name of the recipient, or your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, but not the name of the recipient, or your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
             <tm-text-question-instruction />
-            
-            
-            
             <tm-text-question-constraint />
-            
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -1226,22 +1098,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -1252,15 +1120,11 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Instructor)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
                     <tm-text-question-edit-answer-form>
-                      
                       <div
                         class="plain-text-area"
                       >
@@ -1268,47 +1132,30 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                           class="ng-untouched ng-pristine ng-valid"
                         />
                       </div>
-                      
                       <div
                         class="margin-top-7px text-secondary text-right"
                       >
-                        
-                        
                       </div>
                     </tm-text-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
             <div
               class="alert alert-warning"
               role="alert"
             >
-              
-              
-              
             </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-mcq-2"
+        inviewport=""
       >
         <div
           class="card"
@@ -1329,7 +1176,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -1359,44 +1205,14 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving teams can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -1407,270 +1223,24 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
-                <div
-                  class="row"
-                >
-                  
-                  <div
-                    class="col-md-5 col-xs-12 margin-top-20px"
-                  >
-                    
-                    <div
-                      id="recipient-name-0"
-                    >
-                      <b>
-                        Barry Harris 
-                      </b>
-                      <span>
-                        (Team)
-                      </span>
-                    </div>
-                    
-                  </div>
-                  <div
-                    class="col margin-top-20px"
-                  >
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tm-mcq-question-edit-answer-form>
-                      <tr>
-                        <td>
-                          
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                name="mcq-feedback-question-id-mcq-2barry-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 1
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                name="mcq-feedback-question-id-mcq-2barry-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 2
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                name="mcq-feedback-question-id-mcq-2barry-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 3
-                              </span>
-                            </label>
-                          </div>
-                          
-                        </td>
-                      </tr>
-                    </tm-mcq-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                  </div>
-                  
-                  <div
-                    class="col-12 margin-bottom-20px margin-top-10px indent"
-                    id="comment-section"
-                  >
-                    
-                    <div
-                      style="display: inline-block;"
-                    >
-                      
-                      <button
-                        class="btn btn-light btn-sm"
-                        id="btn-add-comment"
-                      >
-                        <i
-                          class="fas fa-comment"
-                        />
-                         [Optional] Comment on your response 
-                      </button>
-                    </div>
-                    
-                    
-                    
-                  </div>
-                </div>
-                <div
-                  class="row"
-                >
-                  
-                  <div
-                    class="col-md-5 col-xs-12 margin-top-20px"
-                  >
-                    
-                    <div
-                      id="recipient-name-1"
-                    >
-                      <b>
-                        Gene Harris 
-                      </b>
-                      <span>
-                        (Team)
-                      </span>
-                    </div>
-                    
-                  </div>
-                  <div
-                    class="col margin-top-20px"
-                  >
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tm-mcq-question-edit-answer-form>
-                      <tr>
-                        <td>
-                          
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                name="mcq-feedback-question-id-mcq-2gene-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 1
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                name="mcq-feedback-question-id-mcq-2gene-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 2
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                name="mcq-feedback-question-id-mcq-2gene-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 3
-                              </span>
-                            </label>
-                          </div>
-                          
-                        </td>
-                      </tr>
-                    </tm-mcq-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                  </div>
-                  
-                  <div
-                    class="col-12 margin-bottom-20px margin-top-10px indent"
-                    id="comment-section"
-                  >
-                    
-                    <div
-                      style="display: inline-block;"
-                    >
-                      
-                      <button
-                        class="btn btn-light btn-sm"
-                        id="btn-add-comment"
-                      >
-                        <i
-                          class="fas fa-comment"
-                        />
-                         [Optional] Comment on your response 
-                      </button>
-                    </div>
-                    
-                    
-                    
-                  </div>
-                </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-msq"
+        inviewport=""
       >
         <div
           class="card"
@@ -1691,7 +1261,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -1721,42 +1290,15 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
             <tm-msq-question-constraint>
-              
               <div
                 class="text-info"
               >
@@ -1765,7 +1307,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 >
                   Note:
                 </p>
-                
                 <p
                   id="min-options-message"
                 >
@@ -1778,7 +1319,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </strong>
                    options. 
                 </p>
-                
                 <p
                   id="max-options-message"
                 >
@@ -1793,10 +1333,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 </p>
               </div>
             </tm-msq-question-constraint>
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -1807,22 +1343,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -1833,22 +1365,13 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     <tm-msq-question-edit-answer-form>
                       <tr>
                         <td>
-                          
                           <div
                             class="check-box"
                           >
@@ -1894,31 +1417,104 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                               </strong>
                             </label>
                           </div>
-                          
-                          
                         </td>
                       </tr>
                     </tm-msq-question-edit-answer-form>
-                    
-                    
-                    
                   </div>
-                  
+                  <div
+                    class="col-12 margin-bottom-20px margin-top-10px indent"
+                    id="comment-section"
+                  >
+                    <div>
+                      <tm-comment-row>
+                        <div
+                          class="card"
+                        >
+                          <div
+                            class="card-body"
+                          >
+                            <div
+                              class="row comment-row"
+                            >
+                              <div
+                                class="col-12"
+                              >
+                                <span
+                                  class="text-secondary"
+                                  id="by-response-giver"
+                                >
+                                   Comment by response giver. 
+                                </span>
+                                <i
+                                  aria-hidden="true"
+                                  class="fa fa-eye"
+                                />
+                                <div
+                                  class="float-right"
+                                >
+                                  <button
+                                    class="btn btn-outline-primary btn-sm"
+                                    id="btn-edit-comment"
+                                    ngbtooltip="Edit this comment"
+                                    type="button"
+                                  >
+                                    <i
+                                      class="fas fa-pencil-alt"
+                                    />
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-primary btn-sm btn-margin-left"
+                                    id="btn-delete-comment"
+                                    ngbtooltip="Delete this comment"
+                                    type="button"
+                                  >
+                                    <i
+                                      class="fas fa-trash"
+                                    />
+                                  </button>
+                                </div>
+                              </div>
+                              <div
+                                class="col-12"
+                                id="comment-text"
+                              >
+                                comment text
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </tm-comment-row>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  id="btn-submit-qn-4"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-numscale"
+        inviewport=""
       >
         <div
           class="card"
@@ -1939,7 +1535,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -1969,46 +1564,16 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
             <tm-num-scale-question-instruction />
-            
-            
-            
             <tm-num-scale-question-constraint />
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -2019,22 +1584,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -2045,16 +1606,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
-                    
                     <tm-num-scale-question-edit-answer-form>
                       <div
                         class="form-row text-left"
@@ -2067,6 +1622,7 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             max="10"
                             min="1"
                             step="1"
+                            tmdisablewheel=""
                             type="number"
                           />
                         </div>
@@ -2089,34 +1645,40 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         <div
                           class="col-12"
                         >
-                          
-                          
                         </div>
                       </div>
                       <br />
                     </tm-num-scale-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  id="btn-submit-qn-5"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-constsum"
+        inviewport=""
       >
         <div
           class="card"
@@ -2137,7 +1699,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -2167,43 +1728,14 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <tm-constsum-recipients-question-instruction>
               <div
                 class="text-info"
@@ -2224,11 +1756,8 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                     add up to 20.
                   </strong>
                 </p>
-                
-                
               </div>
             </tm-constsum-recipients-question-instruction>
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -2239,22 +1768,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -2265,21 +1790,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     <tm-constsum-recipients-question-edit-answer-form>
                       <div>
                         <div
@@ -2289,30 +1803,26 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             class="form-control ng-untouched ng-pristine ng-valid"
                             min="0"
                             step="1"
+                            tmdisablewheel=""
                             type="number"
                           />
                         </div>
                       </div>
                     </tm-constsum-recipients-question-edit-answer-form>
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
               <tm-constsum-recipients-question-constraint>
-                
                 <div
                   class="row"
                 >
                   <div
                     class="col-12"
                   >
-                    
                     <p
                       class="text-danger"
                     >
@@ -2321,23 +1831,32 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                       />
                        Actual total is 7! Distribute the remaining 13 points.
                     </p>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                   </div>
                 </div>
               </tm-constsum-recipients-question-constraint>
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  id="btn-submit-qn-6"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-contrib"
+        inviewport=""
       >
         <div
           class="card"
@@ -2358,7 +1877,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -2388,46 +1906,16 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
             <tm-contribution-question-instruction />
-            
-            
-            
             <tm-contribution-question-constraint />
-            
-            
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -2438,22 +1926,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -2464,12 +1948,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
                     <tm-contribution-question-edit-answer-form>
                       <div
                         class="row"
@@ -2483,7 +1965,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             <option
                               value="0: -999"
                             />
-                            
                             <option
                               class="color-positive"
                               value="1: 200"
@@ -2610,10 +2091,8 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             >
                               0%
                             </option>
-                            
                           </select>
                         </div>
-                        
                         <div
                           class="col-lg-9 col-sm-6 col-xs-12"
                         >
@@ -2631,35 +2110,38 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                              scale
                           </button>
                         </div>
-                        
                       </div>
                     </tm-contribution-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  id="btn-submit-qn-7"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-rubric"
+        inviewport=""
       >
         <div
           class="card"
@@ -2680,7 +2162,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -2710,44 +2191,14 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -2758,22 +2209,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -2784,19 +2231,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     <tm-rubric-question-edit-answer-form>
                       <table
                         class="table table-bordered desktop-view"
@@ -2804,7 +2242,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         <tbody>
                           <tr>
                             <td />
-                            
                             <td
                               class="font-weight-bold"
                             >
@@ -2816,14 +2253,12 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                               choice 2
                             </td>
                           </tr>
-                          
                           <tr
                             class="row-answered"
                           >
                             <td>
                               subquestion 1
                             </td>
-                            
                             <td
                               class="text-secondary answer-cell"
                             >
@@ -2853,7 +2288,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             <td>
                               subquestion 2
                             </td>
-                            
                             <td
                               class="text-secondary answer-cell"
                             >
@@ -2882,7 +2316,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                       <div
                         class="mobile-view"
                       >
-                        
                         <div
                           class="card"
                         >
@@ -2894,7 +2327,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                           <div
                             class="card-body row-answered"
                           >
-                            
                             <div>
                               <label>
                                 <input
@@ -2926,7 +2358,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                           <div
                             class="card-body row-answered"
                           >
-                            
                             <div>
                               <label>
                                 <input
@@ -2949,25 +2380,36 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         </div>
                       </div>
                     </tm-rubric-question-edit-answer-form>
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  id="btn-submit-qn-8"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-rank-options"
+        inviewport=""
       >
         <div
           class="card"
@@ -2988,7 +2430,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -3018,50 +2459,23 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
             <tm-rank-options-question-instruction>
               <div
                 class="text-info"
               >
-                
                 <p
                   class="font-weight-bold"
                 >
                   Note:
                 </p>
-                
                 <p
                   id="min-options-message"
                 >
@@ -3074,7 +2488,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </strong>
                    options. 
                 </p>
-                
                 <p
                   id="max-options-message"
                 >
@@ -3089,11 +2502,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 </p>
               </div>
             </tm-rank-options-question-instruction>
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -3104,22 +2512,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -3130,16 +2534,11 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
                     <tm-rank-options-question-edit-answer-form>
-                      
                       <div
                         class="form-group row text-left"
                       >
@@ -3159,7 +2558,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             <option
                               value="0: -999"
                             />
-                            
                             <option
                               value="1: 1"
                             >
@@ -3192,7 +2590,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             <option
                               value="0: -999"
                             />
-                            
                             <option
                               value="1: 1"
                             >
@@ -3207,36 +2604,38 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         </div>
                       </div>
                       <div>
-                        
-                        
-                        
-                        
                       </div>
                     </tm-rank-options-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  id="btn-submit-qn-9"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-rank-recipients"
+        inviewport=""
       >
         <div
           class="card"
@@ -3257,7 +2656,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -3287,52 +2685,23 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <tm-rank-recipients-question-instruction>
               <div
                 class="text-info"
               >
-                
                 <p
                   class="font-weight-bold"
                 >
                   Note:
                 </p>
-                
                 <p
                   id="min-options-message"
                 >
@@ -3345,7 +2714,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </strong>
                    options. 
                 </p>
-                
                 <p
                   id="max-options-message"
                 >
@@ -3360,9 +2728,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 </p>
               </div>
             </tm-rank-recipients-question-instruction>
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -3373,22 +2738,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -3399,15 +2760,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
                     <tm-rank-recipients-question-edit-answer-form>
                       <div
                         class="margin-bottom-15px"
@@ -3418,7 +2774,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                           <option
                             value="0: -999"
                           />
-                          
                           <option
                             value="1: 1"
                           >
@@ -3427,40 +2782,40 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         </select>
                       </div>
                     </tm-rank-recipients-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
               <tm-rank-recipients-question-constraint>
                 <div>
-                  
-                  
-                  
-                  
                 </div>
               </tm-rank-recipients-question-constraint>
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  id="btn-submit-qn-10"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <br
         class="mobile-invisible"
       />
-      
-      
       <div
         class="row"
       >
@@ -3473,14 +2828,11 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
             ngbtooltip="You can save your responses at any time and come back later to continue."
             type="submit"
           >
-            
-            Submit Feedback
+            Submit Responses for All Questions
           </button>
         </div>
       </div>
     </div>
-    
-    
   </tm-loading-retry>
 </tm-session-submission-page>
 `;
@@ -3494,6 +2846,7 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
   commentService={[Function FeedbackResponseCommentService]}
   courseId={[Function String]}
   document={[Function Document]}
+  entityType={[Function String]}
   feedbackQuestionsService={[Function FeedbackQuestionsService]}
   feedbackResponsesService={[Function FeedbackResponsesService]}
   feedbackSessionInstructions=""
@@ -3507,7 +2860,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
   instructorService={[Function InstructorService]}
   intent={[Function String]}
   isFeedbackSessionLoading="false"
-  isFeedbackSessionQuestionResponsesLoading="false"
   isFeedbackSessionQuestionsLoading="false"
   isModerationHintExpanded="false"
   isSavingResponses="false"
@@ -3542,13 +2894,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
         class="alert alert-primary"
         role="alert"
       >
-        
-        
         <div>
            You are submitting feedback as 
           <mark>
             <b>
-              
             </b>
           </mark>
           . You may submit feedback for sessions that are currently open and view results without logging in. To access other features you need to 
@@ -3640,7 +2989,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           class="col-md-10 text-md-left"
           id="opening-time"
         >
-          
         </div>
       </div>
       <br
@@ -3660,7 +3008,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           class="col-md-10 text-md-left"
           id="closing-time"
         >
-          
         </div>
       </div>
       <br
@@ -3686,12 +3033,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
       />
     </div>
   </div><tm-loading-retry>
-    
-    
     <div>
-      
       <tm-question-submission-form
         id="feedback-question-id-mcq"
+        inviewport=""
       >
         <div
           class="card"
@@ -3712,7 +3057,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -3742,44 +3086,14 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Other students in the course can see your response, but not the name of the recipient, or your name 
                 </li>
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, but not the name of the recipient, or your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -3790,22 +3104,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -3816,21 +3126,13 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Team)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
-                    
-                    
                     <tm-mcq-question-edit-answer-form>
                       <tr>
                         <td>
-                          
                           <div
                             class="radio"
                           >
@@ -3888,25 +3190,16 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                               </span>
                             </label>
                           </div>
-                          
                         </td>
                       </tr>
                     </tm-mcq-question-edit-answer-form>
-                    
-                    
-                    
-                    
                   </div>
-                  
                   <div
                     class="col-12 margin-bottom-20px margin-top-10px indent"
                     id="comment-section"
                   >
-                    
                     <div>
                       <tm-comment-row>
-                        
-                        
                         <div
                           class="card"
                         >
@@ -3919,14 +3212,12 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                               <div
                                 class="col-12"
                               >
-                                
                                 <span
                                   class="text-secondary"
                                   id="by-response-giver"
                                 >
                                    Comment by response giver. 
                                 </span>
-                                
                                 <i
                                   aria-hidden="true"
                                   class="fa fa-eye"
@@ -3934,7 +3225,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                                 <div
                                   class="float-right"
                                 >
-                                  
                                   <button
                                     class="btn btn-outline-primary btn-sm"
                                     disabled=""
@@ -3946,8 +3236,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                                       class="fas fa-pencil-alt"
                                     />
                                   </button>
-                                  
-                                  
                                   <button
                                     class="btn btn-outline-primary btn-sm btn-margin-left"
                                     disabled=""
@@ -3959,7 +3247,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                                       class="fas fa-trash"
                                     />
                                   </button>
-                                  
                                 </div>
                               </div>
                               <div
@@ -3972,9 +3259,7 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                           </div>
                         </div>
                       </tm-comment-row>
-                      
                     </div>
-                    
                   </div>
                 </div>
               </div>
@@ -3982,23 +3267,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
             <div
               class="alert alert-warning"
               role="alert"
             >
-              
-              
-              
             </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-text"
+        inviewport=""
       >
         <div
           class="card"
@@ -4019,7 +3299,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -4049,46 +3328,16 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Your team members can see your response, but not the name of the recipient, or your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, but not the name of the recipient, or your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
             <tm-text-question-instruction />
-            
-            
-            
             <tm-text-question-constraint />
-            
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -4099,22 +3348,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -4125,15 +3370,11 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Instructor)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
                     <tm-text-question-edit-answer-form>
-                      
                       <div
                         class="plain-text-area"
                       >
@@ -4141,47 +3382,30 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                           class="ng-untouched ng-pristine ng-valid"
                         />
                       </div>
-                      
                       <div
                         class="margin-top-7px text-secondary text-right"
                       >
-                        
-                        
                       </div>
                     </tm-text-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
             <div
               class="alert alert-warning"
               role="alert"
             >
-              
-              
-              
             </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-mcq-2"
+        inviewport=""
       >
         <div
           class="card"
@@ -4202,7 +3426,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -4232,44 +3455,14 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving teams can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -4280,278 +3473,24 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
-                <div
-                  class="row"
-                >
-                  
-                  <div
-                    class="col-md-5 col-xs-12 margin-top-20px"
-                  >
-                    
-                    <div
-                      id="recipient-name-0"
-                    >
-                      <b>
-                        Barry Harris 
-                      </b>
-                      <span>
-                        (Team)
-                      </span>
-                    </div>
-                    
-                  </div>
-                  <div
-                    class="col margin-top-20px"
-                  >
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tm-mcq-question-edit-answer-form>
-                      <tr>
-                        <td>
-                          
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                disabled=""
-                                name="mcq-feedback-question-id-mcq-2barry-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 1
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                disabled=""
-                                name="mcq-feedback-question-id-mcq-2barry-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 2
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                disabled=""
-                                name="mcq-feedback-question-id-mcq-2barry-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 3
-                              </span>
-                            </label>
-                          </div>
-                          
-                        </td>
-                      </tr>
-                    </tm-mcq-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                  </div>
-                  
-                  <div
-                    class="col-12 margin-bottom-20px margin-top-10px indent"
-                    id="comment-section"
-                  >
-                    
-                    <div
-                      style="display: inline-block;"
-                    >
-                      
-                      <button
-                        class="btn btn-light btn-sm"
-                        disabled=""
-                        id="btn-add-comment"
-                      >
-                        <i
-                          class="fas fa-comment"
-                        />
-                         [Optional] Comment on your response 
-                      </button>
-                    </div>
-                    
-                    
-                    
-                  </div>
-                </div>
-                <div
-                  class="row"
-                >
-                  
-                  <div
-                    class="col-md-5 col-xs-12 margin-top-20px"
-                  >
-                    
-                    <div
-                      id="recipient-name-1"
-                    >
-                      <b>
-                        Gene Harris 
-                      </b>
-                      <span>
-                        (Team)
-                      </span>
-                    </div>
-                    
-                  </div>
-                  <div
-                    class="col margin-top-20px"
-                  >
-                    
-                    
-                    
-                    
-                    
-                    
-                    <tm-mcq-question-edit-answer-form>
-                      <tr>
-                        <td>
-                          
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                disabled=""
-                                name="mcq-feedback-question-id-mcq-2gene-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 1
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                disabled=""
-                                name="mcq-feedback-question-id-mcq-2gene-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 2
-                              </span>
-                            </label>
-                          </div>
-                          <div
-                            class="radio"
-                          >
-                            <label
-                              class="margin-right-15px"
-                            >
-                              <input
-                                class="margin-right-15px"
-                                disabled=""
-                                name="mcq-feedback-question-id-mcq-2gene-harris-id"
-                                type="radio"
-                              />
-                              <span
-                                class="option-text"
-                              >
-                                choice 3
-                              </span>
-                            </label>
-                          </div>
-                          
-                        </td>
-                      </tr>
-                    </tm-mcq-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                  </div>
-                  
-                  <div
-                    class="col-12 margin-bottom-20px margin-top-10px indent"
-                    id="comment-section"
-                  >
-                    
-                    <div
-                      style="display: inline-block;"
-                    >
-                      
-                      <button
-                        class="btn btn-light btn-sm"
-                        disabled=""
-                        id="btn-add-comment"
-                      >
-                        <i
-                          class="fas fa-comment"
-                        />
-                         [Optional] Comment on your response 
-                      </button>
-                    </div>
-                    
-                    
-                    
-                  </div>
-                </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-msq"
+        inviewport=""
       >
         <div
           class="card"
@@ -4572,7 +3511,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -4602,42 +3540,15 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
             <tm-msq-question-constraint>
-              
               <div
                 class="text-info"
               >
@@ -4646,7 +3557,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 >
                   Note:
                 </p>
-                
                 <p
                   id="min-options-message"
                 >
@@ -4659,7 +3569,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </strong>
                    options. 
                 </p>
-                
                 <p
                   id="max-options-message"
                 >
@@ -4674,10 +3583,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 </p>
               </div>
             </tm-msq-question-constraint>
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -4688,22 +3593,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -4714,22 +3615,13 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     <tm-msq-question-edit-answer-form>
                       <tr>
                         <td>
-                          
                           <div
                             class="check-box"
                           >
@@ -4778,31 +3670,107 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                               </strong>
                             </label>
                           </div>
-                          
-                          
                         </td>
                       </tr>
                     </tm-msq-question-edit-answer-form>
-                    
-                    
-                    
                   </div>
-                  
+                  <div
+                    class="col-12 margin-bottom-20px margin-top-10px indent"
+                    id="comment-section"
+                  >
+                    <div>
+                      <tm-comment-row>
+                        <div
+                          class="card"
+                        >
+                          <div
+                            class="card-body"
+                          >
+                            <div
+                              class="row comment-row"
+                            >
+                              <div
+                                class="col-12"
+                              >
+                                <span
+                                  class="text-secondary"
+                                  id="by-response-giver"
+                                >
+                                   Comment by response giver. 
+                                </span>
+                                <i
+                                  aria-hidden="true"
+                                  class="fa fa-eye"
+                                />
+                                <div
+                                  class="float-right"
+                                >
+                                  <button
+                                    class="btn btn-outline-primary btn-sm"
+                                    disabled=""
+                                    id="btn-edit-comment"
+                                    ngbtooltip="Edit this comment"
+                                    type="button"
+                                  >
+                                    <i
+                                      class="fas fa-pencil-alt"
+                                    />
+                                  </button>
+                                  <button
+                                    class="btn btn-outline-primary btn-sm btn-margin-left"
+                                    disabled=""
+                                    id="btn-delete-comment"
+                                    ngbtooltip="Delete this comment"
+                                    type="button"
+                                  >
+                                    <i
+                                      class="fas fa-trash"
+                                    />
+                                  </button>
+                                </div>
+                              </div>
+                              <div
+                                class="col-12"
+                                id="comment-text"
+                              >
+                                comment text
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </tm-comment-row>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  disabled=""
+                  id="btn-submit-qn-4"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-numscale"
+        inviewport=""
       >
         <div
           class="card"
@@ -4823,7 +3791,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -4853,46 +3820,16 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
             <tm-num-scale-question-instruction />
-            
-            
-            
             <tm-num-scale-question-constraint />
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -4903,22 +3840,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -4929,16 +3862,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
-                    
                     <tm-num-scale-question-edit-answer-form>
                       <div
                         class="form-row text-left"
@@ -4951,6 +3878,7 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             max="10"
                             min="1"
                             step="1"
+                            tmdisablewheel=""
                             type="number"
                           />
                         </div>
@@ -4973,34 +3901,41 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         <div
                           class="col-12"
                         >
-                          
-                          
                         </div>
                       </div>
                       <br />
                     </tm-num-scale-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  disabled=""
+                  id="btn-submit-qn-5"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-constsum"
+        inviewport=""
       >
         <div
           class="card"
@@ -5021,7 +3956,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -5051,43 +3985,14 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <tm-constsum-recipients-question-instruction>
               <div
                 class="text-info"
@@ -5108,11 +4013,8 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                     add up to 20.
                   </strong>
                 </p>
-                
-                
               </div>
             </tm-constsum-recipients-question-instruction>
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -5123,22 +4025,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -5149,21 +4047,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     <tm-constsum-recipients-question-edit-answer-form>
                       <div>
                         <div
@@ -5173,30 +4060,26 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             class="form-control ng-untouched ng-pristine ng-valid"
                             min="0"
                             step="1"
+                            tmdisablewheel=""
                             type="number"
                           />
                         </div>
                       </div>
                     </tm-constsum-recipients-question-edit-answer-form>
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
               <tm-constsum-recipients-question-constraint>
-                
                 <div
                   class="row"
                 >
                   <div
                     class="col-12"
                   >
-                    
                     <p
                       class="text-danger"
                     >
@@ -5205,23 +4088,33 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                       />
                        Actual total is 7! Distribute the remaining 13 points.
                     </p>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                   </div>
                 </div>
               </tm-constsum-recipients-question-constraint>
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  disabled=""
+                  id="btn-submit-qn-6"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-contrib"
+        inviewport=""
       >
         <div
           class="card"
@@ -5242,7 +4135,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -5272,46 +4164,16 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
             <tm-contribution-question-instruction />
-            
-            
-            
             <tm-contribution-question-constraint />
-            
-            
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -5322,22 +4184,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -5348,12 +4206,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
                     <tm-contribution-question-edit-answer-form>
                       <div
                         class="row"
@@ -5367,7 +4223,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             <option
                               value="0: -999"
                             />
-                            
                             <option
                               class="color-positive"
                               value="1: 200"
@@ -5494,10 +4349,8 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             >
                               0%
                             </option>
-                            
                           </select>
                         </div>
-                        
                         <div
                           class="col-lg-9 col-sm-6 col-xs-12"
                         >
@@ -5515,35 +4368,39 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                              scale
                           </button>
                         </div>
-                        
                       </div>
                     </tm-contribution-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  disabled=""
+                  id="btn-submit-qn-7"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-rubric"
+        inviewport=""
       >
         <div
           class="card"
@@ -5564,7 +4421,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -5594,44 +4450,14 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -5642,22 +4468,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -5668,19 +4490,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     <tm-rubric-question-edit-answer-form>
                       <table
                         class="table table-bordered desktop-view"
@@ -5688,7 +4501,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         <tbody>
                           <tr>
                             <td />
-                            
                             <td
                               class="font-weight-bold"
                             >
@@ -5700,14 +4512,12 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                               choice 2
                             </td>
                           </tr>
-                          
                           <tr
                             class="row-answered"
                           >
                             <td>
                               subquestion 1
                             </td>
-                            
                             <td
                               class="text-secondary answer-cell"
                             >
@@ -5739,7 +4549,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             <td>
                               subquestion 2
                             </td>
-                            
                             <td
                               class="text-secondary answer-cell"
                             >
@@ -5770,7 +4579,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                       <div
                         class="mobile-view"
                       >
-                        
                         <div
                           class="card"
                         >
@@ -5782,7 +4590,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                           <div
                             class="card-body row-answered"
                           >
-                            
                             <div>
                               <label>
                                 <input
@@ -5816,7 +4623,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                           <div
                             class="card-body row-answered"
                           >
-                            
                             <div>
                               <label>
                                 <input
@@ -5841,25 +4647,37 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         </div>
                       </div>
                     </tm-rubric-question-edit-answer-form>
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  disabled=""
+                  id="btn-submit-qn-8"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-rank-options"
+        inviewport=""
       >
         <div
           class="card"
@@ -5880,7 +4698,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -5910,50 +4727,23 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
             <tm-rank-options-question-instruction>
               <div
                 class="text-info"
               >
-                
                 <p
                   class="font-weight-bold"
                 >
                   Note:
                 </p>
-                
                 <p
                   id="min-options-message"
                 >
@@ -5966,7 +4756,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </strong>
                    options. 
                 </p>
-                
                 <p
                   id="max-options-message"
                 >
@@ -5981,11 +4770,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 </p>
               </div>
             </tm-rank-options-question-instruction>
-            
-            
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -5996,22 +4780,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -6022,16 +4802,11 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
                     <tm-rank-options-question-edit-answer-form>
-                      
                       <div
                         class="form-group row text-left"
                       >
@@ -6051,7 +4826,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             <option
                               value="0: -999"
                             />
-                            
                             <option
                               value="1: 1"
                             >
@@ -6084,7 +4858,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                             <option
                               value="0: -999"
                             />
-                            
                             <option
                               value="1: 1"
                             >
@@ -6099,36 +4872,39 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         </div>
                       </div>
                       <div>
-                        
-                        
-                        
-                        
                       </div>
                     </tm-rank-options-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  disabled=""
+                  id="btn-submit-qn-9"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <tm-question-submission-form
         id="feedback-question-id-rank-recipients"
+        inviewport=""
       >
         <div
           class="card"
@@ -6149,7 +4925,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
           <div
             class="card-body"
           >
-            
             <div
               class="card mb-3"
             >
@@ -6179,52 +4954,23 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 class="text-secondary"
                 id="visibility-list"
               >
-                
-                
-                
-                
                 <li>
                    The receiving students can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 <li>
                    Instructors in this course can see your response, the name of the recipient, and your name 
                 </li>
-                
-                
               </ul>
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <tm-rank-recipients-question-instruction>
               <div
                 class="text-info"
               >
-                
                 <p
                   class="font-weight-bold"
                 >
                   Note:
                 </p>
-                
                 <p
                   id="min-options-message"
                 >
@@ -6237,7 +4983,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                   </strong>
                    options. 
                 </p>
-                
                 <p
                   id="max-options-message"
                 >
@@ -6252,9 +4997,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 </p>
               </div>
             </tm-rank-recipients-question-instruction>
-            
-            
-            
             <p
               class="margin-top-30px margin-bottom-0px"
             >
@@ -6265,22 +5007,18 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                 Evaluee/Recipient
               </span>
             </p>
-            
             <div
               class="row"
             >
               <div
                 class="evaluee-col col-12"
               >
-                
                 <div
                   class="row"
                 >
-                  
                   <div
                     class="col-md-5 col-xs-12 margin-top-20px"
                   >
-                    
                     <div
                       id="recipient-name-0"
                     >
@@ -6291,15 +5029,10 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         (Student)
                       </span>
                     </div>
-                    
                   </div>
                   <div
                     class="col margin-top-20px"
                   >
-                    
-                    
-                    
-                    
                     <tm-rank-recipients-question-edit-answer-form>
                       <div
                         class="margin-bottom-15px"
@@ -6310,7 +5043,6 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                           <option
                             value="0: -999"
                           />
-                          
                           <option
                             value="1: 1"
                           >
@@ -6319,40 +5051,41 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
                         </select>
                       </div>
                     </tm-rank-recipients-question-edit-answer-form>
-                    
-                    
-                    
-                    
-                    
-                    
                   </div>
-                  
                 </div>
               </div>
             </div>
             <div
               class="col-12 constraint-margins"
             >
-              
               <tm-rank-recipients-question-constraint>
                 <div>
-                  
-                  
-                  
-                  
                 </div>
               </tm-rank-recipients-question-constraint>
-              
             </div>
-            
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 text-center"
+              >
+                <button
+                  class="btn btn-success"
+                  disabled=""
+                  id="btn-submit-qn-10"
+                  ngbtooltip="You can save your responses for this question at any time and come back later to continue."
+                  type="submit"
+                >
+                  Submit Responses
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </tm-question-submission-form>
       <br
         class="mobile-invisible"
       />
-      
-      
       <div
         class="row"
       >
@@ -6366,14 +5099,11 @@ exports[`SessionSubmissionPageComponent should snap with feedback session questi
             ngbtooltip="You can save your responses at any time and come back later to continue."
             type="submit"
           >
-            
-            Submit Feedback
+            Submit Responses for All Questions
           </button>
         </div>
       </div>
     </div>
-    
-    
   </tm-loading-retry>
 </tm-session-submission-page>
 `;
@@ -6387,6 +5117,7 @@ exports[`SessionSubmissionPageComponent should snap with user that is logged in 
   commentService={[Function FeedbackResponseCommentService]}
   courseId={[Function String]}
   document={[Function Document]}
+  entityType={[Function String]}
   feedbackQuestionsService={[Function FeedbackQuestionsService]}
   feedbackResponsesService={[Function FeedbackResponsesService]}
   feedbackSessionInstructions=""
@@ -6400,7 +5131,6 @@ exports[`SessionSubmissionPageComponent should snap with user that is logged in 
   instructorService={[Function InstructorService]}
   intent={[Function String]}
   isFeedbackSessionLoading={[Function Boolean]}
-  isFeedbackSessionQuestionResponsesLoading={[Function Boolean]}
   isFeedbackSessionQuestionsLoading={[Function Boolean]}
   isModerationHintExpanded="false"
   isSavingResponses="false"
@@ -6435,7 +5165,6 @@ exports[`SessionSubmissionPageComponent should snap with user that is logged in 
         class="alert alert-primary"
         role="alert"
       >
-        
         <div>
            You are submitting feedback as 
           <mark>
@@ -6451,7 +5180,6 @@ exports[`SessionSubmissionPageComponent should snap with user that is logged in 
           </a>
           . 
         </div>
-        
       </div>
     </div>
   </div><div
@@ -6485,8 +5213,6 @@ exports[`SessionSubmissionPageComponent should snap with user that is logged in 
       </div>
     </div>
   </tm-loading-spinner><tm-loading-retry>
-    
-    
     <tm-loading-spinner>
       <div
         class="loading-container"
@@ -6502,8 +5228,6 @@ exports[`SessionSubmissionPageComponent should snap with user that is logged in 
         </div>
       </div>
     </tm-loading-spinner>
-    
-    
   </tm-loading-retry>
 </tm-session-submission-page>
 `;
@@ -6517,6 +5241,7 @@ exports[`SessionSubmissionPageComponent should snap with user that is not logged
   commentService={[Function FeedbackResponseCommentService]}
   courseId={[Function String]}
   document={[Function Document]}
+  entityType={[Function String]}
   feedbackQuestionsService={[Function FeedbackQuestionsService]}
   feedbackResponsesService={[Function FeedbackResponsesService]}
   feedbackSessionInstructions=""
@@ -6530,7 +5255,6 @@ exports[`SessionSubmissionPageComponent should snap with user that is not logged
   instructorService={[Function InstructorService]}
   intent={[Function String]}
   isFeedbackSessionLoading={[Function Boolean]}
-  isFeedbackSessionQuestionResponsesLoading={[Function Boolean]}
   isFeedbackSessionQuestionsLoading={[Function Boolean]}
   isModerationHintExpanded="false"
   isSavingResponses="false"
@@ -6565,8 +5289,6 @@ exports[`SessionSubmissionPageComponent should snap with user that is not logged
         class="alert alert-primary"
         role="alert"
       >
-        
-        
         <div>
            You are submitting feedback as 
           <mark>
@@ -6615,8 +5337,6 @@ exports[`SessionSubmissionPageComponent should snap with user that is not logged
       </div>
     </div>
   </tm-loading-spinner><tm-loading-retry>
-    
-    
     <tm-loading-spinner>
       <div
         class="loading-container"
@@ -6632,8 +5352,6 @@ exports[`SessionSubmissionPageComponent should snap with user that is not logged
         </div>
       </div>
     </tm-loading-spinner>
-    
-    
   </tm-loading-retry>
 </tm-session-submission-page>
 `;

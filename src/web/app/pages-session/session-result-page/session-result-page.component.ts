@@ -62,13 +62,15 @@ export class SessionResultPageComponent implements OnInit {
   personEmail: string = '';
   courseId: string = '';
   feedbackSessionName: string = '';
+  entityType: string = 'student';
   regKey: string = '';
   loggedInUser: string = '';
   visibilityRecipient: FeedbackVisibilityType = FeedbackVisibilityType.RECIPIENT;
 
   intent: Intent = Intent.STUDENT_RESULT;
 
-  isFeedbackSessionResultsLoading: boolean = false;
+  isFeedbackSessionDetailsLoading: boolean = true;
+  isFeedbackSessionResultsLoading: boolean = true;
   hasFeedbackSessionResultsLoadingFailed: boolean = false;
   retryAttempts: number = DEFAULT_NUMBER_OF_RETRY_ATTEMPTS;
 
@@ -98,6 +100,10 @@ export class SessionResultPageComponent implements OnInit {
       this.courseId = queryParams.courseid;
       this.feedbackSessionName = queryParams.fsname;
       this.regKey = queryParams.key || '';
+      if (queryParams.entitytype === 'instructor') {
+        this.entityType = 'instructor';
+        this.intent = Intent.INSTRUCTOR_RESULT;
+      }
 
       const nextUrl: string = `${window.location.pathname}${window.location.search.replace(/&/g, '%26')}`;
       this.authService.getAuthUser(undefined, nextUrl).subscribe((auth: AuthInfo) => {
@@ -110,7 +116,8 @@ export class SessionResultPageComponent implements OnInit {
               if (resp.isUsed) {
                 // The logged in user matches the registration key; redirect to the logged in URL
 
-                this.navigationService.navigateByURLWithParamEncoding(this.router, '/web/student/sessions/result',
+                this.navigationService.navigateByURLWithParamEncoding(
+                    this.router, `/web/${this.entityType}/sessions/result`,
                     { courseid: this.courseId, fsname: this.feedbackSessionName });
               } else {
                 // Valid, unused registration key; load information based on the key
@@ -129,7 +136,12 @@ export class SessionResultPageComponent implements OnInit {
                     ${environment.supportEmail} for help.`);
               } else {
                 // There is no logged in user for a valid, used registration key, redirect to login page
-                window.location.href = `${this.backendUrl}${auth.studentLoginUrl}`;
+                // eslint-disable-next-line no-lonely-if
+                if (this.entityType === 'student') {
+                  window.location.href = `${this.backendUrl}${auth.studentLoginUrl}`;
+                } else if (this.entityType === 'instructor') {
+                  window.location.href = `${this.backendUrl}${auth.instructorLoginUrl}`;
+                }
               }
             } else {
               // The registration key is invalid
@@ -190,13 +202,16 @@ export class SessionResultPageComponent implements OnInit {
   }
 
   private loadFeedbackSession(): void {
+    this.isFeedbackSessionDetailsLoading = true;
     this.isFeedbackSessionResultsLoading = true;
     this.feedbackSessionsService.getFeedbackSession({
       courseId: this.courseId,
       feedbackSessionName: this.feedbackSessionName,
       intent: this.intent,
       key: this.regKey,
-    }).subscribe((feedbackSession: FeedbackSession) => {
+    })
+    .pipe(finalize(() => { this.isFeedbackSessionDetailsLoading = false; }))
+    .subscribe((feedbackSession: FeedbackSession) => {
       const TIME_FORMAT: string = 'ddd, DD MMM, YYYY, hh:mm A zz';
       this.session = feedbackSession;
       this.formattedSessionOpeningTime = this.timezoneService
@@ -209,7 +224,9 @@ export class SessionResultPageComponent implements OnInit {
         intent: this.intent,
         key: this.regKey,
       })
-          .pipe(finalize(() => this.isFeedbackSessionResultsLoading = false))
+          .pipe(finalize(() => {
+            this.isFeedbackSessionResultsLoading = false;
+          }))
           .subscribe((sessionResults: SessionResults) => {
             this.questions = sessionResults.questions.sort(
                 (a: QuestionOutput, b: QuestionOutput) =>
@@ -224,10 +241,10 @@ export class SessionResultPageComponent implements OnInit {
   }
 
   /**
-   * Redirects to join course link for unregistered student.
+   * Redirects to join course link for unregistered student/instructor.
    */
-  joinCourseForUnregisteredStudent(): void {
-    this.navigationService.navigateByURL(this.router, '/web/join', { entitytype: 'student', key: this.regKey });
+  joinCourseForUnregisteredEntity(): void {
+    this.navigationService.navigateByURL(this.router, '/web/join', { entitytype: this.entityType, key: this.regKey });
   }
 
   navigateToSessionReportPage(): void {

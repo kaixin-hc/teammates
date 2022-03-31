@@ -1,6 +1,5 @@
 <frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
+  title: "Design"
 </frontmatter>
 
 # Design
@@ -24,7 +23,7 @@ TEAMMATES is a Web application that runs on Google App Engine (GAE). Given above
 
 The diagram below shows how the code in each component is organized into packages and the dependencies between them.
 
-![Package Diagram](images/packageDiagram.png)
+<puml src="diagrams/packageDiagram.puml"></puml>
 
 Notes:
 
@@ -35,7 +34,7 @@ Notes:
 
 The diagram below shows the object structure of the UI component.
 
-![UI Component](images/UiComponent.png)
+<puml src="diagrams/UiComponent.puml"></puml>
 
 Notes:
 
@@ -55,7 +54,7 @@ There are two general types of requests: user-invoked requests and automated (GA
 User-invoked requests are all requests made by the users of the application, typically from the Web browser (i.e. by navigating to a particular URL of the application).
 The request will be processed as follows:
 
-![UI Workflow](images/UiWorkflow.png)
+<puml src="diagrams/UiWorkflow.puml"></puml>
 
 The initial request for the web page will be processed as follows:
 
@@ -147,12 +146,13 @@ The `Logic` component handles the business logic of TEAMMATES. In particular, it
 - Sanitizing input values received from the UI component.
 - Connecting to GCP or third-party services, e.g. for adding tasks to the task queue and for sending emails with third-party providers.
 
-![Logic Component](images/LogicComponent.png)
+<puml src="diagrams/LogicComponent.puml"></puml>
 
 Package overview:
 
 - **`logic.api`**: Provides the API of the component to be accessed by the UI.
 - **`logic.core`**: Contains the core logic of the system.
+- **`logic.external`**: Holds the logic of external services such as task queue service.
 
 ### Logic API
 
@@ -165,6 +165,7 @@ Represented by these classes:
 - `TaskQueuer`: Adds tasks to the task queue, i.e. to be executed at a later time.
 - `FileStorage`: Manages CRUD of binary files such as profile pictures.
 - `LogsProcessor`: For more advanced usage of logging that cannot be captured by the standard logger class.
+- `RecaptchaVerifier`: For verification of the reCAPTCHA token.
 
 Many classes in this layer make use of proxy pattern, i.e. they only connect to production services such as Google Cloud Storage in the staging/production server.
 
@@ -172,30 +173,30 @@ Many classes in this layer make use of proxy pattern, i.e. they only connect to 
 
 Access control:
 
-- Although this component provides methods that are relevant to access control (e.g. providing user information), the access control check itself does not happen in this component. The UI is expected to check access control (using `GateKeeper` class) before calling a method in the logic component.
++ Although this component provides methods that are relevant to access control (e.g. providing user information), the access control check itself does not happen in this component. The UI is expected to check access control (using `GateKeeper` class) before calling a method in the logic component.
 
 API for creating entities:
 
-- Null parameters: Causes an assertion failure.
-- Invalid parameters: Throws `InvalidParametersException`.
-- Entity already exists: Throws `EntityAlreadyExistsException` (escalated from Storage level).
++ Null parameters: Causes an assertion failure.
++ Invalid parameters: Throws `InvalidParametersException`.
++ Entity already exists: Throws `EntityAlreadyExistsException` (escalated from Storage level).
 
 API for retrieving entities:
 
-- Attempting to retrieve objects using `null` parameters: Causes an assertion failure.
-- Entity not found:
-  - Returns `null` if the target entity not found. This way, read operations can be used easily for checking the existence of an entity.
++ Attempting to retrieve objects using `null` parameters: Causes an assertion failure.
++ Entity not found:
+  + Returns `null` if the target entity not found. This way, read operations can be used easily for checking the existence of an entity.
 
 API for updating entities:
 
-- Update is done using `*UpdateOptions` inside every `*Attributes`. The `UpdateOptions` will specify what is used to identify the entity to update and what will be updated.
-- Entity not found: Throws `EntityDoesNotExistException`.
++ Update is done using `*UpdateOptions` inside every `*Attributes`. The `UpdateOptions` will specify what is used to identify the entity to update and what will be updated.
++ Entity not found: Throws `EntityDoesNotExistException`.
 - Invalid parameters: Throws `InvalidParametersException`.
 
 API for deleting entities:
 
-- FailDeleteSilentlyPolicy: In general, delete operation do not throw exceptions if the target entity does not exist. This is because if it does not exist, it is as good as deleted.
-- Cascade policy:   When a parent entity is deleted, entities that have referential integrity with the deleted entity should also be deleted.
++ FailDeleteSilentlyPolicy: In general, delete operation do not throw exceptions if the target entity does not exist. This is because if it does not exist, it is as good as deleted.
++ Cascade policy:   When a parent entity is deleted, entities that have referential integrity with the deleted entity should also be deleted.
   Refer to the API for the cascade logic.
 
 ## Storage Component
@@ -204,22 +205,22 @@ The `Storage` component performs CRUD (Create, Read, Update, Delete) operations 
 It contains minimal logic beyond what is directly relevant to CRUD operations.
 In particular, it is reponsible for:
 
-- Validating data inside entities before creating/updating them, to ensure they are in a valid state.
-- Hiding the complexities of the database from the `Logic` component.
-- Hiding the persistable objects: Classes in the `storage::entity` package are not visible outside this component to hide information specific to data persistence.
-  - Instead, a corresponding non-persistent [data transfer object](http://en.wikipedia.org/wiki/Data_transfer_object) named `*Attributes` (e.g., `CourseAttributes` is the data transfer object for `Course` entities) object is returned. These datatransfer classes are in `common::datatransfer` package, to be explained later.
++ Validating data inside entities before creating/updating them, to ensure they are in a valid state.
++ Hiding the complexities of the database from the `Logic` component.
++ Hiding the persistable objects: Classes in the `storage::entity` package are not visible outside this component to hide information specific to data persistence.
+  + Instead, a corresponding non-persistent [data transfer object](http://en.wikipedia.org/wiki/Data_transfer_object) named `*Attributes` (e.g., `CourseAttributes` is the data transfer object for `Course` entities) object is returned. These datatransfer classes are in `common::datatransfer` package, to be explained later.
 
 The `Storage` component does not perform any cascade delete/create operations. Cascade logic is handled by the `Logic` component.
 
-![Storage Component](images/StorageComponent.png)
+<puml src="diagrams/StorageComponent.puml"></puml>
 
 Package overview:
 
-- **`storage.api`**: Provides the API of the component to be accessed by the logic component.
-- **`storage.entity`**: Classes that represent persistable entities.
-- **`storage.search`**: Classes for dealing with searching and indexing.
++ **`storage.api`**: Provides the API of the component to be accessed by the logic component.
++ **`storage.entity`**: Classes that represent persistable entities.
++ **`storage.search`**: Classes for dealing with searching and indexing.
 
-![Storage ER Diagram](images/StorageClassDiagram.png)
+<puml src="diagrams/StorageClassDiagram.puml"></puml>
 
 Note that the navigability of the association links between entity objects appear to be in the reverse direction of what we see in a normal OOP design.
 This is because we want to keep the data schema flexible so that new entity types can be added later with minimal modifications to existing elements.
@@ -237,27 +238,27 @@ Implementation of Transaction Control has been minimized due to limitations of G
 
 API for creating:
 
-- Attempt to create an entity that already exists: Throws `EntityAlreadyExistsException`.
-- Attempt to create an entity with invalid data: Throws `InvalidParametersException`.
++ Attempt to create an entity that already exists: Throws `EntityAlreadyExistsException`.
++ Attempt to create an entity with invalid data: Throws `InvalidParametersException`.
 
 API for retrieving:
 
-- Attempt to retrieve an entity that does not exist: Returns `null`.
++ Attempt to retrieve an entity that does not exist: Returns `null`.
 
 API for updating:
 
-- Attempt to update an entity that does not exist: Throws `EntityDoesNotExistException`.
-- Attempt to update an entity with invalid data: Throws `InvalidParametersException`.
++ Attempt to update an entity that does not exist: Throws `EntityDoesNotExistException`.
++ Attempt to update an entity with invalid data: Throws `InvalidParametersException`.
 
 API for deleting:
 
-- Attempt to delete an entity that does not exist: Fails silently.
++ Attempt to delete an entity that does not exist: Fails silently.
 
 ## Common Component
 
 The Common component contains common utilities used across TEAMMATES.
 
-![Common Component](images/CommonComponent.png)
+<puml src="diagrams/CommonComponent.puml"></puml>
 
 Package overview:
 
@@ -267,7 +268,7 @@ Package overview:
 
 `common.datatransfer` package contains lightweight "data transfer object" classes for transferring data among components. They can be combined in various ways to transfer structured data between components. Given below are three examples.
 
-![Data Transfer Classes](images/dataTransferClasses.png)
+<puml src="diagrams/dataTransferClasses.puml"></puml>
 
 1. `Test Driver` can use the `DataBundle` in this manner to send an arbitrary number of objects to be persisted in the database.
 1. This structure can be used to transfer search results of a student or instructor or response comments.
@@ -279,7 +280,7 @@ Some of these classes are methodless (and thus more of a data structure rather t
 
 This component automates the testing of TEAMMATES.
 
-![Test Driver Component](images/TestDriverComponent.png)
+<puml src="diagrams/TestDriverComponent.puml"></puml>
 
 The test driver component's package structure follows the corresponding production package structure's exactly,
 e.g. `teammates.logic.core.*` will contain the test cases for the production code inside `teammates.logic.core` package.
@@ -308,7 +309,7 @@ TEAMMATES
 
 The E2E component has no knowledge of the internal workings of the application and can only interact either with Web browser (as a whole application) or REST API calls (for the back-end logic). Its primary function is for E2E tests.
 
-![E2E Component](images/E2EComponent.png)
+<puml src="diagrams/E2EComponent.puml"></puml>
 
 Package overview:
 
@@ -320,7 +321,7 @@ Package overview:
 
 The Client component contains scripts that can connect directly to the application back-end for administrative purposes, such as migrating data to a new schema and calculating statistics.
 
-![Client Component](images/ClientComponent.png)
+<puml src="diagrams/ClientComponent.puml"></puml>
 
 Package overview:
 

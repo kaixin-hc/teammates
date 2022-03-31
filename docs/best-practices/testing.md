@@ -1,6 +1,5 @@
 <frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
+  title: "Best Practices: Testing"
 </frontmatter>
 
 # Testing Best Practices

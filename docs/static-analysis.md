@@ -1,6 +1,5 @@
 <frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
+  title: "Testing: Static Analysis"
 </frontmatter>
 
 # Static Analysis
@@ -20,9 +19,8 @@ The version number of all the tool stacks are declared in `build.gradle` or `pac
 | [PMD](https://pmd.github.io/) | [`teammates-pmd.xml`](https://github.com/TEAMMATES/teammates/blob/master/static-analysis/teammates-pmd.xml), [`teammates-pmdMain.xml`](https://github.com/TEAMMATES/teammates/blob/master/static-analysis/teammates-pmdMain.xml) |
 | [SpotBugs](https://spotbugs.github.io/) | [`teammates-spotbugs.xml`](https://github.com/TEAMMATES/teammates/blob/master/static-analysis/teammates-spotbugs.xml) |
 | [ArchUnit](https://github.com/TNG/ArchUnit) | - |
-| [TSLint](https://palantir.github.io/tslint/) | [`teammates-tslint.yml`](https://github.com/TEAMMATES/teammates/blob/master/static-analysis/teammates-tslint.yml) |
-| [JSONlint](https://github.com/marionebl/jsonlint-cli) | - |
-| [stylelint](http://stylelint.io) | [`teammates-stylelint.yml`](https://github.com/TEAMMATES/teammates/blob/master/static-analysis/teammates-stylelint.yml) |
+| [ESLint](https://eslint.org/) | [`teammates-eslint.yml`](../static-analysis/teammates-eslint.yml) |
+| [stylelint](http://stylelint.io) | [`teammates-stylelint.yml`](../static-analysis/teammates-stylelint.yml) |
 | [lintspaces](https://github.com/evanshortiss/lintspaces-cli) | - |
 
 ## Suppressing rules
@@ -48,8 +46,7 @@ General rule of thumb when suppressing rules:
 | PMD | `./gradlew pmdMain`, `./gradlew pmdTest` |
 | SpotBugs | `./gradlew spotbugsMain`, `./gradlew spotbugsTest` |
 | ArchUnit | `./gradlew architectureTest` |
-| TSLint | `npm run lint:ts` |
-| JSONlint | `npm run lint:json` |
+| ESLint | `npm run lint:ts` |
 | stylelint | `npm run lint:css` |
 | lintspaces | `npm run lint:spaces` |
 

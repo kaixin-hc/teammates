@@ -42,10 +42,10 @@ public final class Templates {
                 FileHelper.readResourceFile("studentEmailFragment-googleIdReset.html");
         public static final String FRAGMENT_STUDENT_COURSE_REJOIN_AFTER_REGKEY_RESET =
                 FileHelper.readResourceFile("studentEmailFragment-registrationKeyReset.html");
+        public static final String FRAGMENT_INSTRUCTOR_COPY_PREAMBLE =
+                FileHelper.readResourceFile("instructorEmailFragment-instructorCopyPreamble.html");
         public static final String FRAGMENT_INSTRUCTOR_COURSE_JOIN =
                 FileHelper.readResourceFile("instructorEmailFragment-courseJoin.html");
-        public static final String FRAGMENT_INSTRUCTOR_COURSE_JOIN_REMINDER =
-                FileHelper.readResourceFile("instructorEmailFragment-reminderToJoinCourseBeforeSubmittingResponse.html");
         public static final String FRAGMENT_INSTRUCTOR_COURSE_REJOIN_AFTER_GOOGLE_ID_RESET =
                 FileHelper.readResourceFile("instructorEmailFragment-googleIdReset.html");
         public static final String FRAGMENT_INSTRUCTOR_COURSE_REJOIN_AFTER_REGKEY_RESET =
@@ -78,12 +78,14 @@ public final class Templates {
                 FileHelper.readResourceFile("newInstructorAccountWelcome.html");
         public static final String FRAGMENT_SESSION_ADDITIONAL_CONTACT_INFORMATION =
                 FileHelper.readResourceFile("userEmailFragment-sessionAdditionalContactInformationFragment.html");
-        public static final String OWNER_FEEDBACK_SESSION_OPENING_SOON =
-                FileHelper.readResourceFile("ownerEmailTemplate-sessionOpeningSoon.html");
+        public static final String OWNER_FEEDBACK_SESSION =
+                FileHelper.readResourceFile("ownerEmailTemplate-feedbackSession.html");
         public static final String FRAGMENT_OPENING_SOON_EDIT_DETAILS =
                 FileHelper.readResourceFile("ownerEmailFragment-editDetails.html");
         public static final String FRAGMENT_OPENING_SOON_JOIN_COURSE_BEFORE_EDIT_DETAILS =
                 FileHelper.readResourceFile("ownerEmailFragment-joinCourseBeforeEditDetails.html");
+        public static final String FRAGMENT_CLOSED_VIEW_RESPONSES =
+                FileHelper.readResourceFile("ownerEmailFragment-viewResponses.html");
     }
 
 }

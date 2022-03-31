@@ -34,7 +34,8 @@ import { CommentTableModel } from '../../../components/comment-box/comment-table
 import {
   QuestionEditFormModel,
 } from '../../../components/question-edit-form/question-edit-form-model';
-import { QuestionSubmissionFormModel,
+import {
+  QuestionSubmissionFormModel,
 } from '../../../components/question-submission-form/question-submission-form-model';
 import { Response } from '../../../components/question-types/question-statistics/question-statistics';
 import {
@@ -1503,6 +1504,8 @@ export const EXAMPLE_MCQ_QUESTION_WITH_WEIGHTS_MODEL: QuestionEditFormModel = {
  * Structure for example of responder rubric submission form model
  */
 export const EXAMPLE_RESPONDER_RUBRIC_SUBMISSION_FORM_MODEL: QuestionSubmissionFormModel = {
+  isLoading: false,
+  isLoaded: true,
   recipientList: [
     {
       recipientIdentifier: 'alice',

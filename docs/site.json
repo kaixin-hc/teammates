@@ -1,17 +1,25 @@
 {
-  "baseUrl": "",
-  "titlePrefix": "",
-  "ignore": ["_markbind/layouts/*", "_markbind/logs/*", "_site/*", "site.json", "*.md", "*.mbd", "*.mbdf", "*.njk", ".git/*"],
+  "baseUrl": "/teammates",
+  "faviconPath":"teammateslogo.png",
+  "titlePrefix": "Teammates",
+  "ignore": ["_markbind/layouts/*", "_markbind/logs/*", "_site/*", "site.json", "*.md", "*.njk", ".git/*"],
+  "style" : {
+    "codeTheme": "light"
+  },
   "pages": [{
     "src": "index.md",
-    "title": "TEAMMATES"
+    "title": "Home"
   }, {
-    "glob": ["**/index.md", "**/*.+(md|mbd)"]
-  }, {
-    "glob": "**/*.+(md|mbd)",
-    "layout": "default.md"
+    "glob": "**/*.+(md)", 
+    "frontmatter": {
+      "pageNav": 3,
+      "pageNavTitle": "Chapters of This Page"
+    }
   }],
   "deploy": {
     "message": "Site Update."
-  }
+  },
+  "plugins": [
+    "codeBlockCopyButtons"
+  ]
 }

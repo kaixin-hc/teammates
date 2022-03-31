@@ -1,13 +1,8 @@
-<frontmatter>
-  pageNav: 3
-  pageNavTitle: "Chapters of This Page"
-</frontmatter>
-
 # Contributing to TEAMMATES
 
 Thanks for taking your time to contribute to TEAMMATES!
 
-We welcome contributions from anyone, in particular, students (see [here](https://teammatesv4.appspot.com/web/front/about) for the list of our contributors). One o8f the main objectives of TEAMMATES is to help students get experience in an OSS production environment. Here are some information that might be useful to would-be contributors.
+We welcome contributions from anyone, in particular, students (see [here](https://teammatesv4.appspot.com/web/front/about) for the list of our contributors). One of the main objectives of TEAMMATES is to help students get experience in an OSS production environment. Here are some information that might be useful to would-be contributors.
 
 ## Getting started
 
@@ -21,7 +16,7 @@ Understand what TEAMMATES is about, both as a product (users' point of view) and
 
 ### Code of Conduct
 
-By participating in this project, you agree to uphold the [TEAMMATES Code of Conduct](../.github/CODE_OF_CONDUCT.md), which is adopted from [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/).
+By participating in this project, you agree to uphold the [TEAMMATES Code of Conduct](https://github.com/TEAMMATES/teammates/blob/master/.github/CODE_OF_CONDUCT.md), which is adopted from [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/).
 
 ## How can I contribute?
 
@@ -37,7 +32,7 @@ If you are certain that you are reporting a new issue, [open a new issue](https:
 We welcome anyone manually testing our product and reporting bugs or suggestions for enhancements in the issue tracker.
 
 If you want to undertake such a role without actually contributing code, [get an instructor account from TEAMMATES](https://teammatesv4.appspot.com/web/front/request).
-Remember to mention the purpose of your request under "Any other comments/queries".
+Remember to mention the purpose of your request under "Any other comments/queries". 
 
 ### Submitting a pull request
 
@@ -54,8 +49,8 @@ Contributing to an OSS project requires you to figure out things on your own whe
 
 Of course we are happy to guide you if you encounter any difficulties when doing these tasks; we have provided a [troubleshooting guide](troubleshooting-guide.md) for some commonly faced problems. Failing that, you may post a help request in our [issue tracker](https://github.com/TEAMMATES/teammates/issues).
 
-> * The task descriptions are brief by intention. We want you to try to figure out how to do those things by yourself.
-> * While the dev team members will be glad to answer your questions, you will not make a good impression if you ask questions which are already answered in the mentioned resources.
+> - The task descriptions are brief by intention. We want you to try to figure out how to do those things by yourself.
+> - While the dev team members will be glad to answer your questions, you will not make a good impression if you ask questions which are already answered in the mentioned resources.
 
 ### Knowledge required
 
@@ -90,7 +85,7 @@ Try your best to be familiar with at least building and testing the application 
 
 #### Phase C: Start contributing
 
-When you are ready for a real contribution, you are advised to start with an issue labelled [good first issue](https://github.com/TEAMMATES/teammates/issues?q=is:issue+is:open+label:"good+first+issue") (but do not do more than one of those), then move on to other issues labelled [help wanted](https://github.com/TEAMMATES/teammates/issues?q=is:issue+is:open+label:"help+wanted").
+When you are ready for a real contribution, you are advised to start with an issue labelled [good first issue](https://github.com/TEAMMATES/teammates/issues?q=is:issue+is:open+label:"good+first+issue") (but do not do more than one of those), then move on to other issues labelled [help wanted](https://github.com/TEAMMATES/teammates/issues?q=is:issue+is:open+label:"help+wanted").
 Steps for fixing an issue are lined out in the [process document](process.md).
 
 > In the event that you cannot find a `good first issue`-labelled issue, you can start with a `help wanted`-labelled issue.
@@ -102,7 +97,16 @@ We are more interested to see how you go about fixing the issue. We want to know
 
 Take your time to learn and follow the workflow to the letter. Do not skip any steps because you think that step is "not important". We are more impressed when you finish an issue in fewer attempts than when you finish it in a shorter time but take many attempts because you were not meticulous enough along the way.
 
-## Other resources
+## TEAMMATES Support
 
-* [Support request](../.github/SUPPORT.md)
-* [Comprehensive directory of resources, including style guides](../docs/README.md)
+If you are looking for support for TEAMMATES, check out:
+
+* User Documentation
+  * [For students](https://teammatesv4.appspot.com/web/front/help/student)
+  * [For instructors](https://teammatesv4.appspot.com/web/front/help/instructor)
+* [FAQs by external contributors](https://github.com/TEAMMATES/teammates/issues?utf8=✓&q=is:issue+label:a-DevHelp). Note that many of the questions asked and/or answers provided may have been outdated now.
+
+If you want to reach out to the project team, the best way is to [post a message in our issue tracker](https://github.com/TEAMMATES/teammates/issues/new). Our issue tracker doubles as a discussion forum.
+You can use it for things like asking questions about the project, the workflow, or requesting technical help.
+
+Alternatively (less preferred), you can email us at **<span>teammates@comp.nus.edu.sg</span>**.
