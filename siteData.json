@@ -15,7 +15,14 @@
         "submitting-a-pull-request": "Submitting a pull request",
         "contributor-orientation-guide": "Contributor orientation guide",
         "knowledge-required": "Knowledge required",
-        "orientation-task-list": "Orientation task list",
+        "orientation-task-list": "Orientation task list"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "SUPPORT.md",
+      "title": "",
+      "headings": {
         "teammates-support": "TEAMMATES Support"
       },
       "headingKeywords": {}
@@ -284,8 +291,7 @@
         "step-1-obtain-your-own-copy-of-the-repository": "Step 1: Obtain your own copy of the repository",
         "step-2-install-necessary-tools-and-languages": "Step 2: Install necessary tools and languages",
         "step-3-set-up-project-specific-settings-and-dependencies": "Step 3: Set up project-specific settings and dependencies",
-        "step-4-start-developing": "Step 4: Start developing",
-        "step-5-set-up-search-optional": "Step 5: Set up search (Optional)"
+        "step-4-start-developing": "Step 4: Start developing"
       },
       "headingKeywords": {}
     },
