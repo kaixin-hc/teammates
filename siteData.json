@@ -87,7 +87,7 @@
     },
     {
       "src": "captcha.md",
-      "title": "How-to: Captcha",
+      "title": "Captcha",
       "headings": {
         "setting-up-captcha": "Setting up CAPTCHA"
       },
@@ -95,7 +95,7 @@
     },
     {
       "src": "contributing-doc.md",
-      "title": "Workflow: Contributing",
+      "title": "Contributing",
       "headings": {
         "contributing-to-teammates": "Contributing to TEAMMATES",
         "getting-started": "Getting started",
@@ -138,7 +138,7 @@
     },
     {
       "src": "development.md",
-      "title": "Workflow: Development",
+      "title": "Development",
       "headings": {
         "development-guidelines": "Development Guidelines",
         "managing-the-dev-server-front-end": "Managing the dev server: front-end",
@@ -160,9 +160,9 @@
     },
     {
       "src": "documentation.md",
-      "title": "Getting Started: Documentation",
+      "title": "Documentation",
       "headings": {
-        "markbind-documentation": "MarkBind Documentation",
+        "documentation": "Documentation",
         "quickstart": "Quickstart",
         "adding-pages-to-the-developer-guide": "Adding pages to the developer guide",
         "deploying-to-github-pages": "Deploying to Github pages"
@@ -171,7 +171,7 @@
     },
     {
       "src": "e2e-testing.md",
-      "title": "Testing: End-to-End",
+      "title": "End-to-End Testing",
       "headings": {
         "e2e-testing": "E2E Testing",
         "what-is-e2e-testing": "What is E2E Testing?",
@@ -189,7 +189,7 @@
     },
     {
       "src": "emails.md",
-      "title": "How-to: Emails",
+      "title": "Emails",
       "headings": {
         "using-alternative-email-providers": "Using alternative email providers",
         "sendgrid": "SendGrid",
@@ -223,7 +223,7 @@
     },
     {
       "src": "issues.md",
-      "title": "Workflow: Issues",
+      "title": "Issues",
       "headings": {
         "issue-tracker": "Issue tracker",
         "issue-lifecycle": "Issue lifecycle",
@@ -244,7 +244,7 @@
     },
     {
       "src": "performance-testing.md",
-      "title": "Testing: Performance",
+      "title": "Performance Testing",
       "headings": {
         "performance-testing": "Performance Testing",
         "creating-performance-tests": "Creating Performance Tests",
@@ -257,7 +257,7 @@
     },
     {
       "src": "process.md",
-      "title": "Workflow: Development Workflow",
+      "title": "Process",
       "headings": {
         "development-workflow": "Development Workflow",
         "overview": "Overview",
@@ -275,7 +275,7 @@
     },
     {
       "src": "search.md",
-      "title": "Getting Started: Search",
+      "title": "Search",
       "headings": {
         "full-text-search-feature-support": "Full-text Search Feature Support",
         "setting-up-solr-using-docker": "Setting up Solr using Docker",
@@ -285,7 +285,7 @@
     },
     {
       "src": "setting-up.md",
-      "title": "Getting Started: Setting Up",
+      "title": "Setting Up",
       "headings": {
         "setting-up-a-development-environment": "Setting up a development environment",
         "step-1-obtain-your-own-copy-of-the-repository": "Step 1: Obtain your own copy of the repository",
@@ -297,7 +297,7 @@
     },
     {
       "src": "snapshot-testing.md",
-      "title": "Testing: Snapshot",
+      "title": "Snapshot Testing",
       "headings": {
         "snapshot-testing": "Snapshot Testing",
         "what-is-snapshot-testing": "What is Snapshot Testing?",
@@ -312,7 +312,7 @@
     },
     {
       "src": "static-analysis.md",
-      "title": "Testing: Static Analysis",
+      "title": "Static Analysis",
       "headings": {
         "static-analysis": "Static Analysis",
         "version-numbers": "Version numbers",
