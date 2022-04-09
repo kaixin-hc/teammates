@@ -28,16 +28,6 @@
       "headingKeywords": {}
     },
     {
-      "src": "about.md",
-      "title": "About",
-      "headings": {
-        "about": "About",
-        "acknowledgements": "Acknowledgements",
-        "contacting-us": "Contacting us"
-      },
-      "headingKeywords": {}
-    },
-    {
       "src": "best-practices/coding.md",
       "title": "Best Practices: Coding",
       "headings": {
