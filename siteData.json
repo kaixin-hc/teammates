@@ -153,9 +153,9 @@
       "title": "Documentation",
       "headings": {
         "documentation": "Documentation",
+        "installation": "Installation",
         "quickstart": "Quickstart",
-        "adding-pages-to-the-developer-guide": "Adding pages to the developer guide",
-        "deploying-to-github-pages": "Deploying to Github pages"
+        "deploying-to-github-pages": "Deploying to GitHub pages"
       },
       "headingKeywords": {}
     },
